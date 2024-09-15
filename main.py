@@ -1,6 +1,4 @@
-import json
-import os
-from settings_manager import settings_manager
+from src.settings_manager import settings_manager
 
 manager1 = settings_manager()
 manager1.open("settings1.json")

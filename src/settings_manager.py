@@ -1,15 +1,20 @@
+from src.models.settings import settings
+from src.abstract_logic import abstract_logic
+from src.custom_raise import CustomRaise
+
 import json
 import os
-from settings import settings
 
-class settings_manager:
+class settings_manager(abstract_logic):
+    __instance = None
     __file_name = "settings (default).json"
     __settings:settings = settings()
 
-    # def __new__(cls):
-    #     if not hasattr(cls, "instance"):
-    #         cls.instance = super(settings_manager, cls).__new__(cls)
-    #     return cls.instance
+    def __new__(cls, *args, **kwargs):
+        if cls.__instance is None:
+            cls.__instance = super(settings_manager, cls).__new__(cls, *args, **kwargs)
+            cls.__instance.__init__()
+        return cls.__instance
 
     def __init__(self) -> None:
         self.__settings = self.__default_settings()
@@ -19,28 +24,27 @@ class settings_manager:
             if hasattr(self.__settings, key):
                 setattr(self.__settings, key, value)
 
-    def open(self, file_name:str = ""):
-        if not isinstance(file_name, str):
-            raise TypeError("~ Некорректно передан параметр!")
+    def open(self, file_name:str = "", file_path = os.curdir):
+        CustomRaise.type_exception("file_name", file_name, str)
 
         if file_name != "":
             self.__file_name = file_name
 
         try:
-            full_name = self.__get_file_path(self.__file_name)
+            full_name = self.__get_file_path(self.__file_name, file_path)
+            
             if not full_name:
-                self.__settings = self.__default_setting()
-                raise TypeError(f"~ Файл {self.__file_name} не найден!\nУстановлены настройки по умолчанию!")
+                self.__settings = self.__default_settings()
+                CustomRaise.not_found_exception(self.__file_name)
             
             stream = open(full_name, encoding="utf-8")
             data = json.load(stream)
             self.convert(data)
-
-            print(f"~ Файл {self.__file_name} успешно загружен.")
             return True
-        except:
+        except Exception as e:
             self.__settings = self.__default_settings()
-            print(f"~ Ошибка загрузки файла {self.__file_name}!\nУстановлены настройки по умолчанию!")
+            self.set_exception(e)
+            # print(f"~ Ошибка загрузки файла {self.__file_name}!\nУстановлены настройки по умолчанию!")
             return False
 
     @property
@@ -58,9 +62,12 @@ class settings_manager:
         return data
     
     @staticmethod
-    def __get_file_path(filename, file_path = os.curdir):
+    def __get_file_path(filename:str = "", file_path = os.curdir):
         for root, _, _ in os.walk(file_path):
             full_name = os.path.join(root, filename)
             if os.path.isfile(full_name):
                 return full_name
         return None
+    
+    def set_exception(self, e: Exception):
+        self._inner_set_exception(e)
