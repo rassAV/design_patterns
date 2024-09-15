@@ -3,7 +3,6 @@ from src.custom_raise import CustomRaise
 
 class range(abstract_model):
     def __init__(self, unit_range: str = "грамм", conversion_factor: int = 1, base_range: range = None):
-        # CustomRaise.factor_required_exception(conversion_factor)
         if base_range is not None:
             CustomRaise.value_required_exception(base_range.conversion_factor, conversion_factor)
         CustomRaise.type_exception("full_name", unit_range, str)
