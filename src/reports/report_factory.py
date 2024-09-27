@@ -35,6 +35,7 @@ class report_factory(abstract_logic):
         return report()
     
     def create_default(self, format: format_reporting = format_reporting.CSV) ->  abstract_report:
+        CustomRaise.type_exception("format", format, format_reporting)
         return self.__reports[format]
     
     def set_exception(self, ex: Exception):
