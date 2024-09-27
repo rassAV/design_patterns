@@ -150,13 +150,13 @@ class test_reporting(unittest.TestCase):
         assert sheet.cell(row=2, column=5).value == "`10 порций`", "Количество порций отличается от ожидаемого."
         assert sheet.cell(row=2, column=6).value == "`20 мин`", "Время приготовления отличается от ожидаемого."
 
-    # def test_custom_report_mapping(self):
-    #     # Подготовка
-    #     manager = settings_manager()
-    #     manager.open("settings (default).json", "../")
-    #     manager.settings.report_mapping = {format_reporting.CSV: md_report}
-    #     report = report_factory().create(manager)
+    def test_custom_report_mapping(self):
+        # Подготовка
+        manager = settings_manager()
+        manager.open("settings (default).json", "../")
+        manager.settings.report_mapping = {format_reporting.CSV: md_report}
+        report = report_factory().create(manager)
         
-    #     # Проверка
-    #     assert report is not None
-    #     assert isinstance(report, md_report), "Фабрика отчётов не использовала кастомный маппинг."
+        # Проверка
+        assert report is not None
+        assert isinstance(report, md_report), "Фабрика отчётов не использовала кастомный маппинг."

@@ -1,4 +1,4 @@
-**id**: cb6ec5147cfa11ef83a11c9957818fb1
+**id**: ca5977ea7cfc11efbcba1c9957818fb1
 **ingredients**:
 - Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)
 - Ingredient(name: Сахар, unit_value: 80, unit_name: гр)
@@ -19,7 +19,7 @@
 **servings**: `10 порций`
 **time**: `20 мин`
 
-**id**: cb6ec51d7cfa11ef896f1c9957818fb1
+**id**: ca599f157cfc11ef90801c9957818fb1
 **ingredients**:
 - Ingredient(name: Пшеничная мука, unit_value: 120, unit_name: гр)
 - Ingredient(name: Какао-порошок, unit_value: 30, unit_name: гр)
