@@ -13,7 +13,7 @@ class docx_report(abstract_report):
     def create(self, data: list):
         CustomRaise.type_exception("data", data, list)
         if len(data) == 0:
-            raise "Набор данных пуст"
+            CustomRaise.operation_exception("Набор данных пуст")
 
         self.document = Document()
         first_model = data[0]
@@ -21,7 +21,7 @@ class docx_report(abstract_report):
         if isinstance(first_model, tuple):
             fields = [f"column_{i}" for i in range(len(first_model))]
         else:
-            fields = ["id", "name", "servings", "time", "ingredients", "instructions"]
+            fields = list(filter(lambda x: not x.startswith("_") and not callable(getattr(first_model, x)), dir(first_model)))
 
         for row in data:
             for field in fields:
@@ -39,5 +39,9 @@ class docx_report(abstract_report):
         if not os.path.exists(full_path):
             os.makedirs(full_path)
         
-        file_path = os.path.join(full_path, filename + ".docx")
-        self.document.save(file_path)
+        try:
+            file_path = os.path.join(full_path, filename + ".docx")
+            self.document.save(file_path)
+            return True
+        except:
+            return False

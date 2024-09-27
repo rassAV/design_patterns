@@ -1,9 +1,9 @@
 from enum import Enum
 
 class format_reporting(Enum):
-    CSV = 1
-    MD = 2
-    JSON = 3
-    XML = 4
-    DOCX = 5
-    XLSX = 6
+    CSV = ".csv"
+    MD = ".md"
+    JSON = ".json"
+    XML = ".xml"
+    DOCX = ".docx"
+    XLSX = ".xlsx"

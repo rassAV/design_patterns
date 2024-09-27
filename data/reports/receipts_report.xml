@@ -1,9 +1,6 @@
 <root>
   <item>
-    <id>8a10b70c7cbc11ef83b61c9957818fb1</id>
-    <name>ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ</name>
-    <servings>`10 порций`</servings>
-    <time>`20 мин`</time>
+    <id>cb6ec5147cfa11ef83a11c9957818fb1</id>
     <ingredients>
       <element>Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)</element>
       <element>Ingredient(name: Сахар, unit_value: 80, unit_name: гр)</element>
@@ -22,12 +19,12 @@
       <element>8. Я не смазываю вафельницу маслом, в тесте достаточно жира, да и к ней уже давно ничего не прилипает. Но вы смотрите по своей модели. Выкладывайте тесто по столовой ложке. Можно класть немного меньше теста, тогда вафли будут меньше и их получится больше.</element>
       <element>9. Пеките вафли несколько минут до золотистого цвета. Осторожно откройте вафельницу, она очень горячая! Снимите вафлю лопаткой. Горячая она очень мягкая, как блинчик.</element>
     </instructions>
+    <name>ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ</name>
+    <servings>`10 порций`</servings>
+    <time>`20 мин`</time>
   </item>
   <item>
-    <id>8a10b7157cbc11efbef91c9957818fb1</id>
-    <name>ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ</name>
-    <servings>`12 порций`</servings>
-    <time>`25 мин`</time>
+    <id>cb6ec51d7cfa11ef896f1c9957818fb1</id>
     <ingredients>
       <element>Ingredient(name: Пшеничная мука, unit_value: 120, unit_name: гр)</element>
       <element>Ingredient(name: Какао-порошок, unit_value: 30, unit_name: гр)</element>
@@ -48,5 +45,8 @@
       <element>7. Выложите тесто ложкой в вафельницу и пеките вафли 3–4 минуты до золотисто-шоколадного цвета.</element>
       <element>8. Вафли готовы! Подавайте их с фруктами, сиропом или мороженым.</element>
     </instructions>
+    <name>ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ</name>
+    <servings>`12 порций`</servings>
+    <time>`25 мин`</time>
   </item>
 </root>

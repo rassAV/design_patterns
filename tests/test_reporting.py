@@ -30,9 +30,6 @@ class test_reporting(unittest.TestCase):
         # Подготовка
         manager = settings_manager()
         manager.open("settings1.json", "../")
-        reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()        
         report = report_factory().create( manager )
 
         # Проверка
@@ -44,8 +41,6 @@ class test_reporting(unittest.TestCase):
         manager = settings_manager()
         manager.open("settings (default).json", "../")
         reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()
         report = report_factory().create(manager)
         report.create(reposity.data[storage_reposity.receipts_key()])
         report.save("../../data/reports", "receipts_report")
@@ -62,8 +57,6 @@ class test_reporting(unittest.TestCase):
         manager = settings_manager()
         manager.open("settings1.json", "../")
         reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()
         report = report_factory().create(manager)
         report.create(reposity.data[storage_reposity.receipts_key()])
         report.save("../../data/reports", "receipts_report")
@@ -73,19 +66,17 @@ class test_reporting(unittest.TestCase):
         assert os.path.exists(file_path), "Файл отчёта MD не был создан."
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
-            assert lines[1] == "**name**: ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ\n", "Название отличается от ожидаемого."
-            assert lines[2] == "**servings**: `10 порций`\n", "Количество порций отличается от ожидаемого."
-            assert lines[3] == "**time**: `20 мин`\n", "Время приготовления отличается от ожидаемого."
-            assert "- Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)\n" in lines[5], "Ингредиенты отсутствуют или отличаются от ожидаемого."
-            assert "- 1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.\n" in lines[11], "Инструкции отсутствуют или отличаются от ожидаемого."
+            assert lines[17] == "**name**: ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ\n", "Название отличается от ожидаемого."
+            assert lines[18] == "**servings**: `10 порций`\n", "Количество порций отличается от ожидаемого."
+            assert lines[19] == "**time**: `20 мин`\n", "Время приготовления отличается от ожидаемого."
+            assert "- Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)\n" in lines[2], "Ингредиенты отсутствуют или отличаются от ожидаемого."
+            assert "- 1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.\n" in lines[8], "Инструкции отсутствуют или отличаются от ожидаемого."
 
     def test_report_save_json(self):
         # Подготовка
         manager = settings_manager()
         manager.open("settings2.json", "../")
         reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()
         report = report_factory().create(manager)
         report.create(reposity.data[storage_reposity.receipts_key()])
         report.save("../../data/reports", "receipts_report")
@@ -106,8 +97,6 @@ class test_reporting(unittest.TestCase):
         manager = settings_manager()
         manager.open("settings3.json", "../")
         reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()
         report = report_factory().create(manager)
         report.create(reposity.data[storage_reposity.receipts_key()])
         report.save("../../data/reports", "receipts_report")
@@ -117,11 +106,11 @@ class test_reporting(unittest.TestCase):
         assert os.path.exists(file_path), "Файл отчета XML не был создан."
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
-            assert "<name>ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ</name>" in lines[3], "Название отличается от ожидаемого."
-            assert "<servings>`10 порций`</servings>" in lines[4], "Количество порций отличается от ожидаемого."
-            assert "<time>`20 мин`</time>" in lines[5], "Время приготовления отличается от ожидаемого."
-            assert "<element>Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)</element>" in lines[7], "Ингредиенты отсутствуют или отличаются от ожидаемого."
-            assert "<element>1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.</element>" in lines[14], "Инструкции отсутствуют или отличаются от ожидаемого."
+            assert "<name>ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ</name>" in lines[21], "Название отличается от ожидаемого."
+            assert "<servings>`10 порций`</servings>" in lines[22], "Количество порций отличается от ожидаемого."
+            assert "<time>`20 мин`</time>" in lines[23], "Время приготовления отличается от ожидаемого."
+            assert "<element>Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)</element>" in lines[4], "Ингредиенты отсутствуют или отличаются от ожидаемого."
+            assert "<element>1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.</element>" in lines[11], "Инструкции отсутствуют или отличаются от ожидаемого."
 
     def test_report_save_docx(self):
         # Подготовка
@@ -129,8 +118,6 @@ class test_reporting(unittest.TestCase):
         manager.open("settings3.json", "../")
         manager.settings.report_format = format_reporting.DOCX
         reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()
         report = report_factory().create(manager)
         report.create(reposity.data[storage_reposity.receipts_key()])
         report.save("../../data/reports", "receipts_report")
@@ -150,8 +137,6 @@ class test_reporting(unittest.TestCase):
         manager.open("settings3.json", "../")
         manager.settings.report_format = format_reporting.XLSX
         reposity = storage_reposity()
-        start = start_service(reposity, manager)
-        start.create()
         report = report_factory().create(manager)
         report.create(reposity.data[storage_reposity.receipts_key()])
         report.save("../../data/reports", "receipts_report")
@@ -161,6 +146,17 @@ class test_reporting(unittest.TestCase):
         assert os.path.exists(file_path), "Файл отчета XLSX не был создан."
         workbook = openpyxl.load_workbook(file_path)
         sheet = workbook.active
-        assert sheet.cell(row=2, column=2).value == "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ", "Название отличается от ожидаемого."
-        assert sheet.cell(row=2, column=3).value == "`10 порций`", "Количество порций отличается от ожидаемого."
-        assert sheet.cell(row=2, column=4).value == "`20 мин`", "Время приготовления отличается от ожидаемого."
+        assert sheet.cell(row=2, column=4).value == "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ", "Название отличается от ожидаемого."
+        assert sheet.cell(row=2, column=5).value == "`10 порций`", "Количество порций отличается от ожидаемого."
+        assert sheet.cell(row=2, column=6).value == "`20 мин`", "Время приготовления отличается от ожидаемого."
+
+    # def test_custom_report_mapping(self):
+    #     # Подготовка
+    #     manager = settings_manager()
+    #     manager.open("settings (default).json", "../")
+    #     manager.settings.report_mapping = {format_reporting.CSV: md_report}
+    #     report = report_factory().create(manager)
+        
+    #     # Проверка
+    #     assert report is not None
+    #     assert isinstance(report, md_report), "Фабрика отчётов не использовала кастомный маппинг."

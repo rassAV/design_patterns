@@ -26,11 +26,16 @@ class report_factory(abstract_logic):
         format = manager.settings.report_format
         CustomRaise.type_exception("format", format, format_reporting)
         
-        if format not in self.__reports.keys():
-            self.set_exception( CustomRaise.operation_exception(f"Указанный вариант формата {format} не реализован!"))
+        report_mapping = manager.settings.report_mapping or self.__reports
+
+        if format not in report_mapping.keys():
+            CustomRaise.operation_exception(f"Указанный вариант формата {format} не реализован!")
         
-        report = self.__reports[format]
+        report = report_mapping[format]
         return report()
+    
+    def create_default(self, format: format_reporting = format_reporting.CSV) ->  abstract_report:
+        return self.__reports[format]
     
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)

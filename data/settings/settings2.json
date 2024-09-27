@@ -5,5 +5,5 @@
     "bik": "123456789",
     "org_name" : "СтройИнвест",
     "ownership_type": "частн",
-    "report_format": 3
+    "report_format": ".json"
 }

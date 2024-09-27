@@ -61,7 +61,7 @@ class settings_manager(abstract_logic):
         data.bik = "123456789"
         data.organization_name = "Организация (default)"
         data.ownership_type = "частн"
-        data.report_format = format_reporting(1)
+        data.report_format = format_reporting.CSV
         return data
     
     @staticmethod

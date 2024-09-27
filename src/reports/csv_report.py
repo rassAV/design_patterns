@@ -12,7 +12,7 @@ class csv_report(abstract_report):
     def create(self, data: list):
         CustomRaise.type_exception("data", data, list)
         if len(data) == 0:
-            raise "набор данных пуст"
+            CustomRaise.operation_exception("Набор данных пуст")
         
         first_model = data[0]
 
@@ -45,5 +45,9 @@ class csv_report(abstract_report):
         if not os.path.exists(full_path):
             os.makedirs(full_path)
 
-        with open(os.path.join(full_path, filename + ".csv"), 'w', encoding='utf-8') as file:
-            file.write(self.result)
+        try:
+            with open(os.path.join(full_path, filename + self.__format.value), 'w', encoding='utf-8') as file:
+                file.write(self.result)
+            return True
+        except:
+            return False

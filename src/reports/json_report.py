@@ -28,7 +28,7 @@ class json_report(abstract_report):
     def create(self, data: list):
         CustomRaise.type_exception("data", data, list)
         if len(data) == 0:
-            raise "набор данных пуст"
+            CustomRaise.operation_exception("Набор данных пуст")
 
         serializable_data = [self.__serialize_obj(row) for row in data]
         self.result = json.dumps(serializable_data, ensure_ascii=False, indent=4)
@@ -39,5 +39,9 @@ class json_report(abstract_report):
         if not os.path.exists(full_path):
             os.makedirs(full_path)
 
-        with open(os.path.join(full_path, filename + ".json"), 'w', encoding='utf-8') as file:
-            file.write(self.result)
+        try:
+            with open(os.path.join(full_path, filename + self.__format.value), 'w', encoding='utf-8') as file:
+                file.write(self.result)
+            return True
+        except:
+            return False
