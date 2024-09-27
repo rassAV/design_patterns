@@ -9,6 +9,7 @@ class recipe(abstract_model):
     __instructions: list = []
 
     def __init__(self, name: str = "default", servings: str = "", ingredients: list = [], time: str = "", instructions: list = []):
+        super().__init__()
         CustomRaise.type_exception("name", name, str)
         CustomRaise.type_exception("servings", servings, str)
         CustomRaise.type_exception("ingredients", ingredients, list)

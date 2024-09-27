@@ -7,12 +7,16 @@ class ingredient(abstract_model):
     __unit_name: str = ""
 
     def __init__(self, name: str = "default", unit_value: int = 1, unit_name: str = ""):
+        super().__init__()
         CustomRaise.type_exception("name", name, str)
         CustomRaise.type_exception("unit_value", unit_value, int)
         CustomRaise.type_exception("unit_name", unit_name, str)
         self.__name = name
         self.__unit_value = unit_value
         self.__unit_name = unit_name
+
+    def __str__(self):
+        return f"Ingredient(name: {self.name}, unit_value: {self.unit_value}, unit_name: {self.unit_name})"
 
     @property
     def name(self) -> str:

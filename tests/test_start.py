@@ -4,7 +4,7 @@ from src.storage_reposity import storage_reposity
 
 import unittest
 
-class test_settings(unittest.TestCase):
+class test_start(unittest.TestCase):
     def test_create_start_service(self):
         # Подготовка
         manager = settings_manager()

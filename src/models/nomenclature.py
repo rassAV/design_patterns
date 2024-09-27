@@ -45,6 +45,14 @@ class nomenclature(abstract_model):
     def range(self, rng):
         CustomRaise.type_exception("range", rng, range)
         self.__range = rng
+
+    @staticmethod
+    def default_nomenclature_1():
+        return nomenclature("Мука", group_nomenclature.default_group_source(), range("килограмм", 1000, range()))
+    
+    @staticmethod
+    def default_nomenclature_2():
+        return nomenclature("Замороженные овощи", group_nomenclature.default_group_cold(), range("килограмм", 1000, range()))
     
     def set_compare_mode(self, other) -> bool:
         return super().set_compare_mode(other)

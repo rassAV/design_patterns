@@ -1,5 +1,6 @@
-import unittest
 from src.settings_manager import settings_manager
+
+import unittest
 
 class test_settings(unittest.TestCase):
    def test_settings_manager_open(self):

@@ -1,4 +1,5 @@
 from src.core.custom_raise import CustomRaise
+from src.core.format_reporting import format_reporting
 
 class settings:
     __inn = ""
@@ -7,6 +8,7 @@ class settings:
     __bik = ""
     __organization_name = ""
     __ownership_type = ""
+    __report_format: format_reporting = None
 
     @property
     def inn(self):
@@ -66,3 +68,12 @@ class settings:
         CustomRaise.type_exception("ownership_type", value, str)
         CustomRaise.length_required_exception("ownership_type", value, 5)
         self.__ownership_type = value
+
+    @property
+    def report_format(self):
+        return self.__report_format
+
+    @report_format.setter
+    def report_format(self, value: format_reporting):
+        CustomRaise.type_exception("report_format", value, format_reporting)
+        self.__report_format = value

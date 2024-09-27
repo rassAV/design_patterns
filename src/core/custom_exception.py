@@ -1,6 +1,11 @@
 class CustomException(Exception):
     pass
 
+class OperationException(CustomException):
+    def __init__(self, text: str):
+        self.message = f"{text}"
+        super().__init__(self.message)
+
 class TypeException(CustomException):
     def __init__(self, argument_name: str, required_type: int):
         self.message = f"Некорректно передан параметр! Аргумент {argument_name} ожидает тип {required_type}!"
