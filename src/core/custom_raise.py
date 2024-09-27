@@ -1,4 +1,4 @@
-from src.custom_exception import TypeException, LengthExceededException, LengthRequiredException, ValueRequiredException, FactorRequiredException, NotFoundException
+from src.core.custom_exception import TypeException, LengthExceededException, LengthRequiredException, ValueRequiredException, FactorRequiredException, NotFoundException
 
 class CustomRaise:        
     @staticmethod

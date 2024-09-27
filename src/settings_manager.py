@@ -1,6 +1,6 @@
 from src.models.settings import settings
-from src.abstract_logic import abstract_logic
-from src.custom_raise import CustomRaise
+from src.core.abstract_logic import abstract_logic
+from src.core.custom_raise import CustomRaise
 
 import json
 import os
@@ -44,7 +44,6 @@ class settings_manager(abstract_logic):
         except Exception as e:
             self.__settings = self.__default_settings()
             self.set_exception(e)
-            # print(f"~ Ошибка загрузки файла {self.__file_name}!\nУстановлены настройки по умолчанию!")
             return False
 
     @property

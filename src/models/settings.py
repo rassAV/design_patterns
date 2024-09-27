@@ -1,4 +1,4 @@
-from src.custom_raise import CustomRaise
+from src.core.custom_raise import CustomRaise
 
 class settings:
     __inn = ""
