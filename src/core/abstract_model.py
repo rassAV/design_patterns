@@ -7,7 +7,7 @@ class abstract_model(ABC):
     __name = ""
 
     def __init__(self):
-        self.__id = uuid.uuid1().int
+        self.__id = uuid.uuid1().hex
 
     @property
     def id(self) -> int:

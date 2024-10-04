@@ -32,11 +32,9 @@ class start_service(abstract_logic):
     
     def __create_unit_measurements(self):
         units = [
-            range(),
-            range("килограмм", 1000, range()),
-            range("тонна", 1000, range("килограмм", 1000)),
-            range("милилитр", 1),
-            range("литр", 1000, range("милилитр", 1))
+            range.default_gram(),
+            range.default_kilogram(),
+            range.default_ton()
         ]
         self.__reposity.data[storage_reposity.ranges_key()] = units
     
@@ -46,17 +44,17 @@ class start_service(abstract_logic):
     
     def __create_nomenclature(self):
         nomenclatures = [
-            nomenclature("Мука", group_nomenclature.default_group_source(), range("килограмм", 1000, range())),
-            nomenclature("Замороженные овощи", group_nomenclature.default_group_cold(), range("килограмм", 1000, range()))
+            nomenclature.default_nomenclature_1(),
+            nomenclature.default_nomenclature_2()
         ]
         self.__reposity.data[storage_reposity.nomenclature_key()] = nomenclatures
 
     def __create_receipts(self):
         receipts = []
-        docs_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../docs"))
+        docs_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/recipes"))
 
-        # if not os.path.exists(docs_path):
-        #     raise FileNotFoundError(f"Директория {docs_path} не найдена.")
+        if not os.path.exists(docs_path):
+            CustomRaise.operation_exception(f"Директория {docs_path} не найдена.")
         
         for filename in os.listdir(docs_path):
             if filename.endswith(".md"):

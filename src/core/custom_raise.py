@@ -1,6 +1,10 @@
-from src.core.custom_exception import TypeException, LengthExceededException, LengthRequiredException, ValueRequiredException, FactorRequiredException, NotFoundException
+from src.core.custom_exception import OperationException, TypeException, LengthExceededException, LengthRequiredException, ValueRequiredException, FactorRequiredException, NotFoundException
 
-class CustomRaise:        
+class CustomRaise:
+    @staticmethod
+    def operation_exception(text: str):
+        raise OperationException(text)
+
     @staticmethod
     def type_exception(argument_name: str, value, required_type):
         if not isinstance(value, required_type):

@@ -1,0 +1,52 @@
+<root>
+  <item>
+    <id>ca5977ea7cfc11efbcba1c9957818fb1</id>
+    <ingredients>
+      <element>Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)</element>
+      <element>Ingredient(name: Сахар, unit_value: 80, unit_name: гр)</element>
+      <element>Ingredient(name: Сливочное масло, unit_value: 70, unit_name: гр)</element>
+      <element>Ingredient(name: Яйца, unit_value: 1, unit_name: шт)</element>
+      <element>Ingredient(name: Ванилин(щепотка), unit_value: 5, unit_name: гр)</element>
+    </ingredients>
+    <instructions>
+      <element>1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.</element>
+      <element>2. Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке.</element>
+      <element>3. Добавьте в теплое масло сахар. Перемешайте венчиком до полного растворения сахара. От тепла сахар довольно быстро растает.</element>
+      <element>4. Добавьте в масло яйцо. Предварительно все-таки проверьте масло, не горячее ли оно, иначе яйцо может свариться. Перемешайте яйцо с маслом до однородности.</element>
+      <element>5. Всыпьте муку, добавьте ванилин.</element>
+      <element>6. Перемешайте массу венчиком до состояния гладкого однородного теста.</element>
+      <element>7. Разогрейте вафельницу по инструкции к ней. У меня очень старая, еще советских времен электровафельница. Она может и не очень красивая, но печет замечательно!</element>
+      <element>8. Я не смазываю вафельницу маслом, в тесте достаточно жира, да и к ней уже давно ничего не прилипает. Но вы смотрите по своей модели. Выкладывайте тесто по столовой ложке. Можно класть немного меньше теста, тогда вафли будут меньше и их получится больше.</element>
+      <element>9. Пеките вафли несколько минут до золотистого цвета. Осторожно откройте вафельницу, она очень горячая! Снимите вафлю лопаткой. Горячая она очень мягкая, как блинчик.</element>
+    </instructions>
+    <name>ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ</name>
+    <servings>`10 порций`</servings>
+    <time>`20 мин`</time>
+  </item>
+  <item>
+    <id>ca599f157cfc11ef90801c9957818fb1</id>
+    <ingredients>
+      <element>Ingredient(name: Пшеничная мука, unit_value: 120, unit_name: гр)</element>
+      <element>Ingredient(name: Какао-порошок, unit_value: 30, unit_name: гр)</element>
+      <element>Ingredient(name: Сахар, unit_value: 90, unit_name: гр)</element>
+      <element>Ingredient(name: Разрыхлитель, unit_value: 1, unit_name: ч.л.)</element>
+      <element>Ingredient(name: Сливочное масло, unit_value: 60, unit_name: гр)</element>
+      <element>Ingredient(name: Яйца, unit_value: 2, unit_name: шт)</element>
+      <element>Ingredient(name: Молоко, unit_value: 150, unit_name: мл)</element>
+      <element>Ingredient(name: Ванильный сахар, unit_value: 10, unit_name: гр)</element>
+    </ingredients>
+    <instructions>
+      <element>1. Подготовьте все ингредиенты. Просейте муку, чтобы вафли получились нежными и воздушными.</element>
+      <element>2. В глубокой миске смешайте пшеничную муку, какао-порошок и разрыхлитель.</element>
+      <element>3. В отдельной посуде растопите сливочное масло на медленном огне или в микроволновке.</element>
+      <element>4. Добавьте к растопленному маслу сахар, ванильный сахар и яйца. Взбейте венчиком до однородной массы.</element>
+      <element>5. Постепенно введите молоко в яичную смесь, затем добавьте сухие ингредиенты. Перемешайте до получения гладкого теста.</element>
+      <element>6. Разогрейте вафельницу до рабочей температуры. Если необходимо, смажьте её небольшим количеством масла.</element>
+      <element>7. Выложите тесто ложкой в вафельницу и пеките вафли 3–4 минуты до золотисто-шоколадного цвета.</element>
+      <element>8. Вафли готовы! Подавайте их с фруктами, сиропом или мороженым.</element>
+    </instructions>
+    <name>ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ</name>
+    <servings>`12 порций`</servings>
+    <time>`25 мин`</time>
+  </item>
+</root>

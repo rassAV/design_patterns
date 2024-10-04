@@ -4,5 +4,6 @@
     "corr_account": "70000700007",
     "bik": "123456789",
     "org_name" : "ГлобалИнвест",
-    "ownership_type": "частн"
+    "ownership_type": "частн",
+    "report_format": ".xml"
 }

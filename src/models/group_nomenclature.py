@@ -1,6 +1,9 @@
 from src.core.abstract_model import abstract_model
 
 class group_nomenclature(abstract_model):
+    def __str__(self):
+        return f"Group_nomenclature(name: {self.name})"
+
     @staticmethod
     def default_group_source():
         item = group_nomenclature()

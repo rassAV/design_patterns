@@ -1,6 +1,7 @@
 from src.models.settings import settings
 from src.core.abstract_logic import abstract_logic
 from src.core.custom_raise import CustomRaise
+from src.core.format_reporting import format_reporting
 
 import json
 import os
@@ -21,12 +22,14 @@ class settings_manager(abstract_logic):
 
     def convert(self, data: dict):
         for key, value in data.items():
-            if hasattr(self.__settings, key):
+            if key == "report_format":
+                formatted_value = format_reporting(value)
+                setattr(self.__settings, key, formatted_value)
+            elif hasattr(self.__settings, key):
                 setattr(self.__settings, key, value)
 
     def open(self, file_name:str = "", file_path = os.curdir):
         CustomRaise.type_exception("file_name", file_name, str)
-
         if file_name != "":
             self.__file_name = file_name
 
@@ -54,10 +57,11 @@ class settings_manager(abstract_logic):
         data = settings()
         data.inn = "700007000070"
         data.account = "70000700007"
-        data.corr_account = "70000700007"
+        data.correspondent_account = "70000700007"
         data.bik = "123456789"
         data.organization_name = "Организация (default)"
         data.ownership_type = "частн"
+        data.report_format = format_reporting.CSV
         return data
     
     @staticmethod

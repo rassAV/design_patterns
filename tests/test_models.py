@@ -1,10 +1,11 @@
-import unittest
 from src.models.nomenclature import nomenclature
 from src.models.range import range
 from src.models.group_nomenclature import group_nomenclature
 from src.models.storage import storage
 from src.models.organization import organization
 from src.settings_manager import settings_manager
+
+import unittest
 
 class test_models(unittest.TestCase):
    def test_compare_model(self):
