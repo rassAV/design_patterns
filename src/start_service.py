@@ -5,12 +5,8 @@ from src.models.group_nomenclature import group_nomenclature
 from src.models.nomenclature import nomenclature
 from src.settings_manager import settings_manager
 from src.models.settings import settings
+from src.parsers_manager import parsers_manager
 from src.core.custom_raise import CustomRaise
-from src.models.ingredient import ingredient
-from src.models.recipe import recipe
-
-import os
-import re
 
 class start_service(abstract_logic):
     __reposity: storage_reposity = None
@@ -50,50 +46,7 @@ class start_service(abstract_logic):
         self.__reposity.data[storage_reposity.nomenclature_key()] = nomenclatures
 
     def __create_receipts(self):
-        receipts = []
-        docs_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/recipes"))
-
-        if not os.path.exists(docs_path):
-            CustomRaise.operation_exception(f"Директория {docs_path} не найдена.")
-        
-        for filename in os.listdir(docs_path):
-            if filename.endswith(".md"):
-                with open(os.path.join(docs_path, filename), 'r', encoding='utf-8') as file:
-                    name = ""
-                    servings = ""
-                    ing_name = ""
-                    ing_unit_value = 1
-                    ing_unit_name = ""
-                    ingredients = []
-                    time = ""
-                    instructions = []
-
-                    for line in file:
-                        line = line.strip()
-
-                        if line.startswith("# "):
-                            name = line[2:].strip()
-
-                        if line.startswith("#### "):
-                            servings = line[5:].strip()
-
-                        if line.startswith("| ") and not line.startswith("| Ингредиенты"):
-                            line = line[2:].strip()
-
-                            ing_name = line.split("|")[0].strip()
-                            ing_unit_value = line.split("|")[1].split(" ")[1].strip()
-                            ing_unit_name = line.split("|")[1].split(" ")[2].strip()
-
-                            ingredients.append(ingredient(ing_name, int(ing_unit_value), ing_unit_name))
-
-                        if line.startswith("Время приготовления: "):
-                            time = line[21:].strip()
-
-                        if re.match(r'^\d+\.\s', line):
-                            instructions.append(line.strip())
-
-                    receipts.append(recipe(name, servings, ingredients, time, instructions))
-        self.__reposity.data[storage_reposity.receipts_key()] = receipts
+        self.__reposity.data[storage_reposity.receipts_key()] = parsers_manager.parse_md_receipts()
 
     def create(self):
         self.__create_unit_measurements()

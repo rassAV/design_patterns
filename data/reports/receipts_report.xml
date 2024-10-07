@@ -1,12 +1,12 @@
 <root>
   <item>
-    <id>ca5977ea7cfc11efbcba1c9957818fb1</id>
+    <id>f1e8112c844111ef87201c9957818fb1</id>
     <ingredients>
-      <element>Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)</element>
-      <element>Ingredient(name: Сахар, unit_value: 80, unit_name: гр)</element>
-      <element>Ingredient(name: Сливочное масло, unit_value: 70, unit_name: гр)</element>
-      <element>Ingredient(name: Яйца, unit_value: 1, unit_name: шт)</element>
-      <element>Ingredient(name: Ванилин(щепотка), unit_value: 5, unit_name: гр)</element>
+      <element>Ingredient(name: Пшеничная мука, unit_value: 100, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Сахар, unit_value: 80, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Сливочное масло, unit_value: 70, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сливочное масло, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Яйца, unit_value: 1, range: Range(unit: шт, factor: 1), nomenclature: Nomenclature(full_name: Яйца, group: Group_nomenclature(name: Сырьё), range: Range(unit: шт, factor: 1)))</element>
+      <element>Ingredient(name: Ванилин(щепотка), unit_value: 5, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Ванилин(щепотка), group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
     </ingredients>
     <instructions>
       <element>1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.</element>
@@ -24,16 +24,16 @@
     <time>`20 мин`</time>
   </item>
   <item>
-    <id>ca599f157cfc11ef90801c9957818fb1</id>
+    <id>f1e81155844111efa61b1c9957818fb1</id>
     <ingredients>
-      <element>Ingredient(name: Пшеничная мука, unit_value: 120, unit_name: гр)</element>
-      <element>Ingredient(name: Какао-порошок, unit_value: 30, unit_name: гр)</element>
-      <element>Ingredient(name: Сахар, unit_value: 90, unit_name: гр)</element>
-      <element>Ingredient(name: Разрыхлитель, unit_value: 1, unit_name: ч.л.)</element>
-      <element>Ingredient(name: Сливочное масло, unit_value: 60, unit_name: гр)</element>
-      <element>Ingredient(name: Яйца, unit_value: 2, unit_name: шт)</element>
-      <element>Ingredient(name: Молоко, unit_value: 150, unit_name: мл)</element>
-      <element>Ingredient(name: Ванильный сахар, unit_value: 10, unit_name: гр)</element>
+      <element>Ingredient(name: Пшеничная мука, unit_value: 120, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Какао-порошок, unit_value: 30, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Какао-порошок, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Сахар, unit_value: 90, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Разрыхлитель, unit_value: 1, range: Range(unit: ч.л., factor: 1), nomenclature: Nomenclature(full_name: Разрыхлитель, group: Group_nomenclature(name: Сырьё), range: Range(unit: ч.л., factor: 1)))</element>
+      <element>Ingredient(name: Сливочное масло, unit_value: 60, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сливочное масло, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
+      <element>Ingredient(name: Яйца, unit_value: 2, range: Range(unit: шт, factor: 1), nomenclature: Nomenclature(full_name: Яйца, group: Group_nomenclature(name: Сырьё), range: Range(unit: шт, factor: 1)))</element>
+      <element>Ingredient(name: Молоко, unit_value: 150, range: Range(unit: мл, factor: 1), nomenclature: Nomenclature(full_name: Молоко, group: Group_nomenclature(name: Сырьё), range: Range(unit: мл, factor: 1)))</element>
+      <element>Ingredient(name: Ванильный сахар, unit_value: 10, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Ванильный сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
     </ingredients>
     <instructions>
       <element>1. Подготовьте все ингредиенты. Просейте муку, чтобы вафли получились нежными и воздушными.</element>

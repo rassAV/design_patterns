@@ -1,10 +1,10 @@
-**id**: ca5977ea7cfc11efbcba1c9957818fb1
+**id**: f1e8112c844111ef87201c9957818fb1
 **ingredients**:
-- Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)
-- Ingredient(name: Сахар, unit_value: 80, unit_name: гр)
-- Ingredient(name: Сливочное масло, unit_value: 70, unit_name: гр)
-- Ingredient(name: Яйца, unit_value: 1, unit_name: шт)
-- Ingredient(name: Ванилин(щепотка), unit_value: 5, unit_name: гр)
+- Ingredient(name: Пшеничная мука, unit_value: 100, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Сахар, unit_value: 80, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Сливочное масло, unit_value: 70, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сливочное масло, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Яйца, unit_value: 1, range: Range(unit: шт, factor: 1), nomenclature: Nomenclature(full_name: Яйца, group: Group_nomenclature(name: Сырьё), range: Range(unit: шт, factor: 1)))
+- Ingredient(name: Ванилин(щепотка), unit_value: 5, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Ванилин(щепотка), group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
 **instructions**:
 - 1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.
 - 2. Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке.
@@ -19,16 +19,16 @@
 **servings**: `10 порций`
 **time**: `20 мин`
 
-**id**: ca599f157cfc11ef90801c9957818fb1
+**id**: f1e81155844111efa61b1c9957818fb1
 **ingredients**:
-- Ingredient(name: Пшеничная мука, unit_value: 120, unit_name: гр)
-- Ingredient(name: Какао-порошок, unit_value: 30, unit_name: гр)
-- Ingredient(name: Сахар, unit_value: 90, unit_name: гр)
-- Ingredient(name: Разрыхлитель, unit_value: 1, unit_name: ч.л.)
-- Ingredient(name: Сливочное масло, unit_value: 60, unit_name: гр)
-- Ingredient(name: Яйца, unit_value: 2, unit_name: шт)
-- Ingredient(name: Молоко, unit_value: 150, unit_name: мл)
-- Ingredient(name: Ванильный сахар, unit_value: 10, unit_name: гр)
+- Ingredient(name: Пшеничная мука, unit_value: 120, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Какао-порошок, unit_value: 30, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Какао-порошок, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Сахар, unit_value: 90, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Разрыхлитель, unit_value: 1, range: Range(unit: ч.л., factor: 1), nomenclature: Nomenclature(full_name: Разрыхлитель, group: Group_nomenclature(name: Сырьё), range: Range(unit: ч.л., factor: 1)))
+- Ingredient(name: Сливочное масло, unit_value: 60, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сливочное масло, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
+- Ingredient(name: Яйца, unit_value: 2, range: Range(unit: шт, factor: 1), nomenclature: Nomenclature(full_name: Яйца, group: Group_nomenclature(name: Сырьё), range: Range(unit: шт, factor: 1)))
+- Ingredient(name: Молоко, unit_value: 150, range: Range(unit: мл, factor: 1), nomenclature: Nomenclature(full_name: Молоко, group: Group_nomenclature(name: Сырьё), range: Range(unit: мл, factor: 1)))
+- Ingredient(name: Ванильный сахар, unit_value: 10, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Ванильный сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
 **instructions**:
 - 1. Подготовьте все ингредиенты. Просейте муку, чтобы вафли получились нежными и воздушными.
 - 2. В глубокой миске смешайте пшеничную муку, какао-порошок и разрыхлитель.

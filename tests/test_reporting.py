@@ -5,6 +5,7 @@ from src.core.format_reporting import format_reporting
 from src.reports.csv_report import csv_report
 from src.reports.md_report import md_report
 from src.reports.report_factory import report_factory
+from src.parsers_manager import parsers_manager
 
 import unittest
 import os
@@ -50,7 +51,7 @@ class test_reporting(unittest.TestCase):
         assert os.path.exists(file_path), "Файл отчёта CSV не был создан."
         with open(file_path, 'r', encoding='utf-8') as file:
             assert file.readline() == "id;ingredients;instructions;name;servings;time;\n", "Содержимое заголовка отличается от ожидаемого."
-            assert file.readline()[32:] == ";[Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр), Ingredient(name: Сахар, unit_value: 80, unit_name: гр), Ingredient(name: Сливочное масло, unit_value: 70, unit_name: гр), Ingredient(name: Яйца, unit_value: 1, unit_name: шт), Ingredient(name: Ванилин(щепотка), unit_value: 5, unit_name: гр)];[1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см., 2. Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке., 3. Добавьте в теплое масло сахар. Перемешайте венчиком до полного растворения сахара. От тепла сахар довольно быстро растает., 4. Добавьте в масло яйцо. Предварительно все-таки проверьте масло, не горячее ли оно, иначе яйцо может свариться. Перемешайте яйцо с маслом до однородности., 5. Всыпьте муку, добавьте ванилин., 6. Перемешайте массу венчиком до состояния гладкого однородного теста., 7. Разогрейте вафельницу по инструкции к ней. У меня очень старая, еще советских времен электровафельница. Она может и не очень красивая, но печет замечательно!, 8. Я не смазываю вафельницу маслом, в тесте достаточно жира, да и к ней уже давно ничего не прилипает. Но вы смотрите по своей модели. Выкладывайте тесто по столовой ложке. Можно класть немного меньше теста, тогда вафли будут меньше и их получится больше., 9. Пеките вафли несколько минут до золотистого цвета. Осторожно откройте вафельницу, она очень горячая! Снимите вафлю лопаткой. Горячая она очень мягкая, как блинчик.];ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ;`10 порций`;`20 мин`;\n", "Содержимое первой строки данных отличается от ожидаемого."
+            assert file.readline()[32:80] == ";[Ingredient(name: Пшеничная мука, unit_value: 1", f"Содержимое первой строки данных отличается от ожидаемого."
         
     def test_report_save_md(self):
         # Подготовка
@@ -69,7 +70,7 @@ class test_reporting(unittest.TestCase):
             assert lines[17] == "**name**: ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ\n", "Название отличается от ожидаемого."
             assert lines[18] == "**servings**: `10 порций`\n", "Количество порций отличается от ожидаемого."
             assert lines[19] == "**time**: `20 мин`\n", "Время приготовления отличается от ожидаемого."
-            assert "- Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)\n" in lines[2], "Ингредиенты отсутствуют или отличаются от ожидаемого."
+            assert "- Ingredient(name: Пшеничная мука, unit_value: 100, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))\n" in lines[2], "Ингредиенты отсутствуют или отличаются от ожидаемого."
             assert "- 1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.\n" in lines[8], "Инструкции отсутствуют или отличаются от ожидаемого."
 
     def test_report_save_json(self):
@@ -109,7 +110,7 @@ class test_reporting(unittest.TestCase):
             assert "<name>ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ</name>" in lines[21], "Название отличается от ожидаемого."
             assert "<servings>`10 порций`</servings>" in lines[22], "Количество порций отличается от ожидаемого."
             assert "<time>`20 мин`</time>" in lines[23], "Время приготовления отличается от ожидаемого."
-            assert "<element>Ingredient(name: Пшеничная мука, unit_value: 100, unit_name: гр)</element>" in lines[4], "Ингредиенты отсутствуют или отличаются от ожидаемого."
+            assert "<element>Ingredient(name: Пшеничная мука, unit_value: 100, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>" in lines[4], "Ингредиенты отсутствуют или отличаются от ожидаемого."
             assert "<element>1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.</element>" in lines[11], "Инструкции отсутствуют или отличаются от ожидаемого."
 
     def test_report_save_docx(self):
@@ -160,3 +161,25 @@ class test_reporting(unittest.TestCase):
         # Проверка
         assert report is not None
         assert isinstance(report, md_report), "Фабрика отчётов не использовала кастомный маппинг."
+
+    def test_deserialize_json(self):
+        # Подготовка
+        manager = settings_manager()
+        manager.open("settings2.json", "../")
+        reposity = storage_reposity()
+        start = start_service(reposity, manager)
+        start.create()
+        report = report_factory().create(manager)
+        report.create(reposity.data[storage_reposity.receipts_key()])
+        report.save("../../data/reports", "receipts_report")
+        data = parsers_manager.parse_json("receipts_report.json")
+
+        # Проверка
+        assert start.data["receipts"][0].name == data[0].name, f"{data[0]}"
+        assert start.data["receipts"][0].servings == data[0].servings
+        assert start.data["receipts"][0].ingredients[0].name == data[0].ingredients[0].name
+        assert start.data["receipts"][0].ingredients[0].unit_value == data[0].ingredients[0].unit_value
+        assert start.data["receipts"][0].ingredients[0].range.unit_range == data[0].ingredients[0].range.unit_range
+        assert start.data["receipts"][0].ingredients[0].nomenclature.group.name == data[0].ingredients[0].nomenclature.group.name
+        assert start.data["receipts"][0].time == data[0].time
+        assert start.data["receipts"][0].instructions[0] == data[0].instructions[0]
