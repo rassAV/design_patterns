@@ -18,6 +18,9 @@ class nomenclature(abstract_model):
         self.__group = group
         self.__range = rng
 
+    def __str__(self):
+        return f"Nomenclature(full_name: {self.full_name}, group: {str(self.group)}, range: {str(self.range)})"
+
     @property
     def full_name(self) -> str:
         return self.__full_name
@@ -29,11 +32,11 @@ class nomenclature(abstract_model):
         self.__full_name = full_name.strip()
 
     @property
-    def group_nomenclature(self) -> group_nomenclature:
+    def group(self) -> group_nomenclature:
         return self.__group
     
-    @group_nomenclature.setter
-    def group_nomenclature(self, group):
+    @group.setter
+    def group(self, group):
         CustomRaise.type_exception("group_nomenclature", group, group_nomenclature)
         self.__group = group
 

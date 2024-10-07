@@ -21,6 +21,9 @@ class recipe(abstract_model):
         self.__time = time
         self.__instructions = instructions
 
+    # def __str__(self):
+    #     return f"Recipe(name: {self.name}, servings: {self.servings}, ingredients: [{self.ingredients.split(", ")[:-2]}], time: {self.time}, instructions: [{self.instructions.split(", ")[:-2]}])"
+
     @property
     def name(self) -> str:
         return self.__name

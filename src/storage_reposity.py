@@ -1,6 +1,5 @@
 from src.core.abstract_logic import abstract_logic
 
-# репозиторий
 class storage_reposity(abstract_logic):
     __data = {}
 
@@ -9,12 +8,10 @@ class storage_reposity(abstract_logic):
             cls.instance = super(storage_reposity, cls).__new__(cls)
         return cls.instance 
 
-    # набор данных
     @property
     def data(self):
         return self.__data
 
-    # ключи для хранения
     @staticmethod
     def ranges_key() -> str:
         return "ranges"

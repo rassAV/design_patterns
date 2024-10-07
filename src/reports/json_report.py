@@ -16,7 +16,22 @@ class json_report(abstract_report):
             return {
                 "name": obj.name,
                 "unit_value": obj.unit_value,
-                "unit_name": obj.unit_name
+                "range": {
+                        "unit_range": obj.nomenclature.range.unit_range,
+                        "conversion_factor": obj.nomenclature.range.conversion_factor,
+                        "base_range": obj.nomenclature.range.base_range
+                    },
+                "nomenclature": {
+                    "full_name": obj.nomenclature.full_name,
+                    "group": {
+                        "name": obj.nomenclature.group.name
+                    },
+                    "range": {
+                        "unit_range": obj.nomenclature.range.unit_range,
+                        "conversion_factor": obj.nomenclature.range.conversion_factor,
+                        "base_range": obj.nomenclature.range.base_range
+                    }
+                }
             }
         elif isinstance(obj, list):
             return [self.__serialize_obj(item) for item in obj]

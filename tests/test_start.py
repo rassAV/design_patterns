@@ -54,7 +54,7 @@ class test_start(unittest.TestCase):
         # Проверки
         assert len(start.data["nomenclature"]) > 0
         assert start.data["nomenclature"][0].full_name == "Мука"
-        assert start.data["nomenclature"][0].group_nomenclature.name == "Сырьё"
+        assert start.data["nomenclature"][0].group.name == "Сырьё"
         assert start.data["nomenclature"][0].range.unit_range == "килограмм"
         assert start.data["nomenclature"][0].range.conversion_factor == 1000
 
@@ -72,7 +72,8 @@ class test_start(unittest.TestCase):
         assert start.data["receipts"][0].servings == "`10 порций`"
         assert start.data["receipts"][0].ingredients[0].name == "Пшеничная мука"
         assert start.data["receipts"][0].ingredients[0].unit_value == 100
-        assert start.data["receipts"][0].ingredients[0].unit_name == "гр"
+        assert start.data["receipts"][0].ingredients[0].range.unit_range == "гр"
+        assert start.data["receipts"][0].ingredients[0].nomenclature.group.name == "Сырьё"
         assert start.data["receipts"][0].time == "`20 мин`"
         assert start.data["receipts"][0].instructions[0] == "1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см."
         assert start.data["receipts"][0].instructions[1] == "2. Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке."
