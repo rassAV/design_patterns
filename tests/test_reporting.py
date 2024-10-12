@@ -51,7 +51,7 @@ class test_reporting(unittest.TestCase):
         assert os.path.exists(file_path), "Файл отчёта CSV не был создан."
         with open(file_path, 'r', encoding='utf-8') as file:
             assert file.readline() == "id;ingredients;instructions;name;servings;time;\n", "Содержимое заголовка отличается от ожидаемого."
-            assert file.readline()[32:80] == ";[Ingredient(name: Пшеничная мука, unit_value: 1", f"Содержимое первой строки данных отличается от ожидаемого."
+            assert file.readline()[32:80] == ";[Ingredient(name: Пшеничная мука, unit_value: 1", "Содержимое первой строки данных отличается от ожидаемого."
         
     def test_report_save_md(self):
         # Подготовка
