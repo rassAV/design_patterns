@@ -11,16 +11,6 @@ class TypeException(CustomException):
         self.message = f"Некорректно передан параметр! Аргумент {argument_name} ожидает тип {required_type}!"
         super().__init__(self.message)
 
-class NonEmptyException(CustomException):
-    def __init__(self, argument_name: str):
-        self.message = f"Значение аргумента {argument_name} не должно быть пустым!"
-        super().__init__(self.message)
-
-class NotNoneException(CustomException):
-    def __init__(self, argument_name: str):
-        self.message = f"Значение аргумента {argument_name} не должно быть None!"
-        super().__init__(self.message)
-
 class LengthExceededException(CustomException):
     def __init__(self, argument_name: str, value_length: int, max_length: int):
         self.message = f"Некорректно передан параметр! Аргумент {argument_name} длинной {value_length} превышает лимит в {max_length} символов!"

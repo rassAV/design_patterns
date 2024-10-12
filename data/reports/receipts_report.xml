@@ -1,6 +1,6 @@
 <root>
   <item>
-    <id>ef23f3c088ec11ef922d1c9957818fb1</id>
+    <id>f1e8112c844111ef87201c9957818fb1</id>
     <ingredients>
       <element>Ingredient(name: Пшеничная мука, unit_value: 100, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
       <element>Ingredient(name: Сахар, unit_value: 80, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
@@ -24,7 +24,7 @@
     <time>`20 мин`</time>
   </item>
   <item>
-    <id>ef240dfb88ec11efa5c81c9957818fb1</id>
+    <id>f1e81155844111efa61b1c9957818fb1</id>
     <ingredients>
       <element>Ingredient(name: Пшеничная мука, unit_value: 120, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
       <element>Ingredient(name: Какао-порошок, unit_value: 30, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Какао-порошок, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))</element>
