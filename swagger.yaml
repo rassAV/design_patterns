@@ -44,12 +44,12 @@ paths:
           in: path
           required: true
           type: string
-          description: Категория данных для отчета (range, group, nomenclature, recipes)
+          description: Категория данных для отчета (ranges, groups, nomenclature, receipts)
         - name: format_type
           in: path
           required: true
           type: string
-          description: Формат отчета (CSV, JSON, XML, RTF, MARKDOWN)
+          description: Формат отчета (CSV, MD, JSON, XML, DOCX, XLSX)
       responses:
         200:
           description: Успешная генерация отчета
@@ -74,7 +74,13 @@ paths:
           in: path
           required: true
           type: string
-          description: Категория данных для фильтрации (range, group, nomenclature, receipts)
+          description: Категория данных для фильтрации (ranges, groups, nomenclature, receipts)
+        - in: body
+          name: filter
+          description: "JSON-словарь для фильтрации данных"
+          required: true
+          schema:
+            $ref: '#/definitions/Filter'
       responses:
         200:
           description: Успешная фильтрация данных
@@ -84,3 +90,28 @@ paths:
           description: Неверные параметры
         500:
           description: Ошибка на сервере
+
+definitions:
+  Filter:
+    type: object
+    properties:
+      name:
+        type: string
+        description: "Имя фильтра"
+      id:
+        type: string
+        description: "ID фильтра"
+      type:
+        type: integer
+        enum:
+          - 1  # EQUALS
+          - 2  # LIKE
+        description: "Тип фильтра: 1 для EQUALS, 2 для LIKE"
+    required:
+      - name
+      - id
+      - type
+    example:
+      name: "example_name"
+      id: ""
+      type: 1
