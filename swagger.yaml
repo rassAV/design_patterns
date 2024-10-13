@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: Набор сервисов для учета на предприятии /ООО Ромашка/
+  description: Набор сервисов для учета на предприятии
   version: "1.0.0"
   title: RestApi
 
@@ -61,3 +61,26 @@ paths:
           description: Ошибка на сервере
         default:
           description: Неизвестная ошибка
+  /filter/{category}:
+    post:
+      summary: Фильтрация данных по категории
+      operationId: main.filter_data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: category
+          in: path
+          required: true
+          type: string
+          description: Категория данных для фильтрации (range, group, nomenclature, receipts)
+      responses:
+        200:
+          description: Успешная фильтрация данных
+          schema:
+            type: string
+        400:
+          description: Неверные параметры
+        500:
+          description: Ошибка на сервере
