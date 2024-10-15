@@ -17,27 +17,25 @@ data_mapping = {
     'receipts': storage_reposity.receipts_key()
 }
 
+manager = settings_manager()
+manager.open("settings2.json", "../")
+reposity = storage_reposity()
+start = start_service(reposity, manager)
+start.create()
+
 @app.route("/api/reports/formats", methods=["GET"])
 def formats():
     return jsonify([{"name": item.name, "value": item.value} for item in format_reporting])
 
 @app.route("/api/reports/<category>/<format_type>", methods=["GET"])
 def get_report(category, format_type):
-    manager = settings_manager()
-    manager.open("settings2.json", "../")
-    reposity = storage_reposity()
-
     if category not in data_mapping:
         return jsonify({"error": "Invalid category"}), 400
 
     try:
-        report_format = format_reporting[format_type.upper()]
+        manager.settings.report_format = format_reporting[format_type.upper()]
     except KeyError:
         return jsonify({"error": "Invalid report format"}), 400
-    
-    manager.settings.report_format = report_format
-    start = start_service(reposity, manager)
-    start.create()
 
     report = report_factory().create(manager)
     report.create(reposity.data[data_mapping[category]])
@@ -48,17 +46,10 @@ def get_report(category, format_type):
 def filter_data(category):
     if request.content_type != 'application/json':
         return jsonify({"error": "Content-Type must be application/json"}), 415
-    
-    manager = settings_manager()
-    manager.open("settings2.json", "../")
-    reposity = storage_reposity()
 
     if category not in data_mapping:
         return jsonify({"error": "Invalid category"}), 400
     
-    manager.settings.report_format = format_reporting.JSON
-    start = start_service(reposity, manager)
-    start.create()
     data = reposity.data[data_mapping[category]]
     filt = filter.from_dict(request.get_json())
     prototype = prototype_manager(data)
