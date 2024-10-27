@@ -1,12 +1,14 @@
 import connexion
 from flask import jsonify, Response, request
-from core.object_types import format_reporting
+from src.core.object_types import format_reporting
 from src.storage_reposity import storage_reposity
 from src.reports.report_factory import report_factory
 from src.settings_manager import settings_manager
 from src.start_service import start_service
 from src.logics.prototype_manager import prototype_manager
 from src.dto.filter import filter
+from src.processes.process_manager import process_manager
+from src.processes.turnover_process import turnover_process
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -57,6 +59,36 @@ def filter_data(category):
     report.create(prototype.create(data, filt).data)
 
     return Response(report.result, status=200)
+
+@app.route("/api/transactions", methods=["POST"])
+def transactions():
+    data = start.data["transactions"]
+
+    if not data:
+        return jsonify({"error": "No transactions found"}), 404
+
+    report = report_factory().create(manager)
+    report.create(data)
+    return report.result
+
+@app.route("/api/turnover", methods=["POST"])
+def turnover():
+    data = start.data["transactions"]
+
+    if not data:
+        return jsonify({"error": "No transactions found"}), 404
+
+    processes = process_manager()
+    processes.register('turnover', turnover_process)
+    turnover = processes.get('turnover')
+    turnover_data = turnover.process(data)
+
+    if not turnover_data:
+        return jsonify({"message": "No turnovers found"}), 404
+
+    report = report_factory().create(manager)
+    report.create(turnover_data)
+    return report.result
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")

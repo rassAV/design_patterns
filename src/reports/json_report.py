@@ -1,8 +1,9 @@
 from src.core.object_types import format_reporting
+from src.core.object_types import transaction_type
 from src.core.abstract_report import abstract_report
 from src.models.ingredient import ingredient
 from src.core.custom_raise import CustomRaise
-
+from datetime import datetime
 import os
 import json
 
@@ -10,8 +11,13 @@ class json_report(abstract_report):
     def __init__(self) -> None:
         super().__init__()
         self.__format = format_reporting.JSON
+        # self.__seen_objects = set()
     
     def __serialize_obj(self, obj):
+        # if id(obj) in self.__seen_objects:
+        #     return f"<Circular reference to object id {id(obj)}>"
+        # self.__seen_objects.add(id(obj))
+        
         if isinstance(obj, ingredient):
             return {
                 "name": obj.name,
@@ -35,6 +41,10 @@ class json_report(abstract_report):
             }
         elif isinstance(obj, list):
             return [self.__serialize_obj(item) for item in obj]
+        elif isinstance(obj, datetime):
+            return obj.isoformat()
+        elif isinstance(obj, transaction_type):
+            return obj.value
         elif hasattr(obj, '__dict__'):
             return {key: self.__serialize_obj(value) for key, value in obj.__dict__.items()}
         else:
