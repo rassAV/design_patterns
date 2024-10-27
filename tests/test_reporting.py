@@ -1,7 +1,7 @@
 from src.settings_manager import settings_manager
 from src.storage_reposity import storage_reposity
 from src.start_service import start_service
-from src.core.format_reporting import format_reporting
+from src.core.object_types import format_reporting
 from src.reports.csv_report import csv_report
 from src.reports.md_report import md_report
 from src.reports.report_factory import report_factory
@@ -15,7 +15,8 @@ import openpyxl
 
 class test_reporting(unittest.TestCase):
     def test_report_create(self):
-        # Подготовка
+        
+        
         manager = settings_manager()
         manager.open("settings1.json", "../")
         reposity = storage_reposity()

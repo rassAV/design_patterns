@@ -1,4 +1,4 @@
-**id**: 043701168a9011ef8b411c9957818fb1
+**id**: 93f6f99493f711ef9ab61c9957818fb1
 **ingredients**:
 - Ingredient(name: Пшеничная мука, unit_value: 100, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
 - Ingredient(name: Сахар, unit_value: 80, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Сахар, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
@@ -19,7 +19,7 @@
 **servings**: `10 порций`
 **time**: `20 мин`
 
-**id**: 0437013f8a9011ef8da11c9957818fb1
+**id**: 93f720a593f711efae811c9957818fb1
 **ingredients**:
 - Ingredient(name: Пшеничная мука, unit_value: 120, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Пшеничная мука, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))
 - Ingredient(name: Какао-порошок, unit_value: 30, range: Range(unit: гр, factor: 1), nomenclature: Nomenclature(full_name: Какао-порошок, group: Group_nomenclature(name: Сырьё), range: Range(unit: гр, factor: 1)))

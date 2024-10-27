@@ -1,6 +1,6 @@
 import connexion
 from flask import jsonify, Response, request
-from src.core.format_reporting import format_reporting
+from core.object_types import format_reporting
 from src.storage_reposity import storage_reposity
 from src.reports.report_factory import report_factory
 from src.settings_manager import settings_manager
