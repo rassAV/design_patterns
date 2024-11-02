@@ -7,6 +7,8 @@ from src.settings_manager import settings_manager
 from src.models.settings import settings
 from src.parsers_manager import parsers_manager
 from src.core.custom_raise import CustomRaise
+from src.models.storage import storage
+from src.models.storage_transaction import storage_transaction
 
 class start_service(abstract_logic):
     __reposity: storage_reposity = None
@@ -48,11 +50,28 @@ class start_service(abstract_logic):
     def __create_receipts(self):
         self.__reposity.data[storage_reposity.receipts_key()] = parsers_manager.parse_md_receipts()
 
+    def __create_storages(self):
+        storages = [
+            storage.default_storage_1(),
+            storage.default_storage_2()
+        ]
+        self.__reposity.data[storage_reposity.storages_key()] = storages
+
+    def __create_transactions(self):
+        transactions = [
+            storage_transaction.default_transaction_1(),
+            storage_transaction.default_transaction_2(),
+            storage_transaction.default_transaction_3()
+        ]
+        self.__reposity.data[storage_reposity.transactions_key()] = transactions
+
     def create(self):
         self.__create_unit_measurements()
         self.__create_nomenclature_group()
         self.__create_nomenclature()
         self.__create_receipts()
+        self.__create_storages()
+        self.__create_transactions()
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)

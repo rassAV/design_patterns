@@ -7,3 +7,7 @@ class format_reporting(Enum):
     XML = ".xml"
     DOCX = ".docx"
     XLSX = ".xlsx"
+
+class transaction_type(Enum):
+    INCOME = "Приход"
+    OUTCOME = "Расход"

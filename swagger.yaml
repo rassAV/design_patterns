@@ -91,6 +91,38 @@ paths:
         500:
           description: Ошибка на сервере
 
+  /transactions:
+    post:
+      summary: Получить список транзакций
+      operationId: main.transactions
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Список транзакций успешно получен
+          schema:
+            type: object
+        404:
+          description: Транзакции не найдены
+        500:
+          description: Ошибка на сервере
+
+  /turnover:
+    post:
+      summary: Получить отчет по обороту
+      operationId: main.turnover
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Отчет по обороту успешно создан
+          schema:
+            type: object
+        404:
+          description: Обороты не найдены
+        500:
+          description: Ошибка на сервере
+
 definitions:
   Filter:
     type: object

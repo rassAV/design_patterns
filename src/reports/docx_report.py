@@ -1,4 +1,4 @@
-from src.core.format_reporting import format_reporting
+from src.core.object_types import format_reporting
 from src.core.abstract_report import abstract_report
 from src.core.custom_raise import CustomRaise
 

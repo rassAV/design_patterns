@@ -1,5 +1,5 @@
 from src.core.custom_raise import CustomRaise
-from src.core.format_reporting import format_reporting
+from src.core.object_types import format_reporting
 
 class settings:
     __inn = ""

@@ -1,7 +1,7 @@
 from src.models.settings import settings
 from src.core.abstract_logic import abstract_logic
 from src.core.custom_raise import CustomRaise
-from src.core.format_reporting import format_reporting
+from src.core.object_types import format_reporting
 
 import json
 import os

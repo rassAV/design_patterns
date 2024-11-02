@@ -28,5 +28,13 @@ class storage_reposity(abstract_logic):
     def receipts_key() -> str:
         return "receipts"
     
+    @staticmethod
+    def storages_key() -> str:
+        return "storages"
+
+    @staticmethod
+    def transactions_key() -> str:
+        return "transactions"
+    
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
