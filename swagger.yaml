@@ -122,6 +122,54 @@ paths:
           description: Обороты не найдены
         500:
           description: Ошибка на сервере
+  
+  /dateblock:
+    post:
+      summary: Расчитать оборот с датой блокировки
+      operationId: main.dateblock
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: transactions
+          required: true
+          description: "Список транзакций для обновления"
+          schema:
+            type: array
+            items:
+              type: object  # Define your transaction object schema here
+      responses:
+        200:
+          description: Дата блока успешно обновлена
+          schema:
+            type: object
+        404:
+          description: Транзакции не найдены
+        500:
+          description: Ошибка на сервере
+
+  /get_dateblock:
+    get:
+      summary: Получить дату блокировки
+      operationId: main.get_dateblock
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Блокировка дат успешно получена
+          schema:
+            type: object
+            properties:
+              message:
+                type: array
+                items:
+                  type: string
+        404:
+          description: Файл блокировки дат не найден
+        500:
+          description: Ошибка на сервере
 
 definitions:
   Filter:

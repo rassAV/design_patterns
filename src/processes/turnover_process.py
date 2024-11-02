@@ -5,10 +5,10 @@ from datetime import datetime
 from src.core.custom_raise import CustomRaise
 
 class turnover_process(abstract_logic):
-    __start: datetime = datetime(2023, 1, 1)
+    __start: datetime = datetime(1, 1, 1)
     __end: datetime = datetime(6000, 1, 1)
 
-    def process(self, transactions) -> list:
+    def process(self, transactions):
         turnovers = {}
 
         for transaction in transactions:
