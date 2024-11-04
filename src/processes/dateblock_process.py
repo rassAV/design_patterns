@@ -4,45 +4,37 @@ from src.core.object_types import transaction_type
 from datetime import datetime
 from src.core.custom_raise import CustomRaise
 from src.processes.turnover_process import turnover_process
+from src.file_manager import file_manager
 import os
-import json
 
 class dateblock_process(abstract_logic):
     __file_name: str = "blocked_turnovers.json"
 
     def process(self, transactions):
-        full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data/turnovers"))
-        if not os.path.exists(full_path):
-            os.makedirs(full_path)
-        full_path = os.path.join(full_path, self.__file_name)
-
         turnovers_new = {}
         turnovers_old = {}
+        turnover = turnover_process()
+        file = file_manager()
+        folder = "../data/turnovers"
 
-        try:
-            with open(full_path, 'r', encoding='utf-8') as file:
-                data = json.load(file)
-            turnover = turnover_process()
+        if os.path.exists(os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), folder)), self.__file_name)):
+            data = file.json_read(folder, self.__file_name)
             turnover.start = datetime.fromisoformat(data['date'])
             for turnover in turnover.process(transactions):
                 turnovers_new[turnover.storage.id + turnover.nomenclature.id + turnover.range.id] = turnover.turnover
             turnovers_old = data['turnovers']
-            result = {"date":datetime.now().isoformat(), "turnovers":self.merge_dicts(turnovers_old, turnovers_new)}
-            with open(full_path, 'w', encoding='utf-8') as file:
-                file.write(json.dumps(result, ensure_ascii=False, indent=4))
-        except:
-            try:
-                turnover = turnover_process()
-                for turnover in turnover.process(transactions):
-                    turnovers_new[turnover.storage.id + turnover.nomenclature.id + turnover.range.id] = turnover.turnover
-                result = {
-                    "date": datetime.now().isoformat(), 
-                    "turnovers": turnovers_new
-                    }
-                with open(full_path, 'w', encoding='utf-8') as file:
-                    json.dump(result, file, ensure_ascii=False, indent=4)
-            except:
-                return False
+            turnovers_result = self.merge_dicts(turnovers_old, turnovers_new)
+        else:
+            for turnover in turnover.process(transactions):
+                turnovers_new[turnover.storage.id + turnover.nomenclature.id + turnover.range.id] = turnover.turnover
+            turnovers_result = turnovers_new
+        
+        result = {
+            "date": datetime.now().isoformat(), 
+            "turnovers": turnovers_result
+            }
+        file.json_write(folder, self.__file_name, result)
+
         return True
     
     def merge_dicts(d1, d2):

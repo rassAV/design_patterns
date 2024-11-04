@@ -10,8 +10,7 @@ from src.dto.filter import filter
 from src.processes.process_manager import process_manager
 from src.processes.turnover_process import turnover_process
 from src.processes.dateblock_process import dateblock_process
-import os
-import json
+from src.file_manager import file_manager
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -31,6 +30,8 @@ start.create()
 processes = process_manager()
 processes.register('turnover', turnover_process)
 processes.register('dateblock', dateblock_process)
+
+file = file_manager()
 
 @app.route("/api/reports/formats", methods=["GET"])
 def formats():
@@ -103,18 +104,19 @@ def dateblock():
         return jsonify({"error": "No transactions found"}), 404
 
     dateblock = processes.get('dateblock')
+    state = dateblock.process(data)
 
-    return dateblock.process(data)
+    if not state:
+        return jsonify({"error": "Dateblock error"}), 404
+    return jsonify({"datablock_state": state}), 200
 
 @app.route("/api/get_dateblock", methods=["GET"])
 def get_dateblock():
-    file_path = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/turnovers")), "blocked_turnovers.json")
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            data = json.load(file)["date"]
+        data = file.json_read("../data/turnovers", "blocked_turnovers.json")
     except:
-        return jsonify({"error": "Dateblock file not found"}), 404
-    return jsonify({"messege": data}), 200
+        return jsonify({"error": "File not found"}), 404
+    return jsonify({"datablock": data['date']}), 200
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")
