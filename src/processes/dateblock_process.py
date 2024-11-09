@@ -1,6 +1,4 @@
-from src.models.storage_turnover import storage_turnover
 from src.core.abstract_logic import abstract_logic
-from src.core.object_types import transaction_type
 from datetime import datetime
 from src.core.custom_raise import CustomRaise
 from src.processes.turnover_process import turnover_process
@@ -57,3 +55,6 @@ class dateblock_process(abstract_logic):
     
     def set_exception(self, e: Exception):
         self._inner_set_exception(e)
+
+    def handle_event(self, type, params):
+        super().handle_event(type, params)

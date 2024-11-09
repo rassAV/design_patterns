@@ -11,6 +11,9 @@ from src.processes.process_manager import process_manager
 from src.processes.turnover_process import turnover_process
 from src.processes.dateblock_process import dateblock_process
 from src.file_manager import file_manager
+# from src.logics.observe_service import observe_service
+# from src.core.object_types import event_type
+# from datetime import datetime
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -115,7 +118,7 @@ def get_dateblock():
     try:
         data = file.json_read("../data/turnovers", "blocked_turnovers.json")
     except:
-        return jsonify({"error": "File not found"}), 404
+        return jsonify({"error": "Dateblock file not found"}), 404
     return jsonify({"datablock": data['date']}), 200
 
 if __name__ == '__main__':

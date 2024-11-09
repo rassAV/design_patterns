@@ -40,3 +40,6 @@ class report_factory(abstract_logic):
     
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type, params):
+        super().handle_event(type, params)
