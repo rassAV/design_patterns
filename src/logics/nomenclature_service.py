@@ -59,18 +59,24 @@ class nomenclature_service(abstract_logic):
         if not nomenclature:
             return {"error": f"Nomenclature with ID {id} not found"}
         
-        self.replace_nomenclature_data(nomenclature, request)
+        result = self.replace_nomenclature_data(nomenclature, request)
+        if "error" in result:
+            return result
 
         receipts = self.__reposity.data.get(storage_reposity.receipts_key(), [])
         for recipy in receipts:
             for ingredient in recipy.ingredients:
                 if ingredient.nomenclature.id == id:
-                    self.replace_nomenclature_data(ingredient.nomenclature, request)
+                    result = self.replace_nomenclature_data(ingredient.nomenclature, request)
+                    if "error" in result:
+                        return result
         
         transactions = self.__reposity.data.get(storage_reposity.transactions_key(), [])
         for transaction in transactions:
             if transaction.nomenclature.id == id:
-                self.replace_nomenclature_data(transaction.nomenclature, request)
+                result = self.replace_nomenclature_data(transaction.nomenclature, request)
+                if "error" in result:
+                    return result
 
         dateblock = dateblock_process()
         dateblock.process(transactions)
@@ -92,6 +98,7 @@ class nomenclature_service(abstract_logic):
             if not rng:
                 return {"error": f"Range with ID {request['range_id']} not found"}
             nomenclature.range = rng
+        return {"status": f"Successfully replaced"}
 
     def delete_nomenclature(self, request):
         id = request.get('id')
@@ -108,7 +115,6 @@ class nomenclature_service(abstract_logic):
         if transactions:
             return {"error": f"Nomenclature can't deleted, because nomenclature used in transactions"}
         self.__reposity.data[storage_reposity.nomenclature_key()] = [ n for n in self.__reposity.data[storage_reposity.nomenclature_key()] if n.id != id ]
-        observe_service.raise_event(event_type.DELETE_NOMENCLATURE, {'id': id})
         return {"status": "Nomenclature successfully deleted"}
 
     def set_exception(self, ex: Exception):
@@ -116,8 +122,8 @@ class nomenclature_service(abstract_logic):
 
     def handle_event(self, type: event_type, params):
         super().handle_event(type, params)
-        if type == event_type.DELETE_NOMENCLATURE:
-            return self.delete_nomenclature(params)
-        elif type == event_type.CHANGE_NOMENCLATURE:
+        if type == event_type.UPDATE_NOMENCLATURE:
+            return self.update_nomenclature(params)
+        elif type == event_type.DELETE_NOMENCLATURE:
             return self.delete_nomenclature(params)
         CustomRaise.operation_exception("Ошибка! В nomenclature_service.handle_event передан некорректный тип события!")

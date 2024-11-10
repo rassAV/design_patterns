@@ -13,7 +13,5 @@ class transaction_type(Enum):
     OUTCOME = "Расход"
 
 class event_type(Enum):
+    UPDATE_NOMENCLATURE = "upd_nmcl"
     DELETE_NOMENCLATURE = "del_nmcl"
-    CHANGE_NOMENCLATURE = "chg_nmcl"
-    CHANGE_RANGE = "chg_rng"
-    CHANGE_DATEBLOCK = "chg_dtbl"
