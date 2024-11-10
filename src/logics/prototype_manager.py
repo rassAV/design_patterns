@@ -12,7 +12,7 @@ class prototype_manager(abstract_prototype):
 
     def create(self, data: list, filt: filter):
         self.data = self.filter_by_field(data, filt, 'name')
-        self.data = self.filter_by_field(self.data, filt, 'unique_code')
+        self.data = self.filter_by_field(self.data, filt, 'id')
         return prototype_manager(self.data)
 
     def filter_by_field(self, source: list, filt: filter, field: str) -> list:

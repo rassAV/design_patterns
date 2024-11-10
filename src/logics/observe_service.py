@@ -18,11 +18,11 @@ class observe_service:
             observe_service.observers.append(service)
 
     @staticmethod
-    def raise_event(type: event_type, params):
+    def raise_event(event_type: event_type, params):
         statuses = {}
         for service in observe_service.observers:
             if service is not None:
                 class_name = type(service).__name__
-                status = service.handle_event(type, params)
+                status = service.handle_event(event_type, params)
                 statuses[class_name] = status
         return statuses

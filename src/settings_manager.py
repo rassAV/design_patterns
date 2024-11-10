@@ -96,5 +96,3 @@ class settings_manager(abstract_logic):
     
     def handle_event(self, type, params):
         super().handle_event(type, params)
-        if type == event_type.CHANGE_DATEBLOCK:
-            self.save()

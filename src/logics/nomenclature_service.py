@@ -6,6 +6,7 @@ from src.dto.filter import filter
 from src.logics.prototype_manager import prototype_manager
 from src.storage_reposity import storage_reposity
 from src.processes.dateblock_process import dateblock_process
+from src.models.nomenclature import nomenclature
 from src.core.custom_raise import CustomRaise
 
 class nomenclature_service(abstract_logic):
@@ -22,10 +23,10 @@ class nomenclature_service(abstract_logic):
         id = request.get('id')
         if not id:
             return {"error": "ID is required"}
-        nomenclature = next(iter(self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())), None)
-        if not nomenclature:
+        nmcl = self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())
+        if not nmcl:
             return {"error": f"Nomenclature with ID {id} not found"}
-        return nomenclature
+        return nmcl[0]
 
     def add_nomenclature(self, request):
         name = request.get('name')
@@ -43,23 +44,20 @@ class nomenclature_service(abstract_logic):
         if not rng:
             return {"error": f"Range with ID {range_id} not found"}
 
-        nomenclature = nomenclature(full_name, group, rng)
-        nomenclature.name = name
-        if self.get_data(filter(id=nomenclature.id, type=filter_type.EQUALS), storage_reposity.nomenclature_key()):
-            return {"error": f"Nomenclature with ID {nomenclature.id} already exists"}
-
-        self.__reposity.data[storage_reposity.nomenclature_key()].append(nomenclature)
+        nmcl = nomenclature(full_name, group, rng)
+        nmcl.name = name
+        self.__reposity.data[storage_reposity.nomenclature_key()].append(nmcl)
         return {"status": "Nomenclature successfully added"}
 
     def update_nomenclature(self, request):
         id = request.get('id')
         if not id:
             return {"error": "ID is required"}
-        nomenclature = next(iter(self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())), None)
-        if not nomenclature:
+        nmcl = next(iter(self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())), None)
+        if not nmcl:
             return {"error": f"Nomenclature with ID {id} not found"}
         
-        result = self.replace_nomenclature_data(nomenclature, request)
+        result = self.replace_nomenclature_data(nmcl, request)
         if "error" in result:
             return result
 
@@ -83,21 +81,21 @@ class nomenclature_service(abstract_logic):
 
         return {"status": "Nomenclature successfully updated"}
 
-    def replace_nomenclature_data(self, nomenclature, request):
+    def replace_nomenclature_data(self, nmcl, request):
         if 'name' in request:
-            nomenclature.name = request['name']
+            nmcl.name = request['name']
         if 'full_name' in request:
-            nomenclature.full_name = request['full_name']
+            nmcl.full_name = request['full_name']
         if 'group_id' in request:
             group = next(iter(self.get_data(filter(id=request['group_id'], type=filter_type.EQUALS), storage_reposity.groups_key())), None)
             if not group:
                 return {"error": f"Group with ID {request['group_id']} not found"}
-            nomenclature.group = group
+            nmcl.group = group
         if 'range_id' in request:
             rng = next(iter(self.get_data(filter(id=request['range_id'], type=filter_type.EQUALS), storage_reposity.ranges_key())), None)
             if not rng:
                 return {"error": f"Range with ID {request['range_id']} not found"}
-            nomenclature.range = rng
+            nmcl.range = rng
         return {"status": f"Successfully replaced"}
 
     def delete_nomenclature(self, request):
@@ -105,8 +103,8 @@ class nomenclature_service(abstract_logic):
         if not id:
             return {"error": "ID is required"}
         filt = filter(id=id, type=filter_type.EQUALS)
-        nomenclature = next(iter(self.get_data(filt, storage_reposity.nomenclature_key())), None)
-        if not nomenclature:
+        nmcl = next(iter(self.get_data(filt, storage_reposity.nomenclature_key())), None)
+        if not nmcl:
             return {"error": f"Nomenclature with ID {id} not found"}
         receipts = next(iter(self.get_data(filt, storage_reposity.receipts_key())), None)
         if receipts:
