@@ -5,7 +5,7 @@ from src.dto.filter_type import filter_type
 from src.dto.filter import filter
 from src.logics.prototype_manager import prototype_manager
 from src.storage_reposity import storage_reposity
-from src.file_manager import file_manager
+from src.processes.dateblock_process import dateblock_process
 from src.core.custom_raise import CustomRaise
 
 class nomenclature_service(abstract_logic):
@@ -22,8 +22,8 @@ class nomenclature_service(abstract_logic):
         id = request.get('id')
         if not id:
             return {"error": "ID is required"}
-        nomenclature = self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())
-        if len(nomenclature) == 0:
+        nomenclature = next(iter(self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())), None)
+        if not nomenclature:
             return {"error": f"Nomenclature with ID {id} not found"}
         return nomenclature
 
@@ -49,10 +49,75 @@ class nomenclature_service(abstract_logic):
             return {"error": f"Nomenclature with ID {nomenclature.id} already exists"}
 
         self.__reposity.data[storage_reposity.nomenclature_key()].append(nomenclature)
-        return nomenclature
+        return {"status": "Nomenclature successfully added"}
+
+    def update_nomenclature(self, request):
+        id = request.get('id')
+        if not id:
+            return {"error": "ID is required"}
+        nomenclature = next(iter(self.get_data(filter(id=id, type=filter_type.EQUALS), storage_reposity.nomenclature_key())), None)
+        if not nomenclature:
+            return {"error": f"Nomenclature with ID {id} not found"}
+        
+        self.replace_nomenclature_data(nomenclature, request)
+
+        receipts = self.__reposity.data.get(storage_reposity.receipts_key(), [])
+        for recipy in receipts:
+            for ingredient in recipy.ingredients:
+                if ingredient.nomenclature.id == id:
+                    self.replace_nomenclature_data(ingredient.nomenclature, request)
+        
+        transactions = self.__reposity.data.get(storage_reposity.transactions_key(), [])
+        for transaction in transactions:
+            if transaction.nomenclature.id == id:
+                self.replace_nomenclature_data(transaction.nomenclature, request)
+
+        dateblock = dateblock_process()
+        dateblock.process(transactions)
+
+        return {"status": "Nomenclature successfully updated"}
+
+    def replace_nomenclature_data(self, nomenclature, request):
+        if 'name' in request:
+            nomenclature.name = request['name']
+        if 'full_name' in request:
+            nomenclature.full_name = request['full_name']
+        if 'group_id' in request:
+            group = next(iter(self.get_data(filter(id=request['group_id'], type=filter_type.EQUALS), storage_reposity.groups_key())), None)
+            if not group:
+                return {"error": f"Group with ID {request['group_id']} not found"}
+            nomenclature.group = group
+        if 'range_id' in request:
+            rng = next(iter(self.get_data(filter(id=request['range_id'], type=filter_type.EQUALS), storage_reposity.ranges_key())), None)
+            if not rng:
+                return {"error": f"Range with ID {request['range_id']} not found"}
+            nomenclature.range = rng
+
+    def delete_nomenclature(self, request):
+        id = request.get('id')
+        if not id:
+            return {"error": "ID is required"}
+        filt = filter(id=id, type=filter_type.EQUALS)
+        nomenclature = next(iter(self.get_data(filt, storage_reposity.nomenclature_key())), None)
+        if not nomenclature:
+            return {"error": f"Nomenclature with ID {id} not found"}
+        receipts = next(iter(self.get_data(filt, storage_reposity.receipts_key())), None)
+        if receipts:
+            return {"error": f"Nomenclature can't deleted, because nomenclature used in receipts"}
+        transactions = next(iter(self.get_data(filt, storage_reposity.transactions_key())), None)
+        if transactions:
+            return {"error": f"Nomenclature can't deleted, because nomenclature used in transactions"}
+        self.__reposity.data[storage_reposity.nomenclature_key()] = [ n for n in self.__reposity.data[storage_reposity.nomenclature_key()] if n.id != id ]
+        observe_service.raise_event(event_type.DELETE_NOMENCLATURE, {'id': id})
+        return {"status": "Nomenclature successfully deleted"}
 
     def set_exception(self, ex: Exception):
         super().set_exception(ex)
 
     def handle_event(self, type: event_type, params):
         super().handle_event(type, params)
+        if type == event_type.DELETE_NOMENCLATURE:
+            return self.delete_nomenclature(params)
+        elif type == event_type.CHANGE_NOMENCLATURE:
+            return self.delete_nomenclature(params)
+        CustomRaise.operation_exception("Ошибка! В nomenclature_service.handle_event передан некорректный тип события!")

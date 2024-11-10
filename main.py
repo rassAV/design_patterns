@@ -11,8 +11,9 @@ from src.processes.process_manager import process_manager
 from src.processes.turnover_process import turnover_process
 from src.processes.dateblock_process import dateblock_process
 from src.file_manager import file_manager
-# from src.logics.observe_service import observe_service
-# from src.core.object_types import event_type
+from src.logics.observe_service import observe_service
+from src.core.object_types import event_type
+from src.logics.nomenclature_service import nomenclature_service
 # from datetime import datetime
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
