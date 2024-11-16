@@ -11,6 +11,9 @@ from src.processes.process_manager import process_manager
 from src.processes.turnover_process import turnover_process
 from src.processes.dateblock_process import dateblock_process
 from src.file_manager import file_manager
+from src.logics.observe_service import observe_service
+from src.core.object_types import event_type
+from src.logics.nomenclature_service import nomenclature_service
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -25,12 +28,14 @@ manager = settings_manager()
 manager.open("settings2.json", "../")
 reposity = storage_reposity()
 start = start_service(reposity, manager)
+nmcl_service = nomenclature_service(reposity)
 start.create()
 
 processes = process_manager()
 processes.register('turnover', turnover_process)
 processes.register('dateblock', dateblock_process)
 
+report = report_factory().create(manager)
 file = file_manager()
 
 @app.route("/api/reports/formats", methods=["GET"])
@@ -47,7 +52,6 @@ def get_report(category, format_type):
     except KeyError:
         return jsonify({"error": "Invalid report format"}), 400
 
-    report = report_factory().create(manager)
     report.create(reposity.data[data_mapping[category]])
 
     return Response(report.result, status=200)
@@ -63,7 +67,6 @@ def filter_data(category):
     data = reposity.data[data_mapping[category]]
     filt = filter.from_dict(request.get_json())
     prototype = prototype_manager(data)
-    report = report_factory().create(manager)
     report.create(prototype.create(data, filt).data)
 
     return Response(report.result, status=200)
@@ -75,7 +78,6 @@ def transactions():
     if not data:
         return jsonify({"error": "No transactions found"}), 404
 
-    report = report_factory().create(manager)
     report.create(data)
     return report.result
 
@@ -92,7 +94,6 @@ def turnover():
     if not turnover_data:
         return jsonify({"error": "No turnovers found"}), 404
 
-    report = report_factory().create(manager)
     report.create(turnover_data)
     return report.result
 
@@ -110,13 +111,42 @@ def dateblock():
         return jsonify({"error": "Dateblock error"}), 404
     return jsonify({"datablock_state": state}), 200
 
-@app.route("/api/get_dateblock", methods=["GET"])
+@app.route("/api/dateblock", methods=["GET"])
 def get_dateblock():
     try:
         data = file.json_read("../data/turnovers", "blocked_turnovers.json")
     except:
-        return jsonify({"error": "File not found"}), 404
+        return jsonify({"error": "Dateblock file not found"}), 404
     return jsonify({"datablock": data['date']}), 200
+
+@app.route('/api/nomenclature', methods=['GET'])
+def get_nomenclature():
+    result = nmcl_service.get_nomenclature(request.args)
+    if "error" in result:
+        return jsonify(result), 404
+    report.create(list(result))
+    return Response(report.result, status=200)
+
+@app.route('/api/nomenclature', methods=['PUT'])
+def add_nomenclature():
+    result = nmcl_service.add_nomenclature(request.args)
+    if "error" in result:
+        return jsonify(result), 404
+    return jsonify(result), 200
+
+@app.route('/api/nomenclature', methods=['PATCH'])
+def update_nomenclature():
+    result = observe_service.raise_event(event_type.UPDATE_NOMENCLATURE, request.json)
+    if "error" in result:
+        return jsonify(result), 404
+    return jsonify(result), 200
+
+@app.route('/api/nomenclature', methods=['DELETE'])
+def delete_nomenclature():
+    result = observe_service.raise_event(event_type.DELETE_NOMENCLATURE, request.json)
+    if "error" in result:
+        return jsonify(result), 404
+    return jsonify(result), 200
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")

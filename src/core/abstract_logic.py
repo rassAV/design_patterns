@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from src.core.object_types import event_type
+from src.core.custom_raise import CustomRaise
 
 class abstract_logic(ABC):
     __error_text: str = ""
@@ -21,3 +23,7 @@ class abstract_logic(ABC):
     @abstractmethod
     def set_exception(self, ex: Exception):
         pass
+
+    @abstractmethod
+    def handle_event(self, type: event_type, params):
+        CustomRaise.type_exception("event_type", type, event_type)

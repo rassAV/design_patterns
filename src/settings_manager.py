@@ -2,7 +2,9 @@ from src.models.settings import settings
 from src.core.abstract_logic import abstract_logic
 from src.core.custom_raise import CustomRaise
 from src.core.object_types import format_reporting
-
+from src.logics.observe_service import observe_service
+from src.core.object_types import event_type
+from src.file_manager import file_manager
 import json
 import os
 
@@ -19,6 +21,7 @@ class settings_manager(abstract_logic):
 
     def __init__(self) -> None:
         self.__settings = self.__default_settings()
+        observe_service.append(self)
 
     def convert(self, data: dict):
         for key, value in data.items():
@@ -28,7 +31,7 @@ class settings_manager(abstract_logic):
             elif hasattr(self.__settings, key):
                 setattr(self.__settings, key, value)
 
-    def open(self, file_name:str = "", file_path = os.curdir):
+    def open(self, file_name: str = "", file_path = os.curdir):
         CustomRaise.type_exception("file_name", file_name, str)
         if file_name != "":
             self.__file_name = file_name
@@ -47,6 +50,22 @@ class settings_manager(abstract_logic):
         except Exception as e:
             self.__settings = self.__default_settings()
             self.set_exception(e)
+            return False
+
+    def save(self, folder_path: str = "../data/settings"):
+        try:
+            data = {
+                "inn": self.__settings.inn,
+                "account": self.__settings.account,
+                "corr_account": self.__settings.correspondent_account,
+                "bik": self.__settings.bik,
+                "org_name": self.__settings.organization_name,
+                "ownership_type": self.__settings.ownership_type,
+                "report_format": self.__settings.report_format.value
+            }
+            return file_manager.json_write(folder_path, self.__file_name, data)
+        except Exception as ex :
+            self.set_exception(ex)
             return False
 
     @property
@@ -74,3 +93,6 @@ class settings_manager(abstract_logic):
     
     def set_exception(self, e: Exception):
         self._inner_set_exception(e)
+    
+    def handle_event(self, type, params):
+        super().handle_event(type, params)

@@ -114,3 +114,9 @@ class parsers_manager(abstract_logic):
                 return [parsers_manager.parse_json_recipe(item) for item in data]
             else:
                 CustomRaise.operation_exception("Неизвестный тип данных в JSON.")
+    
+    def set_exception(self, e: Exception):
+        self._inner_set_exception(e)
+    
+    def handle_event(self, type, params):
+        super().handle_event(type, params)

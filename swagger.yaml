@@ -139,7 +139,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /get_dateblock:
+  /dateblock:
     get:
       summary: Получить дату блокировки
       operationId: main.get_dateblock
@@ -157,6 +157,89 @@ paths:
                   type: string
         404:
           description: Файл блокировки дат не найден
+        500:
+          description: Ошибка на сервере
+
+  /nomenclature:
+    get:
+      summary: Получить номенклатуру
+      operationId: main.get_nomenclature
+      parameters:
+        - name: query
+          in: query
+          required: false
+          type: string
+          description: Параметры для фильтрации номенклатуры
+      responses:
+        200:
+          description: Успешное получение номенклатуры
+          schema:
+            type: object
+        404:
+          description: Номенклатура не найдена
+        500:
+          description: Ошибка на сервере
+
+    put:
+      summary: Добавить номенклатуру
+      operationId: main.add_nomenclature
+      parameters:
+        - name: query
+          in: query
+          required: false
+          type: string
+          description: Параметры для добавления номенклатуры
+      responses:
+        200:
+          description: Номенклатура успешно добавлена
+          schema:
+            type: object
+        404:
+          description: Ошибка добавления номенклатуры
+        500:
+          description: Ошибка на сервере
+
+    patch:
+      summary: Обновить номенклатуру
+      operationId: main.update_nomenclature
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: nomenclature
+          description: Данные для обновления номенклатуры
+          required: true
+          schema:
+            type: object
+      responses:
+        200:
+          description: Номенклатура успешно обновлена
+          schema:
+            type: object
+        404:
+          description: Ошибка обновления номенклатуры
+        500:
+          description: Ошибка на сервере
+
+    delete:
+      summary: Удалить номенклатуру
+      operationId: main.delete_nomenclature
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: nomenclature
+          description: Данные для удаления номенклатуры
+          required: true
+          schema:
+            type: object
+      responses:
+        200:
+          description: Номенклатура успешно удалена
+          schema:
+            type: object
+        404:
+          description: Ошибка удаления номенклатуры
         500:
           description: Ошибка на сервере
 

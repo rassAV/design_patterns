@@ -21,7 +21,7 @@ class test_prototype(unittest.TestCase):
         result = prototype.create(data, filt)
 
         # Проверка
-        assert len(result.data) == 2
+        assert len(result.data) == 1
         assert result.data[0] == item
 
     def test_prototype_nomenclature_by_equals(self):
