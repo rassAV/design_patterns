@@ -243,6 +243,50 @@ paths:
         500:
           description: Ошибка на сервере
 
+  /balance_list:
+    get:
+      summary: Получить список балансов
+      operationId: main.get_balance_list
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Список балансов успешно получен
+          schema:
+            type: object
+        404:
+          description: Балансов не найдено
+        500:
+          description: Ошибка на сервере
+
+  /data/save:
+    post:
+      summary: Сохранить данные
+      operationId: main.save_data
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Данные успешно сохранены
+          schema:
+            type: object
+        500:
+          description: Ошибка при сохранении данных
+
+  /data/load:
+    post:
+      summary: Загрузить данные
+      operationId: main.load_data
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Данные успешно загружены
+          schema:
+            type: object
+        500:
+          description: Ошибка при загрузке данных
+
 definitions:
   Filter:
     type: object

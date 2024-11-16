@@ -9,6 +9,7 @@ from src.parsers_manager import parsers_manager
 from src.core.custom_raise import CustomRaise
 from src.models.storage import storage
 from src.models.storage_transaction import storage_transaction
+from src.reports.json_report import json_report
 
 class start_service(abstract_logic):
     __reposity: storage_reposity = None
@@ -65,13 +66,39 @@ class start_service(abstract_logic):
         ]
         self.__reposity.data[storage_reposity.transactions_key()] = transactions
 
-    def create(self):
+    def __create_default_data(self):
         self.__create_unit_measurements()
         self.__create_nomenclature_group()
         self.__create_nomenclature()
         self.__create_receipts()
         self.__create_storages()
         self.__create_transactions()
+
+    def create(self):
+        if not self.settings.first_start:
+            result = self.load()
+            if result:
+                self.__create_default_data()
+        else:
+            self.__create_default_data
+
+    def save(self):
+        report = json_report()
+        report.create(self.data[self.data.keys()])
+        return report.save("../../data/reposities", f"reposity_{self.__settings_manager.__file_name[7:]}")
+
+    def load(self):
+        try:
+            if self.settings.first_start:
+                return False
+            report = json_report()
+            result = report.load("../../data/reposities", f"reposity_{self.__settings_manager.__file_name[7:]}")
+            if "error" in result:
+                return False
+            self.data = result
+            return True
+        except:
+            return False
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)

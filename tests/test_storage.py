@@ -192,3 +192,12 @@ class test_storage(unittest.TestCase):
             file.write("# Результаты измерения времени выполнения\n\n")
             file.write(f"### Время выполнения с блокировкой дат: {time_with_dateblock:.6f} секунд\n\n")
             file.write(f"### Время выполнения без блокировки дат: {time_without_dateblock:.6f} секунд\n\n")
+
+    def test_balance_list(self):
+        pass
+
+    def test_save_storage(self):
+        pass
+
+    def test_load_storage(self):
+        pass

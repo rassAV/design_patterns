@@ -59,14 +59,30 @@ class json_report(abstract_report):
         self.result = json.dumps(serializable_data, ensure_ascii=False, indent=4)
 
     def save(self, directory: str, filename: str):
-        full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), directory))
-
-        if not os.path.exists(full_path):
-            os.makedirs(full_path)
-
         try:
+            full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), directory))
+
+            if not os.path.exists(full_path):
+                os.makedirs(full_path)
+
             with open(os.path.join(full_path, filename + self.__format.value), 'w', encoding='utf-8') as file:
                 file.write(self.result)
             return True
         except:
             return False
+    
+    def load(self, directory: str, filename: str):
+        try:
+            full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), directory))
+
+            if not os.path.exists(full_path):
+                os.makedirs(full_path)
+            
+            if os.path.exists(full_path):
+                with open(os.path.join(full_path, filename + self.__format.value), 'r', encoding='utf-8') as file:
+                    data = json.load(file)
+                return data
+            else:
+                return {"error": f"json file {filename} not found"}
+        except:
+            return {"error": f"can not read json file {filename}"}

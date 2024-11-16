@@ -10,6 +10,7 @@ class settings:
     __ownership_type = ""
     __report_format: format_reporting = None
     __report_mapping: dict = {}
+    __first_start: bool = True
 
     @property
     def inn(self):
@@ -87,3 +88,12 @@ class settings:
     def report_mapping(self, value: dict):
         CustomRaise.type_exception("report_mapping", value, dict)
         self.__report_mapping = value
+
+    @property
+    def first_start(self):
+        return self.__first_start
+
+    @first_start.setter
+    def first_start(self, value: bool):
+        CustomRaise.type_exception("first_start", value, bool)
+        self.__first_start = value

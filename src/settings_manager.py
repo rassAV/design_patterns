@@ -11,7 +11,7 @@ import os
 class settings_manager(abstract_logic):
     __instance = None
     __file_name = "settings (default).json"
-    __settings:settings = settings()
+    __settings: settings = settings()
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
@@ -61,7 +61,8 @@ class settings_manager(abstract_logic):
                 "bik": self.__settings.bik,
                 "org_name": self.__settings.organization_name,
                 "ownership_type": self.__settings.ownership_type,
-                "report_format": self.__settings.report_format.value
+                "report_format": self.__settings.report_format.value,
+                "first_start": self.__settings.first_start
             }
             return file_manager.json_write(folder_path, self.__file_name, data)
         except Exception as ex :
@@ -81,6 +82,7 @@ class settings_manager(abstract_logic):
         data.organization_name = "Организация (default)"
         data.ownership_type = "частн"
         data.report_format = format_reporting.CSV
+        data.first_start = True
         return data
     
     @staticmethod
