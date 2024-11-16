@@ -21,6 +21,10 @@ class turnover_process(abstract_logic):
 
             if key not in turnovers:
                 turnovers[key] = storage_turnover(transaction.storage, transaction.nomenclature, transaction.range)
+            if key not in incomes:
+                incomes[key] = 0.0
+            if key not in outcomes:
+                outcomes[key] = 0.0
 
             if transaction.type == transaction_type.INCOME:
                 incomes[key] += transaction.quantity

@@ -77,10 +77,10 @@ class start_service(abstract_logic):
     def create(self):
         if not self.settings.first_start:
             result = self.load()
-            if result:
+            if not result:
                 self.__create_default_data()
         else:
-            self.__create_default_data
+            self.__create_default_data()
 
     def save(self):
         report = json_report()
