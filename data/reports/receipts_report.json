@@ -1,28 +1,28 @@
 [
     {
-        "id": "afdfe621a4f511ef98f91c9957818fb1",
+        "id": "a44bbea2a4f811efbd901c9957818fb1",
         "name": "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ",
         "servings": "`10 порций`",
         "ingredients": [
             {
-                "id": "afdfe60ca4f511ef80831c9957818fb1",
+                "id": "a44bbe8da4f811efb3771c9957818fb1",
                 "name": "Пшеничная мука",
                 "unit_value": 100,
                 "range": {
-                    "id": "afdfe608a4f511ef839e1c9957818fb1",
+                    "id": "a44bbe89a4f811ef96061c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe60ba4f511ef815a1c9957818fb1",
+                    "id": "a44bbe8ca4f811efbc031c9957818fb1",
                     "full_name": "Пшеничная мука",
                     "group": {
-                        "id": "afdfe609a4f511ef916d1c9957818fb1",
+                        "id": "a44bbe8aa4f811ef94dd1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe60aa4f511ef969d1c9957818fb1",
+                        "id": "a44bbe8ba4f811efbb571c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -30,24 +30,24 @@
                 }
             },
             {
-                "id": "afdfe611a4f511ef83001c9957818fb1",
+                "id": "a44bbe92a4f811efae031c9957818fb1",
                 "name": "Сахар",
                 "unit_value": 80,
                 "range": {
-                    "id": "afdfe60da4f511ef8b4b1c9957818fb1",
+                    "id": "a44bbe8ea4f811efb0001c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe610a4f511efbf811c9957818fb1",
+                    "id": "a44bbe91a4f811ef89341c9957818fb1",
                     "full_name": "Сахар",
                     "group": {
-                        "id": "afdfe60ea4f511efa73e1c9957818fb1",
+                        "id": "a44bbe8fa4f811efbe501c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe60fa4f511ef963d1c9957818fb1",
+                        "id": "a44bbe90a4f811efae2c1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -55,24 +55,24 @@
                 }
             },
             {
-                "id": "afdfe616a4f511ef90961c9957818fb1",
+                "id": "a44bbe97a4f811ef8fea1c9957818fb1",
                 "name": "Сливочное масло",
                 "unit_value": 70,
                 "range": {
-                    "id": "afdfe612a4f511efb0541c9957818fb1",
+                    "id": "a44bbe93a4f811efbb6a1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe615a4f511ef80961c9957818fb1",
+                    "id": "a44bbe96a4f811efabba1c9957818fb1",
                     "full_name": "Сливочное масло",
                     "group": {
-                        "id": "afdfe613a4f511efbfc61c9957818fb1",
+                        "id": "a44bbe94a4f811ef95d11c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe614a4f511efa6c51c9957818fb1",
+                        "id": "a44bbe95a4f811ef801f1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -80,24 +80,24 @@
                 }
             },
             {
-                "id": "afdfe61ba4f511ef88f01c9957818fb1",
+                "id": "a44bbe9ca4f811efa4121c9957818fb1",
                 "name": "Яйца",
                 "unit_value": 1,
                 "range": {
-                    "id": "afdfe617a4f511efb0031c9957818fb1",
+                    "id": "a44bbe98a4f811efb5ae1c9957818fb1",
                     "unit_range": "шт",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe61aa4f511efb6de1c9957818fb1",
+                    "id": "a44bbe9ba4f811ef997d1c9957818fb1",
                     "full_name": "Яйца",
                     "group": {
-                        "id": "afdfe618a4f511ef8b781c9957818fb1",
+                        "id": "a44bbe99a4f811efbe671c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe619a4f511efa3401c9957818fb1",
+                        "id": "a44bbe9aa4f811ef99261c9957818fb1",
                         "unit_range": "шт",
                         "conversion_factor": 1,
                         "base_range": null
@@ -105,24 +105,24 @@
                 }
             },
             {
-                "id": "afdfe620a4f511ef83d81c9957818fb1",
+                "id": "a44bbea1a4f811ef96b71c9957818fb1",
                 "name": "Ванилин(щепотка)",
                 "unit_value": 5,
                 "range": {
-                    "id": "afdfe61ca4f511ef83a01c9957818fb1",
+                    "id": "a44bbe9da4f811ef85a41c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe61fa4f511ef96401c9957818fb1",
+                    "id": "a44bbea0a4f811ef95211c9957818fb1",
                     "full_name": "Ванилин(щепотка)",
                     "group": {
-                        "id": "afdfe61da4f511efae861c9957818fb1",
+                        "id": "a44bbe9ea4f811ef9b621c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe61ea4f511efac0a1c9957818fb1",
+                        "id": "a44bbe9fa4f811ef97e11c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -144,29 +144,29 @@
         ]
     },
     {
-        "id": "afdfe64aa4f511efb8421c9957818fb1",
+        "id": "a44be5a4a4f811ef8c501c9957818fb1",
         "name": "ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ",
         "servings": "`12 порций`",
         "ingredients": [
             {
-                "id": "afdfe626a4f511ef84ca1c9957818fb1",
+                "id": "a44bbea7a4f811efb5ea1c9957818fb1",
                 "name": "Пшеничная мука",
                 "unit_value": 120,
                 "range": {
-                    "id": "afdfe622a4f511efb7321c9957818fb1",
+                    "id": "a44bbea3a4f811ef945c1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe625a4f511efacfb1c9957818fb1",
+                    "id": "a44bbea6a4f811ef88501c9957818fb1",
                     "full_name": "Пшеничная мука",
                     "group": {
-                        "id": "afdfe623a4f511efa1d61c9957818fb1",
+                        "id": "a44bbea4a4f811ef830a1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe624a4f511efad861c9957818fb1",
+                        "id": "a44bbea5a4f811efab781c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -174,24 +174,24 @@
                 }
             },
             {
-                "id": "afdfe62ba4f511ef9f221c9957818fb1",
+                "id": "a44bbeaca4f811efa6a61c9957818fb1",
                 "name": "Какао-порошок",
                 "unit_value": 30,
                 "range": {
-                    "id": "afdfe627a4f511ef990b1c9957818fb1",
+                    "id": "a44bbea8a4f811ef8c561c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe62aa4f511efb1551c9957818fb1",
+                    "id": "a44bbeaba4f811efbaf41c9957818fb1",
                     "full_name": "Какао-порошок",
                     "group": {
-                        "id": "afdfe628a4f511efaebe1c9957818fb1",
+                        "id": "a44bbea9a4f811efb9471c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe629a4f511eface91c9957818fb1",
+                        "id": "a44bbeaaa4f811ef927b1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -199,24 +199,24 @@
                 }
             },
             {
-                "id": "afdfe630a4f511efa2631c9957818fb1",
+                "id": "a44bbeb1a4f811ef9ca91c9957818fb1",
                 "name": "Сахар",
                 "unit_value": 90,
                 "range": {
-                    "id": "afdfe62ca4f511efbd191c9957818fb1",
+                    "id": "a44bbeada4f811ef88741c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe62fa4f511ef8fc51c9957818fb1",
+                    "id": "a44bbeb0a4f811efb6e61c9957818fb1",
                     "full_name": "Сахар",
                     "group": {
-                        "id": "afdfe62da4f511efb88b1c9957818fb1",
+                        "id": "a44bbeaea4f811ef8b191c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe62ea4f511ef96381c9957818fb1",
+                        "id": "a44bbeafa4f811efad6d1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -224,24 +224,24 @@
                 }
             },
             {
-                "id": "afdfe635a4f511ef9cdb1c9957818fb1",
+                "id": "a44bbeb6a4f811ef85bb1c9957818fb1",
                 "name": "Разрыхлитель",
                 "unit_value": 1,
                 "range": {
-                    "id": "afdfe631a4f511efad591c9957818fb1",
+                    "id": "a44bbeb2a4f811efb9381c9957818fb1",
                     "unit_range": "ч.л.",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe634a4f511efaaff1c9957818fb1",
+                    "id": "a44bbeb5a4f811efa73d1c9957818fb1",
                     "full_name": "Разрыхлитель",
                     "group": {
-                        "id": "afdfe632a4f511ef800a1c9957818fb1",
+                        "id": "a44bbeb3a4f811ef8d611c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe633a4f511ef9a741c9957818fb1",
+                        "id": "a44bbeb4a4f811efbcf91c9957818fb1",
                         "unit_range": "ч.л.",
                         "conversion_factor": 1,
                         "base_range": null
@@ -249,24 +249,24 @@
                 }
             },
             {
-                "id": "afdfe63aa4f511ef80911c9957818fb1",
+                "id": "a44be594a4f811ef961f1c9957818fb1",
                 "name": "Сливочное масло",
                 "unit_value": 60,
                 "range": {
-                    "id": "afdfe636a4f511efa94e1c9957818fb1",
+                    "id": "a44bbeb7a4f811efb4a21c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe639a4f511ef848f1c9957818fb1",
+                    "id": "a44bbebaa4f811efb27f1c9957818fb1",
                     "full_name": "Сливочное масло",
                     "group": {
-                        "id": "afdfe637a4f511efa89d1c9957818fb1",
+                        "id": "a44bbeb8a4f811efbc121c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe638a4f511ef82011c9957818fb1",
+                        "id": "a44bbeb9a4f811ef9cce1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -274,24 +274,24 @@
                 }
             },
             {
-                "id": "afdfe63fa4f511ef96731c9957818fb1",
+                "id": "a44be599a4f811ef8b571c9957818fb1",
                 "name": "Яйца",
                 "unit_value": 2,
                 "range": {
-                    "id": "afdfe63ba4f511ef8f4f1c9957818fb1",
+                    "id": "a44be595a4f811efaf3a1c9957818fb1",
                     "unit_range": "шт",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe63ea4f511ef88261c9957818fb1",
+                    "id": "a44be598a4f811ef926c1c9957818fb1",
                     "full_name": "Яйца",
                     "group": {
-                        "id": "afdfe63ca4f511efb70d1c9957818fb1",
+                        "id": "a44be596a4f811efaac41c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe63da4f511ef9bed1c9957818fb1",
+                        "id": "a44be597a4f811efbb351c9957818fb1",
                         "unit_range": "шт",
                         "conversion_factor": 1,
                         "base_range": null
@@ -299,24 +299,24 @@
                 }
             },
             {
-                "id": "afdfe644a4f511efabb11c9957818fb1",
+                "id": "a44be59ea4f811ef85cd1c9957818fb1",
                 "name": "Молоко",
                 "unit_value": 150,
                 "range": {
-                    "id": "afdfe640a4f511efa0231c9957818fb1",
+                    "id": "a44be59aa4f811efb3791c9957818fb1",
                     "unit_range": "мл",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe643a4f511efb6141c9957818fb1",
+                    "id": "a44be59da4f811ef90051c9957818fb1",
                     "full_name": "Молоко",
                     "group": {
-                        "id": "afdfe641a4f511ef81e91c9957818fb1",
+                        "id": "a44be59ba4f811efbde21c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe642a4f511ef855c1c9957818fb1",
+                        "id": "a44be59ca4f811ef8a491c9957818fb1",
                         "unit_range": "мл",
                         "conversion_factor": 1,
                         "base_range": null
@@ -324,24 +324,24 @@
                 }
             },
             {
-                "id": "afdfe649a4f511efaca81c9957818fb1",
+                "id": "a44be5a3a4f811efad0a1c9957818fb1",
                 "name": "Ванильный сахар",
                 "unit_value": 10,
                 "range": {
-                    "id": "afdfe645a4f511efb7c11c9957818fb1",
+                    "id": "a44be59fa4f811ef91aa1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
-                    "id": "afdfe648a4f511ef962a1c9957818fb1",
+                    "id": "a44be5a2a4f811efbcb61c9957818fb1",
                     "full_name": "Ванильный сахар",
                     "group": {
-                        "id": "afdfe646a4f511efab8b1c9957818fb1",
+                        "id": "a44be5a0a4f811ef83bf1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
-                        "id": "afdfe647a4f511efbdcf1c9957818fb1",
+                        "id": "a44be5a1a4f811efab5d1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null

@@ -89,14 +89,14 @@ class start_service(abstract_logic):
         report.create(self.data)
         self.settings.first_start = False
         self.__settings_manager.save()
-        return report.save(f"..{os.sep}..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.file_name}")
+        return report.save(f"..{os.sep}..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.file_name[8:-5]}")
 
     def load(self):
         try:
             if self.settings.first_start:
                 return False
             file = file_manager()
-            result = file.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[7:]}")
+            result = file.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[8:]}")
             if "error" in result:
                 return False
             self.data = result
