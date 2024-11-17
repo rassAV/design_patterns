@@ -9,6 +9,18 @@ class group_nomenclature(abstract_model):
         CustomRaise.type_exception("name", name, str)
         self.__name = name
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+        }
+
+    @staticmethod
+    def from_json(data):
+        return group_nomenclature(
+            name=data.get("name"),
+        )
+
     def __str__(self):
         return f"Group_nomenclature(name: {self.name})"
 

@@ -1,23 +1,28 @@
 [
     {
-        "_abstract_model__id": "daf4b9f2a42311ef99831c9957818fb1",
-        "_recipe__name": "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ",
-        "_recipe__servings": "`10 порций`",
-        "_recipe__ingredients": [
+        "id": "afdfe621a4f511ef98f91c9957818fb1",
+        "name": "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ",
+        "servings": "`10 порций`",
+        "ingredients": [
             {
+                "id": "afdfe60ca4f511ef80831c9957818fb1",
                 "name": "Пшеничная мука",
                 "unit_value": 100,
                 "range": {
+                    "id": "afdfe608a4f511ef839e1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe60ba4f511ef815a1c9957818fb1",
                     "full_name": "Пшеничная мука",
                     "group": {
+                        "id": "afdfe609a4f511ef916d1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe60aa4f511ef969d1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -25,19 +30,24 @@
                 }
             },
             {
+                "id": "afdfe611a4f511ef83001c9957818fb1",
                 "name": "Сахар",
                 "unit_value": 80,
                 "range": {
+                    "id": "afdfe60da4f511ef8b4b1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe610a4f511efbf811c9957818fb1",
                     "full_name": "Сахар",
                     "group": {
+                        "id": "afdfe60ea4f511efa73e1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe60fa4f511ef963d1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -45,19 +55,24 @@
                 }
             },
             {
+                "id": "afdfe616a4f511ef90961c9957818fb1",
                 "name": "Сливочное масло",
                 "unit_value": 70,
                 "range": {
+                    "id": "afdfe612a4f511efb0541c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe615a4f511ef80961c9957818fb1",
                     "full_name": "Сливочное масло",
                     "group": {
+                        "id": "afdfe613a4f511efbfc61c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe614a4f511efa6c51c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -65,19 +80,24 @@
                 }
             },
             {
+                "id": "afdfe61ba4f511ef88f01c9957818fb1",
                 "name": "Яйца",
                 "unit_value": 1,
                 "range": {
+                    "id": "afdfe617a4f511efb0031c9957818fb1",
                     "unit_range": "шт",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe61aa4f511efb6de1c9957818fb1",
                     "full_name": "Яйца",
                     "group": {
+                        "id": "afdfe618a4f511ef8b781c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe619a4f511efa3401c9957818fb1",
                         "unit_range": "шт",
                         "conversion_factor": 1,
                         "base_range": null
@@ -85,19 +105,24 @@
                 }
             },
             {
+                "id": "afdfe620a4f511ef83d81c9957818fb1",
                 "name": "Ванилин(щепотка)",
                 "unit_value": 5,
                 "range": {
+                    "id": "afdfe61ca4f511ef83a01c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe61fa4f511ef96401c9957818fb1",
                     "full_name": "Ванилин(щепотка)",
                     "group": {
+                        "id": "afdfe61da4f511efae861c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe61ea4f511efac0a1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -105,8 +130,8 @@
                 }
             }
         ],
-        "_recipe__time": "`20 мин`",
-        "_recipe__instructions": [
+        "time": "`20 мин`",
+        "instructions": [
             "1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.",
             "2. Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке.",
             "3. Добавьте в теплое масло сахар. Перемешайте венчиком до полного растворения сахара. От тепла сахар довольно быстро растает.",
@@ -119,24 +144,29 @@
         ]
     },
     {
-        "_abstract_model__id": "daf4ba1ba42311efa1751c9957818fb1",
-        "_recipe__name": "ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ",
-        "_recipe__servings": "`12 порций`",
-        "_recipe__ingredients": [
+        "id": "afdfe64aa4f511efb8421c9957818fb1",
+        "name": "ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ",
+        "servings": "`12 порций`",
+        "ingredients": [
             {
+                "id": "afdfe626a4f511ef84ca1c9957818fb1",
                 "name": "Пшеничная мука",
                 "unit_value": 120,
                 "range": {
+                    "id": "afdfe622a4f511efb7321c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe625a4f511efacfb1c9957818fb1",
                     "full_name": "Пшеничная мука",
                     "group": {
+                        "id": "afdfe623a4f511efa1d61c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe624a4f511efad861c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -144,19 +174,24 @@
                 }
             },
             {
+                "id": "afdfe62ba4f511ef9f221c9957818fb1",
                 "name": "Какао-порошок",
                 "unit_value": 30,
                 "range": {
+                    "id": "afdfe627a4f511ef990b1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe62aa4f511efb1551c9957818fb1",
                     "full_name": "Какао-порошок",
                     "group": {
+                        "id": "afdfe628a4f511efaebe1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe629a4f511eface91c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -164,19 +199,24 @@
                 }
             },
             {
+                "id": "afdfe630a4f511efa2631c9957818fb1",
                 "name": "Сахар",
                 "unit_value": 90,
                 "range": {
+                    "id": "afdfe62ca4f511efbd191c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe62fa4f511ef8fc51c9957818fb1",
                     "full_name": "Сахар",
                     "group": {
+                        "id": "afdfe62da4f511efb88b1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe62ea4f511ef96381c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -184,19 +224,24 @@
                 }
             },
             {
+                "id": "afdfe635a4f511ef9cdb1c9957818fb1",
                 "name": "Разрыхлитель",
                 "unit_value": 1,
                 "range": {
+                    "id": "afdfe631a4f511efad591c9957818fb1",
                     "unit_range": "ч.л.",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe634a4f511efaaff1c9957818fb1",
                     "full_name": "Разрыхлитель",
                     "group": {
+                        "id": "afdfe632a4f511ef800a1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe633a4f511ef9a741c9957818fb1",
                         "unit_range": "ч.л.",
                         "conversion_factor": 1,
                         "base_range": null
@@ -204,19 +249,24 @@
                 }
             },
             {
+                "id": "afdfe63aa4f511ef80911c9957818fb1",
                 "name": "Сливочное масло",
                 "unit_value": 60,
                 "range": {
+                    "id": "afdfe636a4f511efa94e1c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe639a4f511ef848f1c9957818fb1",
                     "full_name": "Сливочное масло",
                     "group": {
+                        "id": "afdfe637a4f511efa89d1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe638a4f511ef82011c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -224,19 +274,24 @@
                 }
             },
             {
+                "id": "afdfe63fa4f511ef96731c9957818fb1",
                 "name": "Яйца",
                 "unit_value": 2,
                 "range": {
+                    "id": "afdfe63ba4f511ef8f4f1c9957818fb1",
                     "unit_range": "шт",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe63ea4f511ef88261c9957818fb1",
                     "full_name": "Яйца",
                     "group": {
+                        "id": "afdfe63ca4f511efb70d1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe63da4f511ef9bed1c9957818fb1",
                         "unit_range": "шт",
                         "conversion_factor": 1,
                         "base_range": null
@@ -244,19 +299,24 @@
                 }
             },
             {
+                "id": "afdfe644a4f511efabb11c9957818fb1",
                 "name": "Молоко",
                 "unit_value": 150,
                 "range": {
+                    "id": "afdfe640a4f511efa0231c9957818fb1",
                     "unit_range": "мл",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe643a4f511efb6141c9957818fb1",
                     "full_name": "Молоко",
                     "group": {
+                        "id": "afdfe641a4f511ef81e91c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe642a4f511ef855c1c9957818fb1",
                         "unit_range": "мл",
                         "conversion_factor": 1,
                         "base_range": null
@@ -264,19 +324,24 @@
                 }
             },
             {
+                "id": "afdfe649a4f511efaca81c9957818fb1",
                 "name": "Ванильный сахар",
                 "unit_value": 10,
                 "range": {
+                    "id": "afdfe645a4f511efb7c11c9957818fb1",
                     "unit_range": "гр",
                     "conversion_factor": 1,
                     "base_range": null
                 },
                 "nomenclature": {
+                    "id": "afdfe648a4f511ef962a1c9957818fb1",
                     "full_name": "Ванильный сахар",
                     "group": {
+                        "id": "afdfe646a4f511efab8b1c9957818fb1",
                         "name": "Сырьё"
                     },
                     "range": {
+                        "id": "afdfe647a4f511efbdcf1c9957818fb1",
                         "unit_range": "гр",
                         "conversion_factor": 1,
                         "base_range": null
@@ -284,8 +349,8 @@
                 }
             }
         ],
-        "_recipe__time": "`25 мин`",
-        "_recipe__instructions": [
+        "time": "`25 мин`",
+        "instructions": [
             "1. Подготовьте все ингредиенты. Просейте муку, чтобы вафли получились нежными и воздушными.",
             "2. В глубокой миске смешайте пшеничную муку, какао-порошок и разрыхлитель.",
             "3. В отдельной посуде растопите сливочное масло на медленном огне или в микроволновке.",

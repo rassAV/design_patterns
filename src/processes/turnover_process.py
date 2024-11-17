@@ -17,7 +17,7 @@ class turnover_process(abstract_logic):
             if not (self.__start <= transaction.period <= self.__end):
                 continue
 
-            key = (transaction.storage.id, transaction.nomenclature.id, transaction.range.id)
+            key = transaction.storage.id + transaction.nomenclature.id + transaction.range.id
 
             if key not in turnovers:
                 turnovers[key] = storage_turnover(transaction.storage, transaction.nomenclature, transaction.range)

@@ -1,0 +1,573 @@
+{
+    "ranges": [
+        {
+            "id": "9a274bd6a4f711efafa01c9957818fb1",
+            "unit_range": "грамм",
+            "conversion_factor": 1,
+            "base_range": null
+        },
+        {
+            "id": "9a274bd8a4f711ef95bb1c9957818fb1",
+            "unit_range": "килограмм",
+            "conversion_factor": 1000,
+            "base_range": {
+                "id": "9a274bd7a4f711efa6d91c9957818fb1",
+                "unit_range": "грамм",
+                "conversion_factor": 1,
+                "base_range": null
+            }
+        },
+        {
+            "id": "9a274bdaa4f711efb6ce1c9957818fb1",
+            "unit_range": "тонна",
+            "conversion_factor": 1000,
+            "base_range": {
+                "id": "9a274bd9a4f711ef93771c9957818fb1",
+                "unit_range": "килограмм",
+                "conversion_factor": 1000,
+                "base_range": null
+            }
+        }
+    ],
+    "groups": [
+        {
+            "id": "9a274bdba4f711ef89f91c9957818fb1",
+            "name": "Сырьё"
+        },
+        {
+            "id": "9a274bdca4f711efad051c9957818fb1",
+            "name": "Заморозка"
+        }
+    ],
+    "nomenclature": [
+        {
+            "id": "9a274be0a4f711efb5511c9957818fb1",
+            "full_name": "Мука",
+            "group": {
+                "id": "9a274bdda4f711efaece1c9957818fb1",
+                "name": "Сырьё"
+            },
+            "range": {
+                "id": "9a274bdfa4f711ef8ca11c9957818fb1",
+                "unit_range": "килограмм",
+                "conversion_factor": 1000,
+                "base_range": {
+                    "id": "9a274bdea4f711efab261c9957818fb1",
+                    "unit_range": "грамм",
+                    "conversion_factor": 1,
+                    "base_range": null
+                }
+            }
+        },
+        {
+            "id": "9a274be4a4f711ef800e1c9957818fb1",
+            "full_name": "Замороженные овощи",
+            "group": {
+                "id": "9a274be1a4f711efbe8a1c9957818fb1",
+                "name": "Заморозка"
+            },
+            "range": {
+                "id": "9a274be3a4f711ef87831c9957818fb1",
+                "unit_range": "килограмм",
+                "conversion_factor": 1000,
+                "base_range": {
+                    "id": "9a274be2a4f711efb6781c9957818fb1",
+                    "unit_range": "грамм",
+                    "conversion_factor": 1,
+                    "base_range": null
+                }
+            }
+        }
+    ],
+    "receipts": [
+        {
+            "id": "9a274bfea4f711efa04b1c9957818fb1",
+            "name": "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ",
+            "servings": "`10 порций`",
+            "ingredients": [
+                {
+                    "id": "9a274be9a4f711efa62d1c9957818fb1",
+                    "name": "Пшеничная мука",
+                    "unit_value": 100,
+                    "range": {
+                        "id": "9a274be5a4f711ef93981c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274be8a4f711ef986f1c9957818fb1",
+                        "full_name": "Пшеничная мука",
+                        "group": {
+                            "id": "9a274be6a4f711efb7a51c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274be7a4f711ef93611c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274beea4f711ef8f471c9957818fb1",
+                    "name": "Сахар",
+                    "unit_value": 80,
+                    "range": {
+                        "id": "9a274beaa4f711ef85541c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274beda4f711ef8b601c9957818fb1",
+                        "full_name": "Сахар",
+                        "group": {
+                            "id": "9a274beba4f711efb6d21c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274beca4f711ef8f031c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274bf3a4f711ef95691c9957818fb1",
+                    "name": "Сливочное масло",
+                    "unit_value": 70,
+                    "range": {
+                        "id": "9a274befa4f711efb84b1c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274bf2a4f711ef9eb31c9957818fb1",
+                        "full_name": "Сливочное масло",
+                        "group": {
+                            "id": "9a274bf0a4f711ef9bc11c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274bf1a4f711efbd361c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274bf8a4f711efa5b81c9957818fb1",
+                    "name": "Яйца",
+                    "unit_value": 1,
+                    "range": {
+                        "id": "9a274bf4a4f711ef9e301c9957818fb1",
+                        "unit_range": "шт",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274bf7a4f711ef8a961c9957818fb1",
+                        "full_name": "Яйца",
+                        "group": {
+                            "id": "9a274bf5a4f711ef8c0b1c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274bf6a4f711ef81741c9957818fb1",
+                            "unit_range": "шт",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274bfda4f711ef8c551c9957818fb1",
+                    "name": "Ванилин(щепотка)",
+                    "unit_value": 5,
+                    "range": {
+                        "id": "9a274bf9a4f711ef8e131c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274bfca4f711ef83951c9957818fb1",
+                        "full_name": "Ванилин(щепотка)",
+                        "group": {
+                            "id": "9a274bfaa4f711ef81901c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274bfba4f711efaa511c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                }
+            ],
+            "time": "`20 мин`",
+            "instructions": [
+                "1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.",
+                "2. Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке.",
+                "3. Добавьте в теплое масло сахар. Перемешайте венчиком до полного растворения сахара. От тепла сахар довольно быстро растает.",
+                "4. Добавьте в масло яйцо. Предварительно все-таки проверьте масло, не горячее ли оно, иначе яйцо может свариться. Перемешайте яйцо с маслом до однородности.",
+                "5. Всыпьте муку, добавьте ванилин.",
+                "6. Перемешайте массу венчиком до состояния гладкого однородного теста.",
+                "7. Разогрейте вафельницу по инструкции к ней. У меня очень старая, еще советских времен электровафельница. Она может и не очень красивая, но печет замечательно!",
+                "8. Я не смазываю вафельницу маслом, в тесте достаточно жира, да и к ней уже давно ничего не прилипает. Но вы смотрите по своей модели. Выкладывайте тесто по столовой ложке. Можно класть немного меньше теста, тогда вафли будут меньше и их получится больше.",
+                "9. Пеките вафли несколько минут до золотистого цвета. Осторожно откройте вафельницу, она очень горячая! Снимите вафлю лопаткой. Горячая она очень мягкая, как блинчик."
+            ]
+        },
+        {
+            "id": "9a2772f0a4f711efb1551c9957818fb1",
+            "name": "ШОКОЛАДНЫЕ ВАФЛИ В ВАФЕЛЬНИЦЕ",
+            "servings": "`12 порций`",
+            "ingredients": [
+                {
+                    "id": "9a274c03a4f711efbea01c9957818fb1",
+                    "name": "Пшеничная мука",
+                    "unit_value": 120,
+                    "range": {
+                        "id": "9a274bffa4f711efbcb61c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c02a4f711efbdf01c9957818fb1",
+                        "full_name": "Пшеничная мука",
+                        "group": {
+                            "id": "9a274c00a4f711efbcc21c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c01a4f711ef874e1c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274c08a4f711ef89201c9957818fb1",
+                    "name": "Какао-порошок",
+                    "unit_value": 30,
+                    "range": {
+                        "id": "9a274c04a4f711ef918d1c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c07a4f711efae421c9957818fb1",
+                        "full_name": "Какао-порошок",
+                        "group": {
+                            "id": "9a274c05a4f711ef97671c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c06a4f711ef99461c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274c0da4f711ef94db1c9957818fb1",
+                    "name": "Сахар",
+                    "unit_value": 90,
+                    "range": {
+                        "id": "9a274c09a4f711ef9e551c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c0ca4f711efa8ff1c9957818fb1",
+                        "full_name": "Сахар",
+                        "group": {
+                            "id": "9a274c0aa4f711ef89f61c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c0ba4f711efa3731c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274c12a4f711ef8db41c9957818fb1",
+                    "name": "Разрыхлитель",
+                    "unit_value": 1,
+                    "range": {
+                        "id": "9a274c0ea4f711efa7261c9957818fb1",
+                        "unit_range": "ч.л.",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c11a4f711ef8a6a1c9957818fb1",
+                        "full_name": "Разрыхлитель",
+                        "group": {
+                            "id": "9a274c0fa4f711ef8fcc1c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c10a4f711ef87911c9957818fb1",
+                            "unit_range": "ч.л.",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274c17a4f711ef8fe41c9957818fb1",
+                    "name": "Сливочное масло",
+                    "unit_value": 60,
+                    "range": {
+                        "id": "9a274c13a4f711efb5591c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c16a4f711ef92021c9957818fb1",
+                        "full_name": "Сливочное масло",
+                        "group": {
+                            "id": "9a274c14a4f711efaae81c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c15a4f711ef89131c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a274c1ca4f711efbc821c9957818fb1",
+                    "name": "Яйца",
+                    "unit_value": 2,
+                    "range": {
+                        "id": "9a274c18a4f711ef99351c9957818fb1",
+                        "unit_range": "шт",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c1ba4f711efb31e1c9957818fb1",
+                        "full_name": "Яйца",
+                        "group": {
+                            "id": "9a274c19a4f711ef9bee1c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c1aa4f711ef9e3b1c9957818fb1",
+                            "unit_range": "шт",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a2772eaa4f711ef870a1c9957818fb1",
+                    "name": "Молоко",
+                    "unit_value": 150,
+                    "range": {
+                        "id": "9a274c1da4f711efb3191c9957818fb1",
+                        "unit_range": "мл",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a274c20a4f711ef9c2c1c9957818fb1",
+                        "full_name": "Молоко",
+                        "group": {
+                            "id": "9a274c1ea4f711efb8161c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a274c1fa4f711efb6db1c9957818fb1",
+                            "unit_range": "мл",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                },
+                {
+                    "id": "9a2772efa4f711efa48a1c9957818fb1",
+                    "name": "Ванильный сахар",
+                    "unit_value": 10,
+                    "range": {
+                        "id": "9a2772eba4f711ef82701c9957818fb1",
+                        "unit_range": "гр",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    },
+                    "nomenclature": {
+                        "id": "9a2772eea4f711efb8591c9957818fb1",
+                        "full_name": "Ванильный сахар",
+                        "group": {
+                            "id": "9a2772eca4f711ef8f121c9957818fb1",
+                            "name": "Сырьё"
+                        },
+                        "range": {
+                            "id": "9a2772eda4f711efbbac1c9957818fb1",
+                            "unit_range": "гр",
+                            "conversion_factor": 1,
+                            "base_range": null
+                        }
+                    }
+                }
+            ],
+            "time": "`25 мин`",
+            "instructions": [
+                "1. Подготовьте все ингредиенты. Просейте муку, чтобы вафли получились нежными и воздушными.",
+                "2. В глубокой миске смешайте пшеничную муку, какао-порошок и разрыхлитель.",
+                "3. В отдельной посуде растопите сливочное масло на медленном огне или в микроволновке.",
+                "4. Добавьте к растопленному маслу сахар, ванильный сахар и яйца. Взбейте венчиком до однородной массы.",
+                "5. Постепенно введите молоко в яичную смесь, затем добавьте сухие ингредиенты. Перемешайте до получения гладкого теста.",
+                "6. Разогрейте вафельницу до рабочей температуры. Если необходимо, смажьте её небольшим количеством масла.",
+                "7. Выложите тесто ложкой в вафельницу и пеките вафли 3–4 минуты до золотисто-шоколадного цвета.",
+                "8. Вафли готовы! Подавайте их с фруктами, сиропом или мороженым."
+            ]
+        }
+    ],
+    "storages": [
+        {
+            "id": "9a2772f1a4f711efbb481c9957818fb1",
+            "name": "Default Storage 1",
+            "address": "Россия, г. Ангарск, кв-л. 71, 4"
+        },
+        {
+            "id": "9a2772f2a4f711ef89621c9957818fb1",
+            "name": "Default Storage 2",
+            "address": "Россия, г. Иркутск, ул. Советская, дом 22"
+        }
+    ],
+    "transactions": [
+        {
+            "id": "9a2772f9a4f711efb8901c9957818fb1",
+            "storage": {
+                "id": "9a2772f3a4f711ef93721c9957818fb1",
+                "name": "Default Storage 1",
+                "address": "Россия, г. Ангарск, кв-л. 71, 4"
+            },
+            "nomenclature": {
+                "id": "9a2772f7a4f711ef9e121c9957818fb1",
+                "full_name": "Мука",
+                "group": {
+                    "id": "9a2772f4a4f711efab4b1c9957818fb1",
+                    "name": "Сырьё"
+                },
+                "range": {
+                    "id": "9a2772f6a4f711ef8a751c9957818fb1",
+                    "unit_range": "килограмм",
+                    "conversion_factor": 1000,
+                    "base_range": {
+                        "id": "9a2772f5a4f711ef84131c9957818fb1",
+                        "unit_range": "грамм",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    }
+                }
+            },
+            "range": {
+                "id": "9a2772f8a4f711ef83ad1c9957818fb1",
+                "unit_range": "грамм",
+                "conversion_factor": 1,
+                "base_range": null
+            },
+            "quantity": 200.0,
+            "period": "2024-11-17T23:21:22.192868",
+            "type": "Расход"
+        },
+        {
+            "id": "9a277300a4f711ef82741c9957818fb1",
+            "storage": {
+                "id": "9a2772faa4f711ef8c071c9957818fb1",
+                "name": "Default Storage 2",
+                "address": "Россия, г. Иркутск, ул. Советская, дом 22"
+            },
+            "nomenclature": {
+                "id": "9a2772fea4f711ef9f831c9957818fb1",
+                "full_name": "Замороженные овощи",
+                "group": {
+                    "id": "9a2772fba4f711efaee51c9957818fb1",
+                    "name": "Заморозка"
+                },
+                "range": {
+                    "id": "9a2772fda4f711ef85af1c9957818fb1",
+                    "unit_range": "килограмм",
+                    "conversion_factor": 1000,
+                    "base_range": {
+                        "id": "9a2772fca4f711ef82171c9957818fb1",
+                        "unit_range": "грамм",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    }
+                }
+            },
+            "range": {
+                "id": "9a2772ffa4f711efad611c9957818fb1",
+                "unit_range": "грамм",
+                "conversion_factor": 1,
+                "base_range": null
+            },
+            "quantity": 150.0,
+            "period": "2024-11-17T23:21:22.192868",
+            "type": "Расход"
+        },
+        {
+            "id": "9a277308a4f711ef80fd1c9957818fb1",
+            "storage": {
+                "id": "9a277301a4f711efba431c9957818fb1",
+                "name": "Default Storage 1",
+                "address": "Россия, г. Ангарск, кв-л. 71, 4"
+            },
+            "nomenclature": {
+                "id": "9a277305a4f711ef9a8d1c9957818fb1",
+                "full_name": "Мука",
+                "group": {
+                    "id": "9a277302a4f711efbfa11c9957818fb1",
+                    "name": "Сырьё"
+                },
+                "range": {
+                    "id": "9a277304a4f711ef8f3a1c9957818fb1",
+                    "unit_range": "килограмм",
+                    "conversion_factor": 1000,
+                    "base_range": {
+                        "id": "9a277303a4f711ef82851c9957818fb1",
+                        "unit_range": "грамм",
+                        "conversion_factor": 1,
+                        "base_range": null
+                    }
+                }
+            },
+            "range": {
+                "id": "9a277307a4f711ef85821c9957818fb1",
+                "unit_range": "тонна",
+                "conversion_factor": 1000,
+                "base_range": {
+                    "id": "9a277306a4f711efa3de1c9957818fb1",
+                    "unit_range": "килограмм",
+                    "conversion_factor": 1000,
+                    "base_range": null
+                }
+            },
+            "quantity": 1.25,
+            "period": "2024-11-17T23:21:22.192868",
+            "type": "Приход"
+        }
+    ]
+}

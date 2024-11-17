@@ -72,6 +72,10 @@ class settings_manager(abstract_logic):
     @property
     def settings(self):
         return self.__settings
+    
+    @property
+    def file_name(self) -> str:
+        return self.__file_name
 
     def __default_settings(self):
         data = settings()

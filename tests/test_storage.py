@@ -4,6 +4,7 @@ from src.storage_reposity import storage_reposity
 from src.models.storage_transaction import storage_transaction
 from src.processes.turnover_process import turnover_process
 from src.processes.dateblock_process import dateblock_process
+from src.processes.balance_process import balance_process
 from src.core.object_types import transaction_type
 from datetime import datetime
 import os
@@ -194,10 +195,68 @@ class test_storage(unittest.TestCase):
             file.write(f"### Время выполнения без блокировки дат: {time_without_dateblock:.6f} секунд\n\n")
 
     def test_balance_list(self):
-        pass
+        # Подготовка
+        manager = settings_manager()
+        manager.open("settings1.json", "../")
+        reposity = storage_reposity()
+        start = start_service(reposity, manager)
+        start.create()
+
+        transactions = start.data["transactions"]
+        transactions.append(storage_transaction.default_transaction_1())
+
+        storage = transactions[0].storage
+        nomenclature = transactions[0].nomenclature
+        range = transactions[0].range
+
+        transactions[0].period = datetime(2024, 3, 25)
+        transactions[1].storage = storage
+        transactions[1].nomenclature = nomenclature
+        transactions[1].range = range
+        transactions[1].period = datetime(2024, 7, 12)
+        transactions[2].storage = storage
+        transactions[2].nomenclature = nomenclature
+        transactions[2].range = range
+        transactions[2].period = datetime(2025, 7, 12)
+        transactions[3].storage = storage
+        transactions[3].nomenclature = nomenclature
+        transactions[3].range = range
+        transactions[3].period = datetime(2025, 10, 5)
+        transactions[3].quantity = 150
+        transactions[3].type = transaction_type.INCOME
+        
+        balance = balance_process()
+        balance.file_name = "test_balance_list.json"
+        result = balance.process(transactions, "2025-01-01", "2026-01-01")
+        
+        # Проверка
+        assert "date1" in result
+        assert result["date1"] == "2025-01-01T00:00:00"
+        assert result["date2"] == "2026-01-01T00:00:00"
+        assert type(result["turnovers1"]) == dict
+        assert len(result["turnovers1"].values()) == 1
+        assert list(result["turnovers1"].values())[0] == -350.0
+        assert balance.save(transactions, "2025-01-01", "2026-01-01")
 
     def test_save_storage(self):
-        pass
+        # Подготовка
+        manager = settings_manager()
+        manager.open("settings1.json", "../")
+        reposity = storage_reposity()
+        start = start_service(reposity, manager)
+        start.create()
+        
+        # Проверка
+        assert start.save()
 
     def test_load_storage(self):
-        pass
+        # Подготовка
+        manager = settings_manager()
+        manager.open("settings1.json", "../")
+        manager.settings.first_start = False
+        reposity = storage_reposity()
+        start = start_service(reposity, manager)
+        start.create()
+
+        # Проверка
+        assert start.load()

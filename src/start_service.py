@@ -10,6 +10,8 @@ from src.core.custom_raise import CustomRaise
 from src.models.storage import storage
 from src.models.storage_transaction import storage_transaction
 from src.reports.json_report import json_report
+from src.file_manager import file_manager
+import os
 
 class start_service(abstract_logic):
     __reposity: storage_reposity = None
@@ -84,15 +86,17 @@ class start_service(abstract_logic):
 
     def save(self):
         report = json_report()
-        report.create(self.data[self.data.keys()])
-        return report.save("../../data/reposities", f"reposity_{self.__settings_manager.__file_name[7:]}")
+        report.create(self.data)
+        self.settings.first_start = False
+        self.__settings_manager.save()
+        return report.save(f"..{os.sep}..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.file_name}")
 
     def load(self):
         try:
             if self.settings.first_start:
                 return False
-            report = json_report()
-            result = report.load("../../data/reposities", f"reposity_{self.__settings_manager.__file_name[7:]}")
+            file = file_manager()
+            result = file.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[7:]}")
             if "error" in result:
                 return False
             self.data = result
