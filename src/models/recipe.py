@@ -1,4 +1,5 @@
 from src.core.abstract_model import abstract_model
+from src.models.ingredient import ingredient
 from src.core.custom_raise import CustomRaise
 
 class recipe(abstract_model):
@@ -21,8 +22,28 @@ class recipe(abstract_model):
         self.__time = time
         self.__instructions = instructions
 
-    # def __str__(self):
-    #     return f"Recipe(name: {self.name}, servings: {self.servings}, ingredients: [{self.ingredients.split(", ")[:-2]}], time: {self.time}, instructions: [{self.instructions.split(", ")[:-2]}])"
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "servings": self.servings,
+            "ingredients": [ingredient.to_json() for ingredient in self.ingredients],
+            "time": self.time,
+            "instructions": self.instructions,
+        }
+
+    @staticmethod
+    def from_json(data):
+        return recipe(
+            name=data.get("name"),
+            servings=data.get("servings"),
+            ingredients=[ingredient.from_json(item) for item in data.get("ingredients", [])],
+            time=data.get("time"),
+            instructions=data.get("instructions", []),
+        )
+    
+    def __str__(self):
+        return f"Recipe(name: {self.name}, servings: {self.servings}, ingredients_counts: {len(self.ingredients)}, time: {self.time}, instructions_counts: {len(self.instructions)})"
 
     @property
     def name(self) -> str:

@@ -12,6 +12,20 @@ class storage(abstract_model):
         self.__name = name
         self.__adress = adress
     
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "address": self.adress,
+        }
+    
+    @staticmethod
+    def from_json(data):
+        return storage(
+            name=data.get("name"),
+            address=data.get("address"),
+        )
+
     def __str__(self):
         return f"Storage(name: {self.name}, factor: {self.adress})"
 

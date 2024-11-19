@@ -20,6 +20,24 @@ class ingredient(abstract_model):
         self.__range = rng
         self.__nomenclature = product
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "unit_value": self.unit_value,
+            "range": self.range.to_json(),
+            "nomenclature": self.nomenclature.to_json(),
+        }
+    
+    @staticmethod
+    def from_json(data):
+        return ingredient(
+            name=data.get("name"),
+            unit_value=data.get("unit_value"),
+            range=range.from_json(data.get("range")),
+            nomenclature=nomenclature.from_json(data.get("nomenclature")),
+        )
+
     def __str__(self):
         return f"Ingredient(name: {self.name}, unit_value: {self.unit_value}, range: {str(self.range)}, nomenclature: {str(self.nomenclature)})"
 

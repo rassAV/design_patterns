@@ -16,6 +16,22 @@ class range(abstract_model):
         self.__conversion_factor = conversion_factor
         self.__base_range = base_range
     
+    def to_json(self):
+        return {
+            "id": self.id,
+            "unit_range": self.unit_range,
+            "conversion_factor": self.conversion_factor,
+            "base_range": self.base_range.to_json() if self.base_range else None,
+        }
+    
+    @staticmethod
+    def from_json(data):
+        return range(
+            unit_range=data.get("unit_range"),
+            conversion_factor=data.get("conversion_factor"),
+            base_range=range.from_json(data.get("base_range")) if data.get("base_range") else None,
+        )
+
     def __str__(self):
         return f"Range(unit: {self.unit_range}, factor: {self.conversion_factor})"
 
@@ -52,7 +68,7 @@ class range(abstract_model):
     
     @staticmethod
     def default_kilogram():
-        return range("килограмм", 1000, range()),
+        return range("килограмм", 1000, range())
     
     @staticmethod
     def default_ton():

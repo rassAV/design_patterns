@@ -31,9 +31,7 @@ class dateblock_process(abstract_logic):
             "date": datetime.now().isoformat(), 
             "turnovers": turnovers_result
             }
-        file.json_write(folder, self.__file_name, result)
-
-        return True
+        return file.json_write(folder, self.__file_name, result)
     
     def merge_dicts(d1, d2):
         result = d1.copy()

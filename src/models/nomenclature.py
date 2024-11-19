@@ -18,6 +18,22 @@ class nomenclature(abstract_model):
         self.__group = group
         self.__range = rng
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "full_name": self.full_name,
+            "group": self.group.to_json(),
+            "range": self.range.to_json(),
+        }
+    
+    @staticmethod
+    def from_json(data):
+        return nomenclature(
+            full_name=data.get("full_name"),
+            group=group_nomenclature.from_json(data.get("group")),
+            range=range.from_json(data.get("range")),
+        )
+
     def __str__(self):
         return f"Nomenclature(full_name: {self.full_name}, group: {str(self.group)}, range: {str(self.range)})"
 

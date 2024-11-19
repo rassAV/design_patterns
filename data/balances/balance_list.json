@@ -1,0 +1,16 @@
+{
+    "date1": "2025-01-01T00:00:00",
+    "date2": "2026-01-01T00:00:00",
+    "turnovers1": {
+        "f93ce098a4e111ef95501c9957818fb1f93ce09ca4e111ef84a81c9957818fb1f93ce09da4e111ef8a8e1c9957818fb1": -350.0
+    },
+    "incomes": {
+        "f93ce098a4e111ef95501c9957818fb1f93ce09ca4e111ef84a81c9957818fb1f93ce09da4e111ef8a8e1c9957818fb1": 151.25
+    },
+    "outcomes": {
+        "f93ce098a4e111ef95501c9957818fb1f93ce09ca4e111ef84a81c9957818fb1f93ce09da4e111ef8a8e1c9957818fb1": 0.0
+    },
+    "turnovers2": {
+        "f93ce098a4e111ef95501c9957818fb1f93ce09ca4e111ef84a81c9957818fb1f93ce09da4e111ef8a8e1c9957818fb1": 151.25
+    }
+}

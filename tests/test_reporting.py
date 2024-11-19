@@ -88,11 +88,11 @@ class test_reporting(unittest.TestCase):
         assert os.path.exists(file_path), "Файл отчета JSON не был создан."
         with open(file_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
-            assert data[0]['_recipe__name'] == 'ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ', "Название отличается от ожидаемого."
-            assert data[0]['_recipe__servings'] == '`10 порций`', "Количество порций отличается от ожидаемого."
-            assert data[0]['_recipe__time'] == '`20 мин`', "Время приготовления отличается от ожидаемого."
-            assert data[0]['_recipe__ingredients'][0]['name'] == "Пшеничная мука", "Ингредиенты отсутствуют или отличаются от ожидаемого."
-            assert data[0]['_recipe__instructions'][0] == "1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.", "Инструкции отсутствуют или отличаются от ожидаемого."
+            assert data[0]['name'] == 'ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ', "Название отличается от ожидаемого."
+            assert data[0]['servings'] == '`10 порций`', "Количество порций отличается от ожидаемого."
+            assert data[0]['time'] == '`20 мин`', "Время приготовления отличается от ожидаемого."
+            assert data[0]['ingredients'][0]['name'] == "Пшеничная мука", "Ингредиенты отсутствуют или отличаются от ожидаемого."
+            assert data[0]['instructions'][0] == "1. Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.", "Инструкции отсутствуют или отличаются от ожидаемого."
 
     def test_report_save_xml(self):
         # Подготовка
@@ -176,7 +176,7 @@ class test_reporting(unittest.TestCase):
         data = parsers_manager.parse_json("receipts_report.json")
 
         # Проверка
-        assert start.data["receipts"][0].name == data[0].name, f"{data[0]}"
+        assert start.data["receipts"][0].name == data[0].name, f"{data}"
         assert start.data["receipts"][0].servings == data[0].servings
         assert start.data["receipts"][0].ingredients[0].name == data[0].ingredients[0].name
         assert start.data["receipts"][0].ingredients[0].unit_value == data[0].ingredients[0].unit_value

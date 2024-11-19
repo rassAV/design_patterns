@@ -8,23 +8,33 @@ class turnover_process(abstract_logic):
     __start: datetime = datetime(1, 1, 1)
     __end: datetime = datetime(6000, 1, 1)
 
-    def process(self, transactions):
+    def process(self, transactions, extra_data = False):
         turnovers = {}
+        incomes = {}
+        outcomes = {}
 
         for transaction in transactions:
             if not (self.__start <= transaction.period <= self.__end):
                 continue
 
-            key = (transaction.storage.id, transaction.nomenclature.id, transaction.range.id)
+            key = transaction.storage.id + transaction.nomenclature.id + transaction.range.id
 
             if key not in turnovers:
                 turnovers[key] = storage_turnover(transaction.storage, transaction.nomenclature, transaction.range)
+            if key not in incomes:
+                incomes[key] = 0.0
+            if key not in outcomes:
+                outcomes[key] = 0.0
 
             if transaction.type == transaction_type.INCOME:
+                incomes[key] += transaction.quantity
                 turnovers[key].turnover += transaction.quantity
             else:
+                outcomes[key] += transaction.quantity
                 turnovers[key].turnover -= transaction.quantity
 
+        if extra_data:
+            return incomes, outcomes, list(turnovers.values())
         return list(turnovers.values())
     
     @property

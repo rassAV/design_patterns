@@ -30,6 +30,28 @@ class storage_transaction(abstract_model):
         self.__period = period
         self.__type = type
     
+    def to_json(self):
+        return {
+            "id": self.id,
+            "storage": self.storage.to_json(),
+            "nomenclature": self.nomenclature.to_json(),
+            "range": self.range.to_json(),
+            "quantity": self.quantity,
+            "period": self.period.isoformat(),
+            "type": self.type.value,
+        }
+    
+    @staticmethod
+    def from_json(data):
+        return storage_transaction(
+            storage=storage.from_json(data.get("storage")),
+            nomenclature=nomenclature.from_json(data.get("nomenclature")),
+            range=range.from_json(data.get("range")),
+            quantity=data.get("quantity"),
+            period=datetime.fromisoformat(data.get("period")),
+            type=transaction_type(data.get("type")),
+        )
+
     def __str__(self):
         return f"Transaction(storage: {self.storage}, nomenclature: {self.nomenclature}, range: {self.range}, quantity: {self.quantity}, period: {self.period}, type: {self.type})"
 

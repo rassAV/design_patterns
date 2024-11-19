@@ -10,6 +10,7 @@ from src.dto.filter import filter
 from src.processes.process_manager import process_manager
 from src.processes.turnover_process import turnover_process
 from src.processes.dateblock_process import dateblock_process
+from src.processes.balance_process import balance_process
 from src.file_manager import file_manager
 from src.logics.observe_service import observe_service
 from src.core.object_types import event_type
@@ -34,6 +35,7 @@ start.create()
 processes = process_manager()
 processes.register('turnover', turnover_process)
 processes.register('dateblock', dateblock_process)
+processes.register('balance', balance_process)
 
 report = report_factory().create(manager)
 file = file_manager()
@@ -147,6 +149,31 @@ def delete_nomenclature():
     if "error" in result:
         return jsonify(result), 404
     return jsonify(result), 200
+
+@app.route('/api/balance_list', methods=['GET'])
+def get_balance_list():
+    data = start.data["transactions"]
+    if not data:
+        return jsonify({"error": "No transactions found"}), 404
+    balance = processes.get('balance')
+    balance_list = balance.process(data)
+    if not balance_list:
+        return jsonify({"error": "No balance list found"}), 404
+    return jsonify(balance_list), 200
+
+@app.route('/api/data/save', methods=['POST'])
+def save_data():
+    result = start.save()
+    if not result:
+        return jsonify({"error": "Data not save"}), 500
+    return jsonify({"status": "Data successfully saved"}), 200
+
+@app.route('/api/data/load', methods=['POST'])
+def load_data():
+    result = start.load()
+    if not result:
+        return jsonify({"error": "Data not load"}), 500
+    return jsonify({"status": "Data successfully loaded"}), 200
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")
