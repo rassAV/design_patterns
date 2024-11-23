@@ -13,5 +13,11 @@ class transaction_type(Enum):
     OUTCOME = "Расход"
 
 class event_type(Enum):
+    FORMATS = "formats"
     UPDATE_NOMENCLATURE = "upd_nmcl"
     DELETE_NOMENCLATURE = "del_nmcl"
+
+class log_type(Enum):
+    ERROR = "error"
+    INFO = "info"
+    DEBUG = "debug"

@@ -11,6 +11,8 @@ from src.models.storage import storage
 from src.models.storage_transaction import storage_transaction
 from src.reports.json_report import json_report
 from src.file_manager import file_manager
+from src.core.object_types import event_type
+from src.core.object_types import log_type
 import os
 
 class start_service(abstract_logic):
@@ -107,5 +109,15 @@ class start_service(abstract_logic):
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
     
-    def handle_event(self, type, params):
+    def handle_event(self, type, level, params):
         super().handle_event(type, params)
+        file = file_manager()
+        if type == event_type.FORMATS:
+            if self.settings.log_level == log_type.ERROR:
+                if level == log_type.ERROR:
+                    file.log_append(level, params)
+            elif self.settings.log_level == log_type.INFO:
+                if level == log_type.ERROR or level == log_type.INFO:
+                    file.log_append(level, params)
+            else:
+                file.log_append(level, params)

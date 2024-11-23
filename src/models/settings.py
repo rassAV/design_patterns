@@ -1,5 +1,6 @@
 from src.core.custom_raise import CustomRaise
 from src.core.object_types import format_reporting
+from src.core.object_types import log_type
 
 class settings:
     __inn = ""
@@ -11,6 +12,7 @@ class settings:
     __report_format: format_reporting = None
     __report_mapping: dict = {}
     __first_start: bool = True
+    __log_level: log_type = None
 
     @property
     def inn(self):
@@ -97,3 +99,12 @@ class settings:
     def first_start(self, value: bool):
         CustomRaise.type_exception("first_start", value, bool)
         self.__first_start = value
+
+    @property
+    def log_level(self):
+        return self.__log_level
+
+    @log_level.setter
+    def log_level(self, value: log_type):
+        CustomRaise.type_exception("log_level", value, log_type)
+        self.__log_level = value

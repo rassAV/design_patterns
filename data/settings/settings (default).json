@@ -6,5 +6,6 @@
     "org_name" : "Организация (default)",
     "ownership_type": "частн",
     "report_format": ".csv",
-    "first_start": true
+    "first_start": true,
+    "log_level": "INFO"
 }

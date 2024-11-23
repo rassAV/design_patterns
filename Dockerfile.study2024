@@ -1,0 +1,18 @@
+FROM python:3.11.9 AS base
+
+RUN pip install --upgrade typing-extensions
+RUN pip install dict2xml
+RUN pip install -U connexion[flask]
+RUN pip install -U connexion[swagger-ui]
+RUN pip install -U connexion[uvicorn]
+RUN pip install -U flask-restplus
+RUN pip install -U Flask
+RUN pip install -U python-docx
+RUN pip install -U openpyxl
+
+COPY ./data /data
+COPY ./src /src
+COPY ./main.py .
+COPY ./swagger.yaml .
+
+CMD ["python3", "main.py"]

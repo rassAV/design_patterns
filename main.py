@@ -14,6 +14,7 @@ from src.processes.balance_process import balance_process
 from src.file_manager import file_manager
 from src.logics.observe_service import observe_service
 from src.core.object_types import event_type
+from src.core.object_types import log_type
 from src.logics.nomenclature_service import nomenclature_service
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
@@ -42,7 +43,12 @@ file = file_manager()
 
 @app.route("/api/reports/formats", methods=["GET"])
 def formats():
-    return jsonify([{"name": item.name, "value": item.value} for item in format_reporting])
+    try:
+        result = [{"name": item.name, "value": item.value} for item in format_reporting]
+        observe_service.raise_event(event_type.FORMATS, log_type.INFO, "GET formats successfully completed")
+    except:
+        observe_service.raise_event(event_type.FORMATS, log_type.ERROR, "GET formats can not completed")
+    return jsonify(result)
 
 @app.route("/api/reports/<category>/<format_type>", methods=["GET"])
 def get_report(category, format_type):
@@ -177,4 +183,4 @@ def load_data():
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")
-    app.run(port=8080)
+    app.run(host="0.0.0.0", port=8080)
