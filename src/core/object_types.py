@@ -32,3 +32,17 @@ class log_type(Enum):
     ERROR = "ERROR"
     INFO = "INFO"
     DEBUG = "DEBUG"
+
+class log_levels(Enum):
+    ERROR = [log_type.ERROR]
+    INFO = [log_type.ERROR, log_type.INFO]
+    DEBUG = [log_type.ERROR, log_type.INFO, log_type.DEBUG]
+
+    @classmethod
+    def set(cls, level: log_type):
+        if level == log_type.ERROR:
+            return cls.ERROR
+        elif level == log_type.INFO:
+            return cls.INFO
+        elif level == log_type.DEBUG:
+            return cls.DEBUG

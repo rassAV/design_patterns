@@ -117,4 +117,4 @@ class start_service(abstract_logic):
                   event_type.GET_DATEBLOCK, event_type.GET_NOMENCLATURE, event_type.ADD_NOMENCLATURE, 
                   event_type.GET_BALANCE_LIST, event_type.SAVE_DATA, event_type.LOAD_DATA]
         if type in event_types:
-            logs.new(params)
+            return logs.new(params)
