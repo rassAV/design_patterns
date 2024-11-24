@@ -47,23 +47,25 @@ logs = log_manager(manager)
 def formats():
     try:
         result = [{"name": item.name, "value": item.value} for item in format_reporting]
-        observe_service.raise_event(event_type.FORMATS, logs, {"log_level": log_type.INFO, "message": "GET formats successfully completed"})
+        observe_service.raise_event(event_type.FORMATS, logs, {"status": "GET formats successfully completed"})
     except:
-        observe_service.raise_event(event_type.FORMATS, logs, {"log_level": log_type.ERROR, "message": "GET formats can not completed"})
+        observe_service.raise_event(event_type.FORMATS, logs, {"error": "GET formats can not completed"})
     return jsonify(result)
 
 @app.route("/api/reports/<category>/<format_type>", methods=["GET"])
 def get_report(category, format_type):
     if category not in data_mapping:
+        observe_service.raise_event(event_type.FORMATS, logs, {"error": "Invalid category"})
         return jsonify({"error": "Invalid category"}), 400
 
     try:
         manager.settings.report_format = format_reporting[format_type.upper()]
     except KeyError:
+        observe_service.raise_event(event_type.FORMATS, logs, {"error": "Invalid report format"})
         return jsonify({"error": "Invalid report format"}), 400
 
     report.create(reposity.data[data_mapping[category]])
-
+    observe_service.raise_event(event_type.FORMATS, logs, {"status": "GET get_report successfully completed"})
     return Response(report.result, status=200)
 
 @app.route("/api/filter/<category>", methods=["POST"])

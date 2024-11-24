@@ -19,8 +19,13 @@ class log_manager():
             self.__log_level = self.__settings_manager.settings.log_level
     
     def new(self, request: dict):
-        level = request["log_level"]
-        message = request["message"]
+        level = log_type.ERROR
+        message = "Incorrect request at log manager"
+        if "status" in request:
+            level = log_type.INFO
+            message = request["status"]
+        if "error" in request:
+            message = request["error"]
         data = datetime.now().isoformat() + " - " + level.value + " - " + message
         if self.__log_level == log_type.ERROR:
             if level == log_type.ERROR:
@@ -28,10 +33,14 @@ class log_manager():
         elif self.__log_level == log_type.INFO:
             if level == log_type.ERROR or level == log_type.INFO:
                 file_manager.file_append(self.__folder_path, self.__file_name, data)
-        else:
+
+    def new_debug(self, debug: str):
+        if self.__log_level == log_type.DEBUG:
+            data = datetime.now().isoformat() + " - DEBUG - " + debug
             file_manager.file_append(self.__folder_path, self.__file_name, data)
 
     def new_debugs(self, debugs: list):
-        for debug in debugs:
-            data = datetime.now().isoformat() + " - DEBUG - " + debug
-            file_manager.file_append(self.__folder_path, self.__file_name, data)
+        if self.__log_level == log_type.DEBUG:
+            for debug in debugs:
+                data = datetime.now().isoformat() + " - DEBUG - " + debug
+                file_manager.file_append(self.__folder_path, self.__file_name, data)

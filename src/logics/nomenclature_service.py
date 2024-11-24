@@ -9,6 +9,8 @@ from src.processes.dateblock_process import dateblock_process
 from src.models.nomenclature import nomenclature
 
 class nomenclature_service(abstract_logic):
+    __debugs: list = []
+
     def __init__(self, reposity: storage_reposity):
         observe_service.append(self)
         self.__reposity = reposity
@@ -49,6 +51,7 @@ class nomenclature_service(abstract_logic):
         return {"status": "Nomenclature successfully added"}
 
     def update_nomenclature(self, request):
+        self.__debugs = []
         id = request.get('id')
         if not id:
             return {"error": "ID is required"}
@@ -60,20 +63,26 @@ class nomenclature_service(abstract_logic):
         if "error" in result:
             return result
 
+        counts = 0
         receipts = self.__reposity.data.get(storage_reposity.receipts_key(), [])
         for recipy in receipts:
             for ingredient in recipy.ingredients:
                 if ingredient.nomenclature.id == id:
+                    counts += 1
                     result = self.replace_nomenclature_data(ingredient.nomenclature, request)
                     if "error" in result:
                         return result
+        self.__debugs.append("Receipts counts updating" + str(counts))
         
+        counts = 0
         transactions = self.__reposity.data.get(storage_reposity.transactions_key(), [])
         for transaction in transactions:
             if transaction.nomenclature.id == id:
+                counts += 1
                 result = self.replace_nomenclature_data(transaction.nomenclature, request)
                 if "error" in result:
                     return result
+        self.__debugs.append("Transactions counts updating" + str(counts))
 
         dateblock = dateblock_process()
         dateblock.process(transactions)
@@ -98,6 +107,7 @@ class nomenclature_service(abstract_logic):
         return {"status": f"Successfully replaced"}
 
     def delete_nomenclature(self, request):
+        self.__debugs = []
         id = request.get('id')
         if not id:
             return {"error": "ID is required"}
@@ -111,7 +121,9 @@ class nomenclature_service(abstract_logic):
         transactions = next(iter(self.get_data(filt, storage_reposity.transactions_key())), None)
         if transactions:
             return {"error": f"Nomenclature can't deleted, because nomenclature used in transactions"}
+        self.__debugs.append("Nomenclature counts before deleting" + str(len(self.__reposity.data[storage_reposity.nomenclature_key()])))
         self.__reposity.data[storage_reposity.nomenclature_key()] = [ n for n in self.__reposity.data[storage_reposity.nomenclature_key()] if n.id != id ]
+        self.__debugs.append("Nomenclature counts after deleting" + str(len(self.__reposity.data[storage_reposity.nomenclature_key()])))
         return {"status": "Nomenclature successfully deleted"}
 
     def set_exception(self, ex: Exception):
@@ -120,6 +132,12 @@ class nomenclature_service(abstract_logic):
     def handle_event(self, type, logs, params):
         super().handle_event(type, logs, params)
         if type == event_type.UPDATE_NOMENCLATURE:
-            return self.update_nomenclature(params)
+            result = self.update_nomenclature(params)
+            logs.new(result)
+            logs.new_debugs(self.__debugs)
+            return result
         elif type == event_type.DELETE_NOMENCLATURE:
-            return self.delete_nomenclature(params)
+            result = self.delete_nomenclature(params)
+            logs.new(result)
+            logs.new_debugs(self.__debugs)
+            return result

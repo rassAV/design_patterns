@@ -7,5 +7,5 @@
     "ownership_type": "частн",
     "report_format": ".json",
     "first_start": true,
-    "log_level": "INFO"
+    "log_level": "DEBUG"
 }
