@@ -8,7 +8,7 @@ services:
       - 8000:8080
     volumes:
       - ./data/settings/settings2.json:/data/settings/settings2.json
-      - ./data/logs/logs.dat:/data/logs/logs.dat
+      - ./data/logs/report_logs.dat:/data/logs/logs.dat
 
   design_patterns_crud:
     container_name: design_patterns_crud
@@ -17,7 +17,7 @@ services:
       - 8001:8080
     volumes:
       - ./data/settings/settings2.json:/data/settings/settings2.json
-      - ./data/logs/logs.dat:/data/logs/logs.dat
+      - ./data/logs/crud_logs.dat:/data/logs/logs.dat
 
 networks:
   default:
