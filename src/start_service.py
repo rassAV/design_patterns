@@ -112,5 +112,9 @@ class start_service(abstract_logic):
     
     def handle_event(self, type, logs, params):
         super().handle_event(type, logs, params)
-        if type in [event_type.FORMATS, event_type.GET_REPORT]:
+        event_types = [event_type.FORMATS, event_type.GET_REPORT, event_type.FILTER_DATA, 
+                  event_type.TRANSACTIONS, event_type.TURNOVER, event_type.DATEBLOCK, 
+                  event_type.GET_DATEBLOCK, event_type.GET_NOMENCLATURE, event_type.ADD_NOMENCLATURE, 
+                  event_type.GET_BALANCE_LIST, event_type.SAVE_DATA, event_type.LOAD_DATA]
+        if type in event_types:
             logs.new(params)

@@ -167,7 +167,7 @@ paths:
       parameters:
         - name: query
           in: query
-          required: false
+          required: true
           type: string
           description: Параметры для фильтрации номенклатуры
       responses:
@@ -247,6 +247,17 @@ paths:
     get:
       summary: Получить список балансов
       operationId: main.get_balance_list
+      parameters:
+        - name: data1
+          in: query
+          required: true
+          type: string
+          description: Начальная дата ОСВ
+        - name: data2
+          in: query
+          required: true
+          type: string
+          description: Конечная дата ОСВ
       produces:
         - application/json
       responses:

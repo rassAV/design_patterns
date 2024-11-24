@@ -133,11 +133,11 @@ class nomenclature_service(abstract_logic):
         super().handle_event(type, logs, params)
         if type == event_type.UPDATE_NOMENCLATURE:
             result = self.update_nomenclature(params)
-            logs.new(result)
             logs.new_debugs(self.__debugs)
+            logs.new(result)
             return result
         elif type == event_type.DELETE_NOMENCLATURE:
             result = self.delete_nomenclature(params)
-            logs.new(result)
             logs.new_debugs(self.__debugs)
+            logs.new(result)
             return result

@@ -2,3 +2,10 @@
 2024-11-24T07:31:16.531830 - INFO - GET formats successfully completed
 2024-11-24T08:44:12.648093 - INFO - GET formats successfully completed
 2024-11-24T08:49:28.896831 - INFO - GET formats successfully completed
+2024-11-24T10:01:49.681378 - INFO - GET formats successfully completed
+2024-11-24T10:02:21.826139 - INFO - GET get_report successfully completed
+2024-11-24T10:02:51.193467 - INFO - POST filter_data successfully completed
+2024-11-24T10:03:01.687493 - INFO - POST transactions successfully completed
+2024-11-24T10:03:07.904323 - INFO - POST turnover successfully completed
+2024-11-24T10:03:39.214134 - INFO - GET get_dateblock successfully completed
+2024-11-24T10:04:15.674655 - ERROR - ID is required
