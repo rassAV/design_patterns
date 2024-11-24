@@ -7,7 +7,6 @@ from src.logics.prototype_manager import prototype_manager
 from src.storage_reposity import storage_reposity
 from src.processes.dateblock_process import dateblock_process
 from src.models.nomenclature import nomenclature
-from src.core.custom_raise import CustomRaise
 
 class nomenclature_service(abstract_logic):
     def __init__(self, reposity: storage_reposity):
@@ -118,10 +117,9 @@ class nomenclature_service(abstract_logic):
     def set_exception(self, ex: Exception):
         super().set_exception(ex)
 
-    def handle_event(self, type: event_type, params):
-        super().handle_event(type, params)
+    def handle_event(self, type, logs, params):
+        super().handle_event(type, logs, params)
         if type == event_type.UPDATE_NOMENCLATURE:
             return self.update_nomenclature(params)
         elif type == event_type.DELETE_NOMENCLATURE:
             return self.delete_nomenclature(params)
-        CustomRaise.operation_exception("Ошибка! В nomenclature_service.handle_event передан некорректный тип события!")

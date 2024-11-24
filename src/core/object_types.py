@@ -14,10 +14,21 @@ class transaction_type(Enum):
 
 class event_type(Enum):
     FORMATS = "formats"
-    UPDATE_NOMENCLATURE = "upd_nmcl"
-    DELETE_NOMENCLATURE = "del_nmcl"
+    GET_REPORT = "get_report"
+    FILTER_DATA = "filter_data"
+    TRANSACTIONS = "transactions"
+    TURNOVER = "turnover"
+    DATEBLOCK = "dateblock"
+    GET_DATEBLOCK = "get_dateblock"
+    GET_NOMENCLATURE = "get_nomenclature"
+    ADD_NOMENCLATURE = "add_nomenclature"
+    UPDATE_NOMENCLATURE = "update_nomenclature"
+    DELETE_NOMENCLATURE = "delete_nomenclature"
+    GET_BALANCE_LIST = "get_balance_list"
+    SAVE_DATA = "save_data"
+    LOAD_DATA = "load_data"
 
 class log_type(Enum):
-    ERROR = "error"
-    INFO = "info"
-    DEBUG = "debug"
+    ERROR = "ERROR"
+    INFO = "INFO"
+    DEBUG = "DEBUG"

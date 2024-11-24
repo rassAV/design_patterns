@@ -12,7 +12,8 @@ from src.models.storage_transaction import storage_transaction
 from src.reports.json_report import json_report
 from src.file_manager import file_manager
 from src.core.object_types import event_type
-from src.core.object_types import log_type
+from src.log_manager import log_manager
+from src.logics.observe_service import observe_service
 import os
 
 class start_service(abstract_logic):
@@ -21,6 +22,7 @@ class start_service(abstract_logic):
 
     def __init__(self, reposity : storage_reposity, manager: settings_manager) -> None:
         super().__init__()
+        observe_service.append(self)
         CustomRaise.type_exception("reposity", reposity, storage_reposity)
         self.__reposity = reposity
         self.__settings_manager = manager
@@ -97,8 +99,7 @@ class start_service(abstract_logic):
         try:
             if self.settings.first_start:
                 return False
-            file = file_manager()
-            result = file.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[8:]}")
+            result = file_manager.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[8:]}")
             if "error" in result:
                 return False
             self.data = result
@@ -109,15 +110,7 @@ class start_service(abstract_logic):
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
     
-    def handle_event(self, type, level, params):
-        super().handle_event(type, params)
-        file = file_manager()
+    def handle_event(self, type, logs, params):
+        super().handle_event(type, logs, params)
         if type == event_type.FORMATS:
-            if self.settings.log_level == log_type.ERROR:
-                if level == log_type.ERROR:
-                    file.log_append(level, params)
-            elif self.settings.log_level == log_type.INFO:
-                if level == log_type.ERROR or level == log_type.INFO:
-                    file.log_append(level, params)
-            else:
-                file.log_append(level, params)
+            logs.new(params)

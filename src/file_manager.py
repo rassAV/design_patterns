@@ -13,18 +13,7 @@ import json
 
 class file_manager():
     @staticmethod
-    def get_class_by_key(key: str):
-        mapping = {
-            storage_reposity.ranges_key(): range,
-            storage_reposity.groups_key(): group_nomenclature,
-            storage_reposity.nomenclature_key(): nomenclature,
-            storage_reposity.receipts_key(): recipe,
-            storage_reposity.storages_key(): storage,
-            storage_reposity.transactions_key(): storage_transaction
-        }
-        return mapping.get(key)
-
-    def json_read(self, folder_path, file_name):
+    def json_read(folder_path, file_name):
         try:
             full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), folder_path))
             if not os.path.exists(full_path):
@@ -35,8 +24,17 @@ class file_manager():
                 with open(full_path, 'r', encoding='utf-8') as file:
                     data = json.load(file)
 
+                mapping = {
+                    storage_reposity.ranges_key(): range,
+                    storage_reposity.groups_key(): group_nomenclature,
+                    storage_reposity.nomenclature_key(): nomenclature,
+                    storage_reposity.receipts_key(): recipe,
+                    storage_reposity.storages_key(): storage,
+                    storage_reposity.transactions_key(): storage_transaction
+                }
+
                 for key, value in data.items():
-                    model_class = self.get_class_by_key(key)
+                    model_class = mapping.get(key)
                     if model_class:
                         data[key] = [model_class.from_json(item) for item in value]
                 
@@ -46,7 +44,8 @@ class file_manager():
         except Exception as e:
             return {"error": f"can not read json file {file_name}: {str(e)}"}
     
-    def json_write(self, folder_path, file_name, data):
+    @staticmethod
+    def json_write(folder_path, file_name, data):
         try:
             full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), folder_path))
             if not os.path.exists(full_path):
@@ -58,15 +57,15 @@ class file_manager():
             return False
         return True
     
-    def log_append(self, level: log_type, messege: str):
+    @staticmethod
+    def file_append(folder_path, file_name, data):
         try:
-            data = datetime.now().isoformat() + " - " + level.value + " - " + messege
-            full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"..{os.sep}data{os.sep}logs"))
+            full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), folder_path))
             if not os.path.exists(full_path):
                 os.makedirs(full_path)
-            full_path = os.path.join(full_path, "logs.dat")
+            full_path = os.path.join(full_path, file_name)
             with open(full_path, 'a', encoding='utf-8') as file:
-                file.write(data)
+                file.write(data + "\n")
         except:
             return False
         return True

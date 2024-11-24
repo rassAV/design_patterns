@@ -16,6 +16,7 @@ from src.logics.observe_service import observe_service
 from src.core.object_types import event_type
 from src.core.object_types import log_type
 from src.logics.nomenclature_service import nomenclature_service
+from src.log_manager import log_manager
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -40,14 +41,15 @@ processes.register('balance', balance_process)
 
 report = report_factory().create(manager)
 file = file_manager()
+logs = log_manager(manager)
 
 @app.route("/api/reports/formats", methods=["GET"])
 def formats():
     try:
         result = [{"name": item.name, "value": item.value} for item in format_reporting]
-        observe_service.raise_event(event_type.FORMATS, log_type.INFO, "GET formats successfully completed")
+        observe_service.raise_event(event_type.FORMATS, logs, {"log_level": log_type.INFO, "message": "GET formats successfully completed"})
     except:
-        observe_service.raise_event(event_type.FORMATS, log_type.ERROR, "GET formats can not completed")
+        observe_service.raise_event(event_type.FORMATS, logs, {"log_level": log_type.ERROR, "message": "GET formats can not completed"})
     return jsonify(result)
 
 @app.route("/api/reports/<category>/<format_type>", methods=["GET"])

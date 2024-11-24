@@ -12,7 +12,7 @@ class settings:
     __report_format: format_reporting = None
     __report_mapping: dict = {}
     __first_start: bool = True
-    __log_level: log_type = None
+    __log_level: log_type = log_type.ERROR
 
     @property
     def inn(self):
