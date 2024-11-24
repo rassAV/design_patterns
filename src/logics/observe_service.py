@@ -1,7 +1,6 @@
 from src.core.abstract_logic import abstract_logic
 from src.core.custom_raise import CustomRaise
 from src.core.object_types import event_type
-from src.log_manager import log_manager
 
 class observe_service:
     observers = []
@@ -19,7 +18,7 @@ class observe_service:
             observe_service.observers.append(service)
 
     @staticmethod
-    def raise_event(event_type: event_type, logs: log_manager, params):
+    def raise_event(event_type: event_type, logs, params):
         statuses = {}
         for service in observe_service.observers:
             if service is not None:

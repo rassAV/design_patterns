@@ -11,10 +11,10 @@ class log_manager():
     __folder_path: str = f"..{os.sep}data{os.sep}logs"
     __file_name: str = "logs.dat"
 
-    def __init__(self, settings_manager : settings_manager) -> None:
+    def __init__(self, manager : settings_manager) -> None:
         super().__init__()
-        CustomRaise.type_exception("settings_manager", settings_manager, log_type)
-        self.__settings_manager = settings_manager
+        CustomRaise.type_exception("settings_manager", manager, settings_manager)
+        self.__settings_manager = manager
         if self.__settings_manager.settings.log_level is not None:
             self.__log_level = self.__settings_manager.settings.log_level
     

@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from src.core.object_types import event_type
-from src.log_manager import log_manager
 from src.core.custom_raise import CustomRaise
 
 class abstract_logic(ABC):
@@ -26,6 +25,5 @@ class abstract_logic(ABC):
         pass
 
     @abstractmethod
-    def handle_event(self, type: event_type, logs: log_manager, params):
+    def handle_event(self, type: event_type, logs, params):
         CustomRaise.type_exception("event_type", type, event_type)
-        CustomRaise.type_exception("log_manager", logs, log_manager)
