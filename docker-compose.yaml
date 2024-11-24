@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-  design_patterns_crud:
-    container_name: design_patterns_crud
-    image: design_patterns_crud
+  design_patterns_report:
+    container_name: design_patterns_report
+    image: design_patterns_report
     ports:
       - 8000:8080
     volumes:
       - ./data/settings/settings2.json:/data/settings/settings2.json
       - ./data/logs/logs.dat:/data/logs/logs.dat
 
-  design_patterns_report:
-    container_name: design_patterns_report
-    image: design_patterns_report
+  design_patterns_crud:
+    container_name: design_patterns_crud
+    image: design_patterns_crud
     ports:
       - 8001:8080
     volumes:

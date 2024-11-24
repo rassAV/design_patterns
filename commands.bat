@@ -1,47 +1,22 @@
 @echo off
-curl -X GET ^
-  "http://localhost:8080/api/reports/formats" ^
-  -H "accept: application/json"
+:: GET запросы через порт 8000
+curl -X GET "http://localhost:8000/api/reports/formats" -H "accept: application/json"
 pause
 
-@echo off
-curl -X 'GET' \
-  'http://localhost:8080/api/reports/ranges/JSON' \
-  -H 'accept: application/json'
+curl -X GET "http://localhost:8000/api/reports/ranges/JSON" -H "accept: application/json"
 pause
 
-@echo off
-curl -X 'GET' \
-  'http://localhost:8080/api/dateblock' \
-  -H 'accept: application/json'
+curl -X GET "http://localhost:8000/api/dateblock" -H "accept: application/json"
 pause
 
 
 
-
-
-@echo off
-curl -X 'POST' \
-  'http://localhost:8080/api/filter/groups' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Заморозка",
-  "id": "",
-  "type": 1
-}'
+:: POST запросы через порт 8001
+curl -X POST "http://localhost:8001/api/filter/groups" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"name\": \"Заморозка\", \"id\": \"\", \"type\": 1}"
 pause
 
-@echo off
-curl -X 'POST' \
-  'http://localhost:8080/api/transactions' \
-  -H 'accept: application/json' \
-  -d ''
+curl -X POST "http://localhost:8001/api/transactions" -H "accept: application/json" -d ""
 pause
 
-@echo off
-curl -X 'POST' \
-  'http://localhost:8080/api/turnover' \
-  -H 'accept: application/json' \
-  -d ''
+curl -X POST "http://localhost:8001/api/turnover" -H "accept: application/json" -d ""
 pause
