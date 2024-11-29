@@ -2,6 +2,7 @@ from src.models.settings import settings
 from src.core.abstract_logic import abstract_logic
 from src.core.custom_raise import CustomRaise
 from src.core.object_types import format_reporting
+from src.core.object_types import log_type
 from src.logics.observe_service import observe_service
 from src.core.object_types import event_type
 from src.file_manager import file_manager
@@ -26,8 +27,11 @@ class settings_manager(abstract_logic):
     def convert(self, data: dict):
         for key, value in data.items():
             if key == "report_format":
-                formatted_value = format_reporting(value)
-                setattr(self.__settings, key, formatted_value)
+                setattr(self.__settings, key, format_reporting(value))
+            # elif key == "first_start":
+            #     setattr(self.__settings, key, bool(value))
+            elif key == "log_level":
+                setattr(self.__settings, key, log_type(value))
             elif hasattr(self.__settings, key):
                 setattr(self.__settings, key, value)
 
@@ -62,7 +66,8 @@ class settings_manager(abstract_logic):
                 "org_name": self.__settings.organization_name,
                 "ownership_type": self.__settings.ownership_type,
                 "report_format": self.__settings.report_format.value,
-                "first_start": self.__settings.first_start
+                "first_start": self.__settings.first_start,
+                "log_level": self.__settings.log_level.value
             }
             return file_manager.json_write(folder_path, self.__file_name, data)
         except Exception as ex :
@@ -87,6 +92,7 @@ class settings_manager(abstract_logic):
         data.ownership_type = "частн"
         data.report_format = format_reporting.CSV
         data.first_start = True
+        data.log_level = log_type.INFO
         return data
     
     @staticmethod
@@ -100,5 +106,5 @@ class settings_manager(abstract_logic):
     def set_exception(self, e: Exception):
         self._inner_set_exception(e)
     
-    def handle_event(self, type, params):
-        super().handle_event(type, params)
+    def handle_event(self, type, logs, params):
+        super().handle_event(type, logs, params)

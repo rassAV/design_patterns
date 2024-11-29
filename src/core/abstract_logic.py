@@ -25,5 +25,5 @@ class abstract_logic(ABC):
         pass
 
     @abstractmethod
-    def handle_event(self, type: event_type, params):
+    def handle_event(self, type: event_type, logs, params):
         CustomRaise.type_exception("event_type", type, event_type)

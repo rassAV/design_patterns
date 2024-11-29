@@ -11,6 +11,9 @@ from src.models.storage import storage
 from src.models.storage_transaction import storage_transaction
 from src.reports.json_report import json_report
 from src.file_manager import file_manager
+from src.core.object_types import event_type
+from src.log_manager import log_manager
+from src.logics.observe_service import observe_service
 import os
 
 class start_service(abstract_logic):
@@ -19,6 +22,7 @@ class start_service(abstract_logic):
 
     def __init__(self, reposity : storage_reposity, manager: settings_manager) -> None:
         super().__init__()
+        observe_service.append(self)
         CustomRaise.type_exception("reposity", reposity, storage_reposity)
         self.__reposity = reposity
         self.__settings_manager = manager
@@ -95,8 +99,7 @@ class start_service(abstract_logic):
         try:
             if self.settings.first_start:
                 return False
-            file = file_manager()
-            result = file.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[8:]}")
+            result = file_manager.json_read(f"..{os.sep}data{os.sep}reposities", f"reposity_{self.__settings_manager.__file_name[8:]}")
             if "error" in result:
                 return False
             self.data = result
@@ -107,5 +110,11 @@ class start_service(abstract_logic):
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
     
-    def handle_event(self, type, params):
-        super().handle_event(type, params)
+    def handle_event(self, type, logs, params):
+        super().handle_event(type, logs, params)
+        event_types = [event_type.FORMATS, event_type.GET_REPORT, event_type.FILTER_DATA, 
+                  event_type.TRANSACTIONS, event_type.TURNOVER, event_type.DATEBLOCK, 
+                  event_type.GET_DATEBLOCK, event_type.GET_NOMENCLATURE, event_type.ADD_NOMENCLATURE, 
+                  event_type.GET_BALANCE_LIST, event_type.SAVE_DATA, event_type.LOAD_DATA]
+        if type in event_types:
+            return logs.new(params)

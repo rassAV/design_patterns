@@ -58,5 +58,5 @@ class turnover_process(abstract_logic):
     def set_exception(self, e: Exception):
         self._inner_set_exception(e)
     
-    def handle_event(self, type, params):
-        super().handle_event(type, params)
+    def handle_event(self, type, logs, params):
+        super().handle_event(type, logs, params)

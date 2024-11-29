@@ -6,5 +6,6 @@
     "org_name" : "ГлобалСтрой",
     "ownership_type": "частн",
     "report_format": ".md",
-    "first_start": true
+    "first_start": true,
+    "log_level": "INFO"
 }
