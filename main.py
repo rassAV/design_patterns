@@ -68,7 +68,7 @@ def get_report(category, format_type):
     observe_service.raise_event(event_type.GET_REPORT, logs, {"status": "GET get_report successfully completed"})
     return Response(report.result, status=200)
 
-@app.route("/api/filter/<category>", methods=["POST"])
+@app.route("/api/crud/filter/<category>", methods=["POST"])
 def filter_data(category):
     if request.content_type != 'application/json':
         observe_service.raise_event(event_type.FILTER_DATA, logs, {"error": "Content-Type must be application/json"})
@@ -86,7 +86,7 @@ def filter_data(category):
     observe_service.raise_event(event_type.FILTER_DATA, logs, {"status": "POST filter_data successfully completed"})
     return Response(report.result, status=200)
 
-@app.route("/api/transactions", methods=["POST"])
+@app.route("/api/crud/transactions", methods=["POST"])
 def transactions():
     data = start.data["transactions"]
 
@@ -98,7 +98,7 @@ def transactions():
     observe_service.raise_event(event_type.TRANSACTIONS, logs, {"status": "POST transactions successfully completed"})
     return report.result
 
-@app.route("/api/turnover", methods=["POST"])
+@app.route("/api/crud/turnover", methods=["POST"])
 def turnover():
     data = start.data["transactions"]
 
@@ -117,7 +117,7 @@ def turnover():
     observe_service.raise_event(event_type.TURNOVER, logs, {"status": "POST turnover successfully completed"})
     return report.result
 
-@app.route("/api/dateblock", methods=["POST"])
+@app.route("/api/crud/dateblock", methods=["POST"])
 def dateblock():
     data = start.data["transactions"]
 
@@ -134,7 +134,7 @@ def dateblock():
     observe_service.raise_event(event_type.DATEBLOCK, logs, {"status": "POST dateblock successfully completed"})
     return jsonify({"datablock_state": state}), 200
 
-@app.route("/api/dateblock", methods=["GET"])
+@app.route("/api/reports/dateblock", methods=["GET"])
 def get_dateblock():
     try:
         data = file.json_read("../data/turnovers", "blocked_turnovers.json")
@@ -144,7 +144,7 @@ def get_dateblock():
     observe_service.raise_event(event_type.GET_DATEBLOCK, logs, {"status": "GET get_dateblock successfully completed"})
     return jsonify({"datablock": data['date']}), 200
 
-@app.route('/api/nomenclature', methods=['GET'])
+@app.route('/api/reports/nomenclature', methods=['GET'])
 def get_nomenclature():
     result = nmcl_service.get_nomenclature(request.args)
     if "error" in result:
@@ -154,7 +154,7 @@ def get_nomenclature():
     observe_service.raise_event(event_type.GET_NOMENCLATURE, logs, {"status": "GET get_nomenclature successfully completed"})
     return Response(report.result, status=200)
 
-@app.route('/api/nomenclature', methods=['PUT'])
+@app.route('/api/crud/nomenclature', methods=['PUT'])
 def add_nomenclature():
     result = nmcl_service.add_nomenclature(request.args)
     observe_service.raise_event(event_type.ADD_NOMENCLATURE, logs, result)
@@ -162,21 +162,21 @@ def add_nomenclature():
         return jsonify(result), 404
     return jsonify(result), 200
 
-@app.route('/api/nomenclature', methods=['PATCH'])
+@app.route('/api/crud/nomenclature', methods=['PATCH'])
 def update_nomenclature():
     result = observe_service.raise_event(event_type.UPDATE_NOMENCLATURE, request.json)
     if "error" in result:
         return jsonify(result), 404
     return jsonify(result), 200
 
-@app.route('/api/nomenclature', methods=['DELETE'])
+@app.route('/api/crud/nomenclature', methods=['DELETE'])
 def delete_nomenclature():
     result = observe_service.raise_event(event_type.DELETE_NOMENCLATURE, request.json)
     if "error" in result:
         return jsonify(result), 404
     return jsonify(result), 200
 
-@app.route('/api/balance_list', methods=['GET'])
+@app.route('/api/reports/balance_list', methods=['GET'])
 def get_balance_list():
     data = start.data["transactions"]
     if not data:
@@ -190,7 +190,7 @@ def get_balance_list():
     observe_service.raise_event(event_type.GET_BALANCE_LIST, logs, {"status": "GET get_balance_list successfully completed"})
     return jsonify(balance_list), 200
 
-@app.route('/api/data/save', methods=['POST'])
+@app.route('/api/crud/save_data', methods=['POST'])
 def save_data():
     result = start.save()
     if not result:
@@ -199,7 +199,7 @@ def save_data():
     observe_service.raise_event(event_type.SAVE_DATA, logs, {"status": "POST save_data successfully completed"})
     return jsonify({"status": "Data successfully saved"}), 200
 
-@app.route('/api/data/load', methods=['POST'])
+@app.route('/api/crud/load_data', methods=['POST'])
 def load_data():
     result = start.load()
     if not result:
