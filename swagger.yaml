@@ -299,6 +299,58 @@ paths:
         500:
           description: Ошибка при загрузке данных
 
+  /crud/db_save:
+    post:
+      summary: Сохранить данные в базу
+      operationId: main.db_save
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Данные успешно сохранены
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "Data successfully saved"
+        500:
+          description: Ошибка при сохранении данных
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Data not saved"
+
+  /crud/db_load:
+    post:
+      summary: Загрузить данные из базы
+      operationId: main.db_load
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Данные успешно загружены
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "Data successfully loaded"
+        500:
+          description: Ошибка при загрузке данных
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Data not loaded"
+
 definitions:
   Filter:
     type: object

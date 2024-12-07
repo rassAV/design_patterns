@@ -1,5 +1,7 @@
 import connexion
 from flask import jsonify, Response, request
+import psycopg2
+import os
 from src.core.object_types import format_reporting
 from src.storage_reposity import storage_reposity
 from src.reports.report_factory import report_factory
@@ -42,6 +44,11 @@ processes.register('balance', balance_process)
 report = report_factory().create(manager)
 file = file_manager()
 logs = log_manager(manager)
+
+DB_CONN = os.getenv("DB_CONNECTION", "dbname=test user=test password=test host=localhost port=5432")
+
+def connect_db():
+    return psycopg2.connect(DB_CONN)
 
 @app.route("/api/reports/formats", methods=["GET"])
 def formats():
@@ -206,6 +213,31 @@ def load_data():
         observe_service.raise_event(event_type.LOAD_DATA, logs, {"error": "Data not load"})
         return jsonify({"error": "Data not load"}), 500
     observe_service.raise_event(event_type.LOAD_DATA, logs, {"status": "POST load_data successfully completed"})
+    return jsonify({"status": "Data successfully loaded"}), 200
+
+@app.route('/api/crud/db_save', methods=['POST'])
+def db_save():
+    result = start.save()
+    if not result:
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not getting"})
+        return jsonify({"error": "Data not save"}), 500
+    try:
+        with connect_db() as conn:
+            pass
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"status": "POST save_data successfully completed"})
+    except:
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not save in database"})
+    return jsonify({"status": "Data successfully saved"}), 200
+
+@app.route('/api/crud/db_load', methods=['POST'])
+def db_load():
+    try:
+        with connect_db() as conn:
+            data = []
+        start.data = data
+        observe_service.raise_event(event_type.LOAD_DATA, logs, {"status": "POST load_data successfully completed"})
+    except:
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not save in database"})
     return jsonify({"status": "Data successfully loaded"}), 200
 
 if __name__ == '__main__':
