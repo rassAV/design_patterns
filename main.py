@@ -45,7 +45,7 @@ report = report_factory().create(manager)
 file = file_manager()
 logs = log_manager(manager)
 
-DB_CONN = os.getenv("DB_CONNECTION", "dbname=test user=test password=test host=localhost port=5432")
+DB_CONN = os.getenv("DB_CONNECTION", f"dbname={start.settings.db_name} user={start.settings.db_user} password={start.settings.db_password} host=localhost port=5432")
 
 def connect_db():
     return psycopg2.connect(DB_CONN)
@@ -237,7 +237,7 @@ def db_load():
         start.data = data
         observe_service.raise_event(event_type.LOAD_DATA, logs, {"status": "POST load_data successfully completed"})
     except:
-        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not save in database"})
+        observe_service.raise_event(event_type.LOAD_DATA, logs, {"error": "Data not load in database"})
     return jsonify({"status": "Data successfully loaded"}), 200
 
 if __name__ == '__main__':

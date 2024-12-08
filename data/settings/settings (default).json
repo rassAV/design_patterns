@@ -8,10 +8,7 @@
     "report_format": ".csv",
     "first_start": true,
     "log_level": "INFO",
-    "db_mode": "database",
-    "file_mode": "file",
-    "storage": "database",
-    "db_name": "",
-    "db_username": "",
-    "db_password": ""
+    "db_name": "test",
+    "db_user": "test",
+    "db_password": "test"
 }

@@ -7,5 +7,8 @@
     "ownership_type": "частн",
     "report_format": ".json",
     "first_start": true,
-    "log_level": "DEBUG"
+    "log_level": "DEBUG",
+    "db_name": "test",
+    "db_user": "test",
+    "db_password": "test"
 }

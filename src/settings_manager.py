@@ -67,7 +67,10 @@ class settings_manager(abstract_logic):
                 "ownership_type": self.__settings.ownership_type,
                 "report_format": self.__settings.report_format.value,
                 "first_start": self.__settings.first_start,
-                "log_level": self.__settings.log_level.value
+                "log_level": self.__settings.log_level.value,
+                "db_name": self.__settings.db_name,
+                "db_user": self.__settings.db_user,
+                "db_password": self.__settings.db_password
             }
             return file_manager.json_write(folder_path, self.__file_name, data)
         except Exception as ex :
@@ -93,6 +96,9 @@ class settings_manager(abstract_logic):
         data.report_format = format_reporting.CSV
         data.first_start = True
         data.log_level = log_type.INFO
+        data.db_name = "test"
+        data.db_user = "test"
+        data.db_password = "test"
         return data
     
     @staticmethod
