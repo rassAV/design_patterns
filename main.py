@@ -19,6 +19,12 @@ from src.core.object_types import event_type
 from src.core.object_types import log_type
 from src.logics.nomenclature_service import nomenclature_service
 from src.log_manager import log_manager
+from src.models.range import range
+from src.models.group_nomenclature import group_nomenclature
+from src.models.nomenclature import nomenclature
+from src.models.recipe import recipe
+from src.models.storage import storage
+from src.models.storage_transaction import storage_transaction
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -217,27 +223,50 @@ def load_data():
 
 @app.route('/api/crud/db_save', methods=['POST'])
 def db_save():
-    result = start.save()
-    if not result:
-        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not getting"})
-        return jsonify({"error": "Data not save"}), 500
+    data = start.data
     try:
         with connect_db() as conn:
-            pass
+            with conn.cursor() as cursor:
+                for key, items in data.items():
+                    table_name = key
+                    for item in items:
+                        item_data = item.to_json()
+                        columns = ', '.join(item_data.keys())
+                        placeholders = ', '.join(f"%({k})s" for k in item_data.keys())
+                        sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders}) ON CONFLICT (id) DO NOTHING"
+                        cursor.execute(sql, item_data)
         observe_service.raise_event(event_type.SAVE_DATA, logs, {"status": "POST save_data successfully completed"})
     except:
-        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not save in database"})
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not saved in database"})
+        return jsonify({"error": "Data not saved in database"}), 500
     return jsonify({"status": "Data successfully saved"}), 200
 
 @app.route('/api/crud/db_load', methods=['POST'])
 def db_load():
     try:
         with connect_db() as conn:
-            data = []
-        start.data = data
+            with conn.cursor() as cursor:
+                loaded_data = {}
+                for table_name in ["ranges", "groups", "nomenclature", "receipts", "storages", "transactions"]:
+                    cursor.execute(f"SELECT * FROM {table_name}")
+                    rows = cursor.fetchall()
+                    if table_name == "ranges":
+                        loaded_data[table_name] = [range.from_json(row) for row in rows]
+                    elif table_name == "groups":
+                        loaded_data[table_name] = [group_nomenclature.from_json(row) for row in rows]
+                    elif table_name == "nomenclature":
+                        loaded_data[table_name] = [nomenclature.from_json(row) for row in rows]
+                    elif table_name == "receipts":
+                        loaded_data[table_name] = [recipe.from_json(row) for row in rows]
+                    elif table_name == "storages":
+                        loaded_data[table_name] = [storage.from_json(row) for row in rows]
+                    elif table_name == "transactions":
+                        loaded_data[table_name] = [storage_transaction.from_json(row) for row in rows]
+        start.data = loaded_data
         observe_service.raise_event(event_type.LOAD_DATA, logs, {"status": "POST load_data successfully completed"})
     except:
-        observe_service.raise_event(event_type.LOAD_DATA, logs, {"error": "Data not load in database"})
+        observe_service.raise_event(event_type.LOAD_DATA, logs, {"error": "Data not loaded from database"})
+        return jsonify({"error": "Data not loaded from database"}), 500
     return jsonify({"status": "Data successfully loaded"}), 200
 
 if __name__ == '__main__':
