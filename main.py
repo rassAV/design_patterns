@@ -1,5 +1,7 @@
 import connexion
 from flask import jsonify, Response, request
+import psycopg2
+import os
 from src.core.object_types import format_reporting
 from src.storage_reposity import storage_reposity
 from src.reports.report_factory import report_factory
@@ -17,6 +19,12 @@ from src.core.object_types import event_type
 from src.core.object_types import log_type
 from src.logics.nomenclature_service import nomenclature_service
 from src.log_manager import log_manager
+from src.models.range import range
+from src.models.group_nomenclature import group_nomenclature
+from src.models.nomenclature import nomenclature
+from src.models.recipe import recipe
+from src.models.storage import storage
+from src.models.storage_transaction import storage_transaction
 
 app = connexion.FlaskApp(__name__, specification_dir='./')
 
@@ -43,6 +51,11 @@ report = report_factory().create(manager)
 file = file_manager()
 logs = log_manager(manager)
 
+DB_CONN = os.getenv("DB_CONNECTION", f"dbname={start.settings.db_name} user={start.settings.db_user} password={start.settings.db_password} host=localhost port=5432")
+
+def connect_db():
+    return psycopg2.connect(DB_CONN)
+
 @app.route("/api/reports/formats", methods=["GET"])
 def formats():
     try:
@@ -68,7 +81,7 @@ def get_report(category, format_type):
     observe_service.raise_event(event_type.GET_REPORT, logs, {"status": "GET get_report successfully completed"})
     return Response(report.result, status=200)
 
-@app.route("/api/filter/<category>", methods=["POST"])
+@app.route("/api/crud/filter/<category>", methods=["POST"])
 def filter_data(category):
     if request.content_type != 'application/json':
         observe_service.raise_event(event_type.FILTER_DATA, logs, {"error": "Content-Type must be application/json"})
@@ -86,7 +99,7 @@ def filter_data(category):
     observe_service.raise_event(event_type.FILTER_DATA, logs, {"status": "POST filter_data successfully completed"})
     return Response(report.result, status=200)
 
-@app.route("/api/transactions", methods=["POST"])
+@app.route("/api/crud/transactions", methods=["POST"])
 def transactions():
     data = start.data["transactions"]
 
@@ -98,7 +111,7 @@ def transactions():
     observe_service.raise_event(event_type.TRANSACTIONS, logs, {"status": "POST transactions successfully completed"})
     return report.result
 
-@app.route("/api/turnover", methods=["POST"])
+@app.route("/api/crud/turnover", methods=["POST"])
 def turnover():
     data = start.data["transactions"]
 
@@ -117,7 +130,7 @@ def turnover():
     observe_service.raise_event(event_type.TURNOVER, logs, {"status": "POST turnover successfully completed"})
     return report.result
 
-@app.route("/api/dateblock", methods=["POST"])
+@app.route("/api/crud/dateblock", methods=["POST"])
 def dateblock():
     data = start.data["transactions"]
 
@@ -134,7 +147,7 @@ def dateblock():
     observe_service.raise_event(event_type.DATEBLOCK, logs, {"status": "POST dateblock successfully completed"})
     return jsonify({"datablock_state": state}), 200
 
-@app.route("/api/dateblock", methods=["GET"])
+@app.route("/api/reports/dateblock", methods=["GET"])
 def get_dateblock():
     try:
         data = file.json_read("../data/turnovers", "blocked_turnovers.json")
@@ -144,7 +157,7 @@ def get_dateblock():
     observe_service.raise_event(event_type.GET_DATEBLOCK, logs, {"status": "GET get_dateblock successfully completed"})
     return jsonify({"datablock": data['date']}), 200
 
-@app.route('/api/nomenclature', methods=['GET'])
+@app.route('/api/reports/nomenclature', methods=['GET'])
 def get_nomenclature():
     result = nmcl_service.get_nomenclature(request.args)
     if "error" in result:
@@ -154,7 +167,7 @@ def get_nomenclature():
     observe_service.raise_event(event_type.GET_NOMENCLATURE, logs, {"status": "GET get_nomenclature successfully completed"})
     return Response(report.result, status=200)
 
-@app.route('/api/nomenclature', methods=['PUT'])
+@app.route('/api/crud/nomenclature', methods=['PUT'])
 def add_nomenclature():
     result = nmcl_service.add_nomenclature(request.args)
     observe_service.raise_event(event_type.ADD_NOMENCLATURE, logs, result)
@@ -162,21 +175,21 @@ def add_nomenclature():
         return jsonify(result), 404
     return jsonify(result), 200
 
-@app.route('/api/nomenclature', methods=['PATCH'])
+@app.route('/api/crud/nomenclature', methods=['PATCH'])
 def update_nomenclature():
     result = observe_service.raise_event(event_type.UPDATE_NOMENCLATURE, request.json)
     if "error" in result:
         return jsonify(result), 404
     return jsonify(result), 200
 
-@app.route('/api/nomenclature', methods=['DELETE'])
+@app.route('/api/crud/nomenclature', methods=['DELETE'])
 def delete_nomenclature():
     result = observe_service.raise_event(event_type.DELETE_NOMENCLATURE, request.json)
     if "error" in result:
         return jsonify(result), 404
     return jsonify(result), 200
 
-@app.route('/api/balance_list', methods=['GET'])
+@app.route('/api/reports/balance_list', methods=['GET'])
 def get_balance_list():
     data = start.data["transactions"]
     if not data:
@@ -190,7 +203,7 @@ def get_balance_list():
     observe_service.raise_event(event_type.GET_BALANCE_LIST, logs, {"status": "GET get_balance_list successfully completed"})
     return jsonify(balance_list), 200
 
-@app.route('/api/data/save', methods=['POST'])
+@app.route('/api/crud/save_data', methods=['POST'])
 def save_data():
     result = start.save()
     if not result:
@@ -199,13 +212,61 @@ def save_data():
     observe_service.raise_event(event_type.SAVE_DATA, logs, {"status": "POST save_data successfully completed"})
     return jsonify({"status": "Data successfully saved"}), 200
 
-@app.route('/api/data/load', methods=['POST'])
+@app.route('/api/crud/load_data', methods=['POST'])
 def load_data():
     result = start.load()
     if not result:
         observe_service.raise_event(event_type.LOAD_DATA, logs, {"error": "Data not load"})
         return jsonify({"error": "Data not load"}), 500
     observe_service.raise_event(event_type.LOAD_DATA, logs, {"status": "POST load_data successfully completed"})
+    return jsonify({"status": "Data successfully loaded"}), 200
+
+@app.route('/api/crud/db_save', methods=['POST'])
+def db_save():
+    data = start.data
+    try:
+        with connect_db() as conn:
+            with conn.cursor() as cursor:
+                for key, items in data.items():
+                    table_name = key
+                    for item in items:
+                        item_data = item.to_json()
+                        columns = ', '.join(item_data.keys())
+                        placeholders = ', '.join(f"%({k})s" for k in item_data.keys())
+                        sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders}) ON CONFLICT (id) DO NOTHING"
+                        cursor.execute(sql, item_data)
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"status": "POST save_data successfully completed"})
+    except:
+        observe_service.raise_event(event_type.SAVE_DATA, logs, {"error": "Data not saved in database"})
+        return jsonify({"error": "Data not saved in database"}), 500
+    return jsonify({"status": "Data successfully saved"}), 200
+
+@app.route('/api/crud/db_load', methods=['POST'])
+def db_load():
+    try:
+        with connect_db() as conn:
+            with conn.cursor() as cursor:
+                loaded_data = {}
+                for table_name in ["ranges", "groups", "nomenclature", "receipts", "storages", "transactions"]:
+                    cursor.execute(f"SELECT * FROM {table_name}")
+                    rows = cursor.fetchall()
+                    if table_name == "ranges":
+                        loaded_data[table_name] = [range.from_json(row) for row in rows]
+                    elif table_name == "groups":
+                        loaded_data[table_name] = [group_nomenclature.from_json(row) for row in rows]
+                    elif table_name == "nomenclature":
+                        loaded_data[table_name] = [nomenclature.from_json(row) for row in rows]
+                    elif table_name == "receipts":
+                        loaded_data[table_name] = [recipe.from_json(row) for row in rows]
+                    elif table_name == "storages":
+                        loaded_data[table_name] = [storage.from_json(row) for row in rows]
+                    elif table_name == "transactions":
+                        loaded_data[table_name] = [storage_transaction.from_json(row) for row in rows]
+        start.data = loaded_data
+        observe_service.raise_event(event_type.LOAD_DATA, logs, {"status": "POST load_data successfully completed"})
+    except:
+        observe_service.raise_event(event_type.LOAD_DATA, logs, {"error": "Data not loaded from database"})
+        return jsonify({"error": "Data not loaded from database"}), 500
     return jsonify({"status": "Data successfully loaded"}), 200
 
 if __name__ == '__main__':

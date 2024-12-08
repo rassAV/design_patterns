@@ -61,7 +61,7 @@ paths:
           description: Ошибка на сервере
         default:
           description: Неизвестная ошибка
-  /filter/{category}:
+  /crud/filter/{category}:
     post:
       summary: Фильтрация данных по категории
       operationId: main.filter_data
@@ -91,7 +91,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /transactions:
+  /crud/transactions:
     post:
       summary: Получить список транзакций
       operationId: main.transactions
@@ -107,7 +107,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /turnover:
+  /crud/turnover:
     post:
       summary: Получить отчет по обороту
       operationId: main.turnover
@@ -123,7 +123,7 @@ paths:
         500:
           description: Ошибка на сервере
   
-  /dateblock:
+  /crud/dateblock:
     post:
       summary: Расчитать оборот с датой блокировки
       operationId: main.dateblock
@@ -139,7 +139,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /dateblock:
+  /reports/dateblock:
     get:
       summary: Получить дату блокировки
       operationId: main.get_dateblock
@@ -160,7 +160,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /nomenclature:
+  /reports/nomenclature:
     get:
       summary: Получить номенклатуру
       operationId: main.get_nomenclature
@@ -180,6 +180,7 @@ paths:
         500:
           description: Ошибка на сервере
 
+  /crud/nomenclature:
     put:
       summary: Добавить номенклатуру
       operationId: main.add_nomenclature
@@ -243,7 +244,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /balance_list:
+  /reports/balance_list:
     get:
       summary: Получить список балансов
       operationId: main.get_balance_list
@@ -270,7 +271,7 @@ paths:
         500:
           description: Ошибка на сервере
 
-  /data/save:
+  /crud/save_data:
     post:
       summary: Сохранить данные
       operationId: main.save_data
@@ -284,7 +285,7 @@ paths:
         500:
           description: Ошибка при сохранении данных
 
-  /data/load:
+  /crud/load_data:
     post:
       summary: Загрузить данные
       operationId: main.load_data
@@ -297,6 +298,58 @@ paths:
             type: object
         500:
           description: Ошибка при загрузке данных
+
+  /crud/db_save:
+    post:
+      summary: Сохранить данные в базу
+      operationId: main.db_save
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Данные успешно сохранены
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "Data successfully saved"
+        500:
+          description: Ошибка при сохранении данных
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Data not saved"
+
+  /crud/db_load:
+    post:
+      summary: Загрузить данные из базы
+      operationId: main.db_load
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Данные успешно загружены
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "Data successfully loaded"
+        500:
+          description: Ошибка при загрузке данных
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Data not loaded"
 
 definitions:
   Filter:

@@ -5,7 +5,7 @@ services:
     container_name: design_patterns_report
     image: design_patterns_report
     ports:
-      - 8000:8080
+      - 8001:8080
     volumes:
       - ./data/settings/settings2.json:/data/settings/settings2.json
       - ./data/logs/report_logs.dat:/data/logs/logs.dat
@@ -14,10 +14,18 @@ services:
     container_name: design_patterns_crud
     image: design_patterns_crud
     ports:
-      - 8001:8080
+      - 8002:8080
     volumes:
       - ./data/settings/settings2.json:/data/settings/settings2.json
       - ./data/logs/crud_logs.dat:/data/logs/logs.dat
+
+  proxy:
+    container_name: proxy
+    image: proxy
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
 
 networks:
   default:
