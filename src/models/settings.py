@@ -13,6 +13,9 @@ class settings:
     __report_mapping: dict = {}
     __first_start: bool = True
     __log_level: log_type = log_type.ERROR
+    __bd_name = ""
+    __bd_user = ""
+    __bd_password = ""
 
     @property
     def inn(self):
@@ -108,3 +111,30 @@ class settings:
     def log_level(self, value: log_type):
         CustomRaise.type_exception("log_level", value, log_type)
         self.__log_level = value
+    
+    @property
+    def db_name(self):
+        return self.__db_name
+
+    @db_name.setter
+    def db_name(self, value:str):
+        CustomRaise.type_exception("db_name", value, str)
+        self.__db_name = value
+    
+    @property
+    def db_user(self):
+        return self.__db_user
+
+    @db_user.setter
+    def db_user(self, value:str):
+        CustomRaise.type_exception("db_user", value, str)
+        self.__db_user = value
+    
+    @property
+    def db_password(self):
+        return self.__db_password
+
+    @db_password.setter
+    def db_password(self, value:str):
+        CustomRaise.type_exception("db_password", value, str)
+        self.__db_password = value
